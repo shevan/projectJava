@@ -40,7 +40,10 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "Bedrijf.findByFax", query = "SELECT b FROM Bedrijf b WHERE b.fax = :fax")})
 public class Bedrijf implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bedrijfsId;
+    
     private String bedrijfsNaam;
     private String email;
     private int telefoon;

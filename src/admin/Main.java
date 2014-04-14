@@ -8,6 +8,7 @@ package admin;
 
 import admin.OverzichtController;
 import java.io.InputStream;
+import admin.security.Authenticator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -30,37 +31,84 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     private Stage stage;
+    private Admin loggedAdmin;
+    
+    private final double MIN_WINDOW_HEIGHT = 800.0;
+    private final double MIN_WINDOW_WIDTH = 600.0;
+    
+    public static void main(String[] args)
+    {
+        Application.launch(Main.class, (java.lang.String[]) null);
+    }
     
     @Override
-    public void start(Stage primaryStage) {
-        stage=primaryStage;
-        stage.setTitle("Overzicht Scherm");
-        
-       
-        gotoOverzicht(); 
-        stage.show();
+    public void start(Stage primaryStage)
+    {
+        try
+        {
+            stage = primaryStage;
+            stage.setTitle("STUA");
+            stage.setMinHeight(MIN_WINDOW_HEIGHT);
+            stage.setMinWidth(MIN_WINDOW_WIDTH);
+
+            gotoLogin(); 
+            stage.show();
+        } catch (Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null,  ex);
+        }
     }
 
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    private void gotoOverzicht(){
+    public Admin getLoggedAdmin()
+    {
+        return loggedAdmin;
+    }
+    
+    public boolean adminLogging(String adminId, String password)
+    {
+        if (Authenticator.validate(adminId, password))
+        {
+            loggedAdmin = User.of(adminId);
+            gotoOverzicht();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private void gotoLogin(){
         try{
-            OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
-            overzicht.setApp(this);
-            
+            LoginController login = (LoginController) replaceSceneContent("Login.fxml");
+            login.setApp(this);
         }
         catch(Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void gotoOverzicht(){
+        try{
+            OverzichtController overzicht = (OverzichtController) replaceSceneContent("Overzicht.fxml");
+            overzicht.setApp(this);
+        }
+        catch(Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /*private void gotoStudenten(){
+        try{
+            StudentController studenten = (StudentController) replaceSceneContent("Student.fxml");
+            studenten.setApp(this);
+        }
+        catch(Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    
     //this next method is an fxml loader from JavaFX example
-    private Initializable replaceSceneContent(String fxml) throws Exception {
+    private Initializable replaceSceneContent(String fxml) throws Exception
+    {
         FXMLLoader loader = new FXMLLoader();
         InputStream in = Main.class.getResourceAsStream(fxml);
         loader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -76,9 +124,16 @@ public class Main extends Application {
         stage.sizeToScene();
         return (Initializable) loader.getController();
     }
-    
-    public static void main(String[] args) {
-        launch(args);
+
+    public boolean userLogging(String adminId, String password)
+    {
+        if (Authenticator.validate(adminId, password))
+        {
+            loggedAdmin = Admin.of(adminId);
+            gotoOverzicht();
+            return true;
+        } else {
+            return false;
+        }
     }
-    
 }

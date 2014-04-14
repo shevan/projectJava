@@ -37,6 +37,7 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Student.findByTelefoon", query = "SELECT s FROM Student s WHERE s.telefoon = :telefoon")})
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
     private Integer studentId;
 
     private String familienaam;
