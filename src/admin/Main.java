@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package admin;
 
 import admin.OverzichtController;
@@ -23,15 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-
-/**
- *
- * @author Pieter Pletinckx
- */
 public class Main extends Application {
     
     private Stage stage;
-    private Admin loggedAdmin;
+    private User loggedAdmin;
     
     private final double MIN_WINDOW_HEIGHT = 800.0;
     private final double MIN_WINDOW_WIDTH = 600.0;
@@ -59,7 +48,7 @@ public class Main extends Application {
         }
     }
 
-    public Admin getLoggedAdmin()
+    public User getLoggedAdmin()
     {
         return loggedAdmin;
     }
@@ -129,7 +118,7 @@ public class Main extends Application {
     {
         if (Authenticator.validate(adminId, password))
         {
-            loggedAdmin = Admin.of(adminId);
+            loggedAdmin = User.of(adminId);
             gotoOverzicht();
             return true;
         } else {
