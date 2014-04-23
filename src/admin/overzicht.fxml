@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.StageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
   <children>
     <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="600.0" useSystemMenuBar="false">
       <menus>
@@ -28,7 +28,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <Button layoutX="30.0" layoutY="31.0" mnemonicParsing="false" text="Stages" />
+    <Button fx:id="stage" layoutX="30.0" layoutY="31.0" mnemonicParsing="false" onAction="#processStages" text="Stages" />
     <TableView layoutX="30.0" layoutY="80.0" prefHeight="252.0" prefWidth="390.0">
       <columns>
         <TableColumn prefWidth="75.0" text="Column X" />

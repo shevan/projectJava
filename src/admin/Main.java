@@ -1,5 +1,6 @@
 package admin;
 
+import admin.model.User;
 import admin.OverzichtController;
 import java.io.InputStream;
 import admin.security.Authenticator;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     private Stage stage;
-    private User loggedAdmin;
+    private User loggedUser;
     
     private final double MIN_WINDOW_HEIGHT = 800.0;
     private final double MIN_WINDOW_WIDTH = 600.0;
@@ -37,8 +38,8 @@ public class Main extends Application {
         {
             stage = primaryStage;
             stage.setTitle("STUA");
-            stage.setMinHeight(MIN_WINDOW_HEIGHT);
-            stage.setMinWidth(MIN_WINDOW_WIDTH);
+            /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
+            stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
             gotoLogin(); 
             stage.show();
@@ -48,16 +49,18 @@ public class Main extends Application {
         }
     }
 
-    public User getLoggedAdmin()
+    public User getLoggedUser()
     {
-        return loggedAdmin;
+        return loggedUser;
     }
     
-    public boolean adminLogging(String adminId, String password)
+    public boolean userLogging(String userId, String password)
     {
-        if (Authenticator.validate(adminId, password))
+        System.out.println(userId);
+        System.out.println(password);
+        if (Authenticator.validate(userId, password))
         {
-            loggedAdmin = User.of(adminId);
+            loggedUser = User.of(userId);
             gotoOverzicht();
             return true;
         } else {
@@ -65,22 +68,28 @@ public class Main extends Application {
         }
     }
     
-    private void gotoLogin(){
-        try{
+    private void gotoLogin()
+    {
+        try
+        {
             LoginController login = (LoginController) replaceSceneContent("Login.fxml");
             login.setApp(this);
         }
-        catch(Exception ex) {
+        catch(Exception ex)
+        {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void gotoOverzicht(){
-        try{
+    private void gotoOverzicht()
+    {
+        try
+        {
             OverzichtController overzicht = (OverzichtController) replaceSceneContent("Overzicht.fxml");
             overzicht.setApp(this);
         }
-        catch(Exception ex) {
+        catch(Exception ex)
+        {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -108,21 +117,10 @@ public class Main extends Application {
         } finally {
             in.close();
         } 
-        Scene scene = new Scene(page, 800, 600);
+        //Scene scene = new Scene(page, MAX_WINDOW_WIDTH, MIN_WINDOW_WIDTH);
+        Scene scene = new Scene(page);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();
-    }
-
-    public boolean userLogging(String adminId, String password)
-    {
-        if (Authenticator.validate(adminId, password))
-        {
-            loggedAdmin = User.of(adminId);
-            gotoOverzicht();
-            return true;
-        } else {
-            return false;
-        }
     }
 }

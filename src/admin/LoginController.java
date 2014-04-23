@@ -26,10 +26,12 @@ public class LoginController extends AnchorPane implements Initializable
     Button cancel;
     
     @FXML
-    Button help;
+    Button help; // eventueel naar label veranderen en tekst verschijnt bij hoveren
     
     @FXML
     Label errorMsg;
+    
+    //image click = website + vermelden
     
     private Main application;
 
@@ -56,6 +58,16 @@ public class LoginController extends AnchorPane implements Initializable
             {
                 errorMsg.setText("Gebruikersnaam en/of wachtwoord is incorrect!");
             }
+        }
+    }
+    
+    public void processCancel(ActionEvent event)
+    {
+        if (application == null)
+        {
+
+        } else {
+
         }
     }
 }
