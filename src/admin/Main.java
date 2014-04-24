@@ -56,8 +56,6 @@ public class Main extends Application {
     
     public boolean userLogging(String userId, String password)
     {
-        System.out.println(userId);
-        System.out.println(password);
         if (Authenticator.validate(userId, password))
         {
             loggedUser = User.of(userId);
@@ -72,7 +70,7 @@ public class Main extends Application {
     {
         try
         {
-            LoginController login = (LoginController) replaceSceneContent("Login.fxml");
+            LoginController login = (LoginController) replaceSceneContent("login.fxml");
             login.setApp(this);
         }
         catch(Exception ex)
@@ -85,7 +83,7 @@ public class Main extends Application {
     {
         try
         {
-            OverzichtController overzicht = (OverzichtController) replaceSceneContent("Overzicht.fxml");
+            OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
             overzicht.setApp(this);
         }
         catch(Exception ex)
@@ -96,7 +94,7 @@ public class Main extends Application {
     
     /*private void gotoStudenten(){
         try{
-            StudentController studenten = (StudentController) replaceSceneContent("Student.fxml");
+            StudentController studenten = (StudentController) replaceSceneContent("student.fxml");
             studenten.setApp(this);
         }
         catch(Exception ex) {
@@ -104,7 +102,6 @@ public class Main extends Application {
         }
     }*/
     
-    //this next method is an fxml loader from JavaFX example
     private Initializable replaceSceneContent(String fxml) throws Exception
     {
         FXMLLoader loader = new FXMLLoader();

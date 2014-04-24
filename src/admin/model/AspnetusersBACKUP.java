@@ -30,7 +30,7 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "Aspnetusers.findAll", query = "SELECT a FROM Aspnetusers a"),
     @NamedQuery(name = "Aspnetusers.findById", query = "SELECT a FROM Aspnetusers a WHERE a.id = :id"),
     @NamedQuery(name = "Aspnetusers.findByDiscriminator", query = "SELECT a FROM Aspnetusers a WHERE a.discriminator = :discriminator")})
-public class Aspnetusers implements Serializable {
+public class AspnetusersBACKUP implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -41,15 +41,21 @@ public class Aspnetusers implements Serializable {
     private String passwordHash;
     private String securityStamp;
     private String discriminator;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<Bedrijf> bedrijfList;
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<Student> studentList;
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<Begeleider> begeleiderList;
 
-    public Aspnetusers() {
+    public AspnetusersBACKUP() {
     }
 
-    public Aspnetusers(String id) {
+    public AspnetusersBACKUP(String id) {
         this.id = id;
     }
 
-    public Aspnetusers(String id, String userName, String discriminator) {
+    public AspnetusersBACKUP(String id, String userName, String discriminator) {
         this.id = id;
         this.userName = userName;
         this.discriminator = discriminator;
@@ -95,6 +101,30 @@ public class Aspnetusers implements Serializable {
         this.discriminator = discriminator;
     }
 
+    public List<Bedrijf> getBedrijfList() {
+        return bedrijfList;
+    }
+
+    public void setBedrijfList(List<Bedrijf> bedrijfList) {
+        this.bedrijfList = bedrijfList;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+    public List<Begeleider> getBegeleiderList() {
+        return begeleiderList;
+    }
+
+    public void setBegeleiderList(List<Begeleider> begeleiderList) {
+        this.begeleiderList = begeleiderList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -105,23 +135,19 @@ public class Aspnetusers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Aspnetusers)) {
+        if (!(object instanceof AspnetusersBACKUP)) {
             return false;
         }
-        Aspnetusers other = (Aspnetusers) object;
+        AspnetusersBACKUP other = (AspnetusersBACKUP) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Entity.Aspnetusers[ id=" + id + " ]";
-//    }
-    
     @Override
     public String toString() {
-        return "\n" + id + ", " + userName + ", " + passwordHash + ", " + securityStamp + ", " + discriminator + "\n";
-    } 
+        return "Entity.Aspnetusers[ id=" + id + " ]";
+    }
+    
 }
