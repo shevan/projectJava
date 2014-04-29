@@ -38,7 +38,7 @@
       </image>
     </ImageView>
     <Button fx:id="login" defaultButton="true" layoutX="296.0" layoutY="363.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
-    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="346.0" layoutY="403.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="100.0" text="Annuleren" visible="true" wrapText="false" />
+    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="296.0" layoutY="403.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
     <Label fx:id="errorMsg" layoutX="238.0" layoutY="331.0" prefWidth="324.0" text="Label" />
   </children>
   <stylesheets>
