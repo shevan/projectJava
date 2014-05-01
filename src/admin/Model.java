@@ -21,12 +21,27 @@ public class Model {
     EntityManagerFactory emf;
     EntityManager em;
     
-    public List <Aspnetusers> getUsersFromDatabase(){
-        //verplaats dit op een andere thread        
+    public Model()
+    {
         emf = Persistence.createEntityManagerFactory("ProjectJavaPU");
         em = emf.createEntityManager();
-
+    }
+    
+    public List <Aspnetusers> getUsersFromDatabase(){
+        //verplaats dit op een andere thread      
         TypedQuery<Aspnetusers> queryAspnetusers = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);
         return queryAspnetusers.getResultList();
     }
+    public List <Stage> getStagesFromDatabase(){
+        //verplaats dit op een andere thread      
+        TypedQuery<Stage> queryAspnetusers = em.createNamedQuery("Stage.findAll", Stage.class);
+        return queryAspnetusers.getResultList();
+    }
+    public List <Student> getStudentenFromDatabase(){
+        //verplaats dit op een andere thread      
+        TypedQuery<Student> queryAspnetusers = em.createNamedQuery("Student.findAll", Student.class);
+        return queryAspnetusers.getResultList();
+    }
+    
+    
 }

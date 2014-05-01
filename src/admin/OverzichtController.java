@@ -1,6 +1,8 @@
 package admin;
 
 import admin.model.Aspnetusers;
+import admin.model.Stage;
+import admin.model.Student;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -54,17 +56,34 @@ public class OverzichtController extends AnchorPane implements Initializable
     
      @FXML 
      private void displayStages(ActionEvent action){
+         listItems.clear();
+         //goede plaats voor een try catch blok
+         List<Stage> stages = model.getStagesFromDatabase();
+         if(stages.isEmpty())listItems.add("<<Tabel is leeg>>");
+         for(Stage stage : stages)
+         {
+             listItems.add(stage.getAcademiejaar()+" "+stage.getBeheersysteem());
+         }
          
      }
      
      @FXML 
      private void displayStudenten(ActionEvent action){
-         
+        listItems.clear();
+        List <Student> studenten = model.getStudentenFromDatabase();
+        if(studenten.isEmpty())listItems.add("<<Tabel is leeg>>");
+        for(Student student : studenten)
+        {
+            listItems.add(student.getVoornaam()+" "+student.getFamilienaam());
+            //set username max char = tab space
+        }         
      }
      
      @FXML 
      private void displayGebruikers(ActionEvent action){
+        listItems.clear();
         List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
+        if(aspnetusers.isEmpty())listItems.add("<<Tabel is leeg>>");
         for(Aspnetusers user : aspnetusers)
         {
             listItems.add(user.getUserName()+" "+user.getDiscriminator());
