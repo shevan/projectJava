@@ -1,27 +1,23 @@
 package admin;
 
 import admin.model.User;
-import admin.OverzichtController;
 import java.io.InputStream;
 import admin.security.Authenticator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     
     private Stage stage;
     private User loggedUser;
+    private Model model;
     
     private final double MIN_WINDOW_HEIGHT = 800.0;
     private final double MIN_WINDOW_WIDTH = 600.0;
@@ -34,6 +30,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage)
     {
+        model = new Model();
         try
         {
             stage = primaryStage;
@@ -41,7 +38,8 @@ public class Main extends Application {
             /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
             stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
-            gotoLogin(); 
+           //gotoLogin(); <------------------------------------tijdelijke verandering voor development
+            gotoOverzicht();
             stage.show();
         } catch (Exception ex)
         {
@@ -85,6 +83,7 @@ public class Main extends Application {
         {
             OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
             overzicht.setApp(this);
+            overzicht.setUpWithModel(model);
         }
         catch(Exception ex)
         {
@@ -120,4 +119,5 @@ public class Main extends Application {
         stage.sizeToScene();
         return (Initializable) loader.getController();
     }
+    
 }

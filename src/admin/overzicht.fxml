@@ -28,10 +28,15 @@
         </Menu>
       </menus>
     </MenuBar>
-    <Button fx:id="stage" layoutX="68.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Stages" />
-    <Button layoutX="148.0" layoutY="58.0" mnemonicParsing="false" text="Studenten" />
+    <Button id="stage" fx:id="stageButton" layoutX="68.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
+    <Button id="studenten" fx:id="studentenButton" layoutX="142.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
     <Label layoutX="189.0" layoutY="519.0" prefHeight="38.0" text="Dit is een voorbeeld gui met Javafx MVC en databank connectie" />
-    <Label fx:id="lblOverzicht" layoutX="68.0" layoutY="124.0" prefHeight="352.0" prefWidth="664.0" text="Label" wrapText="true" />
+    <ListView fx:id="tabListView" layoutX="68.0" layoutY="114.0" prefHeight="391.0" prefWidth="583.0" />
+    <Button id="stage" fx:id="gebruikersButton" layoutX="237.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Gebruikers" />
+    <Button id="stage" fx:id="button4" layoutX="332.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 4" />
+    <Button id="stage" fx:id="button5" layoutX="413.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
+    <Button id="stage" fx:id="button6" layoutX="493.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
+    <Button id="stage" fx:id="button7" layoutX="583.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
   </children>
   <stylesheets>
     <URL value="@stage.css" />
