@@ -32,8 +32,6 @@ public class OverzichtController extends AnchorPane implements Initializable
     @FXML
     Button stage;
     
-    @FXML
-    Label lblOverzicht;
     
     @FXML
     ListView <String>tabListView;
@@ -66,7 +64,7 @@ public class OverzichtController extends AnchorPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     { 
-        lblOverzicht.setText(aspnetusers.toString());
+
         tabListView.setItems(listItems);
         
     }
