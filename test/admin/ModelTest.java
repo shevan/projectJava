@@ -7,6 +7,8 @@
 package admin;
 
 import admin.model.Aspnetusers;
+import admin.model.Stage;
+import admin.model.Student;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,6 +61,38 @@ public class ModelTest {
         
         // TODO review the generated test code and remove the default call to fail.
         
+    }
+
+    /**
+     * Test of getStagesFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetStagesFromDatabase() {
+        System.out.println("getStagesFromDatabase");
+        Model instance = new Model();
+        List<Stage> expResult = null;
+        List<Stage> result = instance.getStagesFromDatabase();
+
+        // TODO review the generated test code and remove the default call to fail.
+        
+        for (Stage stage : result){
+            System.out.println(stage.getProgrammeertaal());
+        }
+        
+    }
+
+    /**
+     * Test of getStudentenFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetStudentenFromDatabase() {
+        System.out.println("getStudentenFromDatabase");
+        Model instance = new Model();
+        List<Student> expResult = null;
+        List<Student> result = instance.getStudentenFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

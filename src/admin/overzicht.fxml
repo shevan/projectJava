@@ -6,10 +6,11 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
   <children>
-    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="800.0" useSystemMenuBar="false">
+    <MenuBar layoutX="0.0" layoutY="2.0" prefWidth="800.0" useSystemMenuBar="false">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -37,6 +38,19 @@
     <Button id="stage" fx:id="button5" layoutX="413.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
     <Button id="stage" fx:id="button6" layoutX="493.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
     <Button id="stage" fx:id="button7" layoutX="583.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
+    <Button id="notificationButton" layoutX="665.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="55.0" text="0 of" textAlignment="CENTER">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Button>
+    <Label id="notificationLabel" layoutX="730.0" layoutY="14.0" prefHeight="24.0" text="20">
+      <font>
+        <Font size="25.0" />
+      </font>
+      <stylesheets>
+        <URL value="@overzicht.css" />
+      </stylesheets>
+    </Label>
   </children>
   <stylesheets>
     <URL value="@stage.css" />
