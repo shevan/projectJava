@@ -56,7 +56,7 @@
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
-                <ListView id="takenListView" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="takenListView" prefHeight="200.0" prefWidth="200.0" />
               </center>
             </BorderPane>
           </content>

@@ -46,7 +46,7 @@ public class OverzichtController extends AnchorPane implements Initializable
     
     private Main application;
     private Model model;
-    final ObservableList<String> listItems = FXCollections.observableArrayList("Add Items Here");
+    final ObservableList<String> listItems = FXCollections.observableArrayList();
     
     //add event handlers
     @FXML
