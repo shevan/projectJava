@@ -8,49 +8,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
+<AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="626.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
   <children>
-    <MenuBar layoutX="0.0" layoutY="2.0" prefWidth="800.0" useSystemMenuBar="false">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Close" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <Button id="stage" fx:id="stageButton" layoutX="68.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
-    <Button id="studenten" fx:id="studentenButton" layoutX="142.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
-    <Label layoutX="189.0" layoutY="519.0" prefHeight="38.0" text="Dit is een voorbeeld gui met Javafx MVC en databank connectie" />
-    <ListView fx:id="tabListView" layoutX="68.0" layoutY="114.0" prefHeight="391.0" prefWidth="583.0" />
-    <Button id="stage" fx:id="gebruikersButton" layoutX="237.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
-    <Button id="stage" fx:id="button4" layoutX="332.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 4" />
-    <Button id="stage" fx:id="button5" layoutX="413.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
-    <Button id="stage" fx:id="button6" layoutX="493.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
-    <Button id="stage" fx:id="button7" layoutX="583.0" layoutY="58.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
-    <Button id="notificationButton" layoutX="665.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="55.0" text="0 of" textAlignment="CENTER">
-      <font>
-        <Font size="20.0" />
-      </font>
-    </Button>
-    <Label id="notificationLabel" layoutX="730.0" layoutY="14.0" prefHeight="24.0" text="20">
-      <font>
-        <Font size="25.0" />
-      </font>
-      <stylesheets>
-        <URL value="@overzicht.css" />
-      </stylesheets>
-    </Label>
+    <Button id="stage" fx:id="stageButton" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
+    <Button id="studenten" fx:id="studentenButton" layoutX="96.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
+    <ListView fx:id="tabListView" layoutX="22.0" layoutY="79.0" prefHeight="391.0" prefWidth="583.0" />
+    <Button id="stage" fx:id="gebruikersButton" layoutX="191.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
+    <Button id="stage" fx:id="button4" layoutX="286.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 4" />
+    <Button id="stage" fx:id="button5" layoutX="367.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
+    <Button id="stage" fx:id="button6" layoutX="447.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
+    <Button id="stage" fx:id="button7" layoutX="537.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
   </children>
   <stylesheets>
     <URL value="@stage.css" />
