@@ -52,11 +52,11 @@
       <children>
         <fx:include fx:id="overzicht" source="overzicht.fxml" layoutX="0.0" layoutY="0.0" visible="true" />
         <fx:include fx:id="moderatieScherm" source="moderatieScherm.fxml" layoutX="0.0" layoutY="0.0" prefHeight="489.0" prefWidth="626.0" visible="false" />
-        <TitledPane fx:id="takenlijst" animated="false" expanded="true" layoutX="626.0" layoutY="14.0" prefHeight="475.0" text="Taken (0)">
+        <TitledPane fx:id="takenlijst" animated="false" expanded="false" layoutX="626.0" layoutY="14.0" prefHeight="475.0" text="Taken (0)">
           <content>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
               <center>
-                <ListView fx:id="takenListView" prefHeight="200.0" prefWidth="200.0" />
+                <ListView fx:id="takenListView" onMouseClicked="#displayModeratieScherm" prefHeight="200.0" prefWidth="200.0" />
               </center>
             </BorderPane>
           </content>

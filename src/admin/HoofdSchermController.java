@@ -6,16 +6,20 @@
 
 package admin;
 
+import admin.model.Stage;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -27,7 +31,7 @@ import javafx.scene.layout.VBox;
 public class HoofdSchermController extends VBox implements Initializable {
     private Model model;
     private Main application;
-    final ObservableList<String> taskListItems = FXCollections.observableArrayList("");
+    final ObservableList<String> taskListItems = FXCollections.observableArrayList();
     /**
      * Controllers
      */
@@ -67,7 +71,7 @@ public class HoofdSchermController extends VBox implements Initializable {
         takenListView.setItems(taskListItems);
         linkNumberOfTasks();
         //test
-        taskListItems.add("item");
+        //taskListItems.add("item");
     }    
 
     void setApp(Main app) {
@@ -79,6 +83,7 @@ public class HoofdSchermController extends VBox implements Initializable {
         if(model==null) System.out.println("No Link");
         if(overzichtController==null) System.out.println("No controler");
         overzichtController.setUpWithModel(model);
+        loadTasks();
     }
     public void linkNumberOfTasks(){
         taskListItems.addListener(new ListChangeListener<String>() {
@@ -89,6 +94,26 @@ public class HoofdSchermController extends VBox implements Initializable {
                 //set css id
             }
         });
+    }
+    public void loadTasks (){ //methode moet geupdate worden zodra database af is
+                 List<Stage> stages = model.getStagesFromDatabase();
+         if(stages.isEmpty())taskListItems.add("<<Tabel is leeg>>");
+         for(Stage stage : stages)
+         {
+             taskListItems.add(stage.getProjectTitel()+stage.getAcademiejaar()+" vereist aandacht");
+         }
+        
+    }
+    public void displayModeratieScherm(MouseEvent event){
+        overzicht.setVisible(false); //deze twee scheiden van het event
+        moderatieScherm.setVisible(true);
+        //roep controller aan tot het inladen van object voor het nieuwe scherm
+        
+    }
+    
+    public void displayOverzichtScherm(){
+        moderatieScherm.setVisible(false);
+        overzicht.setVisible(true);
     }
     
 }
