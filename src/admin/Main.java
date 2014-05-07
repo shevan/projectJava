@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -40,9 +41,15 @@ public class Main extends Application {
             /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
             stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
+
             initializeUsers();
-            gotoLogin(); //<------------------------------------tijdelijke verandering voor development
+            //gotoLogin(); //<------------------------------------tijdelijke verandering voor development
             //gotoOverzicht();
+
+           //gotoLogin(); // <------------------------------------tijdelijke verandering voor development
+           // gotoOverzicht();
+            gotoHoofdscherm();
+
             stage.show();
         } catch (Exception ex)
         {
@@ -109,6 +116,21 @@ public class Main extends Application {
         }
     }
     
+    private void gotoHoofdscherm()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+             HoofdSchermController hoofdscherm = (HoofdSchermController) replaceSceneContent("hoofdScherm.fxml");
+             hoofdscherm.setApp(this);
+             hoofdscherm.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
     /*private void gotoStudenten(){
         try{
             StudentController studenten = (StudentController) replaceSceneContent("student.fxml");
@@ -121,18 +143,12 @@ public class Main extends Application {
     
     private Initializable replaceSceneContent(String fxml) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader();
-        InputStream in = Main.class.getResourceAsStream(fxml);
-        loader.setBuilderFactory(new JavaFXBuilderFactory());
-        loader.setLocation(Main.class.getResource(fxml));
-        AnchorPane page;
-        try {
-            page = (AnchorPane) loader.load(in);
-        } finally {
-            in.close();
-        } 
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxml));
+        loader.load();
+        VBox root = loader.getRoot();
+
         //Scene scene = new Scene(page, MAX_WINDOW_WIDTH, MIN_WINDOW_WIDTH);
-        Scene scene = new Scene(page);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();

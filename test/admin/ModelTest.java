@@ -73,9 +73,13 @@ public class ModelTest {
         Model instance = new Model();
         List<Stage> expResult = null;
         List<Stage> result = instance.getStagesFromDatabase();
-        assertEquals(expResult, result);
+
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        for (Stage stage : result){
+            System.out.println(stage.getProgrammeertaal());
+        }
+        
     }
 
     /**
