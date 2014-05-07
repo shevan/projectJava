@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -23,16 +24,31 @@ public class HoofdSchermController extends VBox implements Initializable {
     private Model model;
     private Main application;
     
+    /**
+     * Controllers
+     */
     @FXML
     private OverzichtController overzichtController;
     
     //@FXML
     //private  "die andere controller"
-            
+       
+    /**
+     * Views
+     */
     @FXML
-    private AnchorPane anchorPane001;
+    private AnchorPane overzicht ;
+    
+    @FXML
+    private AnchorPane moderatieScherm;
+    
+    /**
+     * Andere Elementen
+     */
+    @FXML
+    private TitledPane takenlijst;
 
-
+    
     /**
      * Initializes the controller class.
      */
