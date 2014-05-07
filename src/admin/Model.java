@@ -17,7 +17,8 @@ import javax.persistence.TypedQuery;
  * @author Pieter Pletinckx
  * Model gaat over databank toegang, uiteindelijk met Task uit concurrency
  */
-public class Model {
+public class Model
+{
     EntityManagerFactory emf;
     EntityManager em;
     
@@ -26,7 +27,7 @@ public class Model {
         emf = Persistence.createEntityManagerFactory("ProjectJavaPU");
         em = emf.createEntityManager();
     }
-    
+        
     public List <Aspnetusers> getUsersFromDatabase(){
         //verplaats dit op een andere thread      
         TypedQuery<Aspnetusers> queryAspnetusers = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);

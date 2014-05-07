@@ -1,8 +1,10 @@
 package admin;
 
+import admin.model.Aspnetusers;
 import admin.model.User;
 import java.io.InputStream;
 import admin.security.Authenticator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -19,8 +21,8 @@ public class Main extends Application {
     private User loggedUser;
     private Model model;
     
-    private final double MIN_WINDOW_HEIGHT = 800.0;
-    private final double MIN_WINDOW_WIDTH = 600.0;
+    private final double MIN_WINDOW_HEIGHT = 1366.0;
+    private final double MIN_WINDOW_WIDTH = 768.0;
     
     public static void main(String[] args)
     {
@@ -38,8 +40,9 @@ public class Main extends Application {
             /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
             stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
-           //gotoLogin(); <------------------------------------tijdelijke verandering voor development
-            gotoOverzicht();
+            initializeUsers();
+            gotoLogin(); //<------------------------------------tijdelijke verandering voor development
+            //gotoOverzicht();
             stage.show();
         } catch (Exception ex)
         {
@@ -52,7 +55,7 @@ public class Main extends Application {
         return loggedUser;
     }
     
-    public boolean userLogging(String userId, String password)
+    protected boolean userLogging(String userId, String password)
     {
         if (Authenticator.validate(userId, password))
         {
@@ -64,12 +67,28 @@ public class Main extends Application {
         }
     }
     
-    private void gotoLogin()
+    private void initializeUsers()
+    {
+        List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
+        
+        if (aspnetusers.isEmpty())
+        {
+            // error geen users bekend
+        } else {
+            for (Aspnetusers user : aspnetusers)
+            {
+                Authenticator.putUser(user.getUserName(), user.getPasswordHash());
+            }
+        }
+    }
+    
+    protected void gotoLogin()
     {
         try
         {
             LoginController login = (LoginController) replaceSceneContent("login.fxml");
             login.setApp(this);
+            login.setUpWithModel(model);
         }
         catch(Exception ex)
         {
@@ -77,13 +96,12 @@ public class Main extends Application {
         }
     }
     
-    private void gotoOverzicht()
+    protected void gotoOverzicht()
     {
         try
         {
             OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
             overzicht.setApp(this);
-            overzicht.setUpWithModel(model);
         }
         catch(Exception ex)
         {

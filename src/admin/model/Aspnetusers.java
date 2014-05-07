@@ -7,6 +7,9 @@
 package admin.model;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -30,6 +33,7 @@ import javax.persistence.OneToMany;
     @NamedQuery(name = "Aspnetusers.findAll", query = "SELECT a FROM Aspnetusers a"),
     @NamedQuery(name = "Aspnetusers.findById", query = "SELECT a FROM Aspnetusers a WHERE a.id = :id"),
     @NamedQuery(name = "Aspnetusers.findByDiscriminator", query = "SELECT a FROM Aspnetusers a WHERE a.discriminator = :discriminator")})
+    //@NamedQuery(name = "Aspnetuserroles.findUserRole", query = "SELECT r.roleId FROM Aspnetuserroles r WHERE r.userId = :id")})
 public class Aspnetusers implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -45,13 +49,12 @@ public class Aspnetusers implements Serializable {
     public Aspnetusers() {
     }
 
-    public Aspnetusers(String id) {
-        this.id = id;
-    }
-
-    public Aspnetusers(String id, String userName, String discriminator) {
+    public Aspnetusers(String id, String userName, String passwordHash, String securityStamp, String discriminator)
+    {
         this.id = id;
         this.userName = userName;
+        this.passwordHash = passwordHash;
+        this.securityStamp = securityStamp;
         this.discriminator = discriminator;
     }
 
@@ -93,13 +96,6 @@ public class Aspnetusers implements Serializable {
 
     public void setDiscriminator(String discriminator) {
         this.discriminator = discriminator;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
     }
 
     @Override
