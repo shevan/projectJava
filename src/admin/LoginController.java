@@ -66,6 +66,18 @@ public class LoginController extends AnchorPane implements Initializable
         {
             try
             {
+                if (adminId.getText().isEmpty())
+                {
+                    errorMsg.setText("Gebruikersnaam mag niet leeg zijn!");
+                    return;
+                }
+                
+                if (password.getText().isEmpty())
+                {
+                    errorMsg.setText("Wachtwoord mag niet leeg zijn!");
+                    return;
+                }
+                
                 if (!application.userLogging(adminId.getText(), hashCode(password.getText())))
                 {
                     errorMsg.setText("Gebruikersnaam en/of wachtwoord is incorrect!");
@@ -85,12 +97,7 @@ public class LoginController extends AnchorPane implements Initializable
     
     public void processCancel(ActionEvent event)
     {
-        if (application == null)
-        {
-
-        } else {
-
-        }
+        System.exit(1);
     }
     
     public String hashCode(String input) throws NoSuchAlgorithmException, UnsupportedEncodingException

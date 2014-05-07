@@ -1,7 +1,6 @@
 package admin;
 
 import admin.model.Aspnetusers;
-import admin.model.User;
 import java.io.InputStream;
 import admin.security.Authenticator;
 import java.util.List;
@@ -18,11 +17,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     private Stage stage;
-    private User loggedUser;
     private Model model;
     
-    private final double MIN_WINDOW_HEIGHT = 1366.0;
-    private final double MIN_WINDOW_WIDTH = 768.0;
+    private final double MIN_WINDOW_WIDTH = 1366.0;
+    private final double MIN_WINDOW_HEIGHT = 768.0;
     
     public static void main(String[] args)
     {
@@ -37,8 +35,6 @@ public class Main extends Application {
         {
             stage = primaryStage;
             stage.setTitle("STUA");
-            /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
-            stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
             initializeUsers();
             gotoLogin(); //<------------------------------------tijdelijke verandering voor development
@@ -49,17 +45,11 @@ public class Main extends Application {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null,  ex);
         }
     }
-
-    public User getLoggedUser()
-    {
-        return loggedUser;
-    }
     
     protected boolean userLogging(String userId, String password)
     {
         if (Authenticator.validate(userId, password))
         {
-            loggedUser = User.of(userId);
             gotoOverzicht();
             return true;
         } else {
@@ -109,16 +99,6 @@ public class Main extends Application {
         }
     }
     
-    /*private void gotoStudenten(){
-        try{
-            StudentController studenten = (StudentController) replaceSceneContent("student.fxml");
-            studenten.setApp(this);
-        }
-        catch(Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
-    
     private Initializable replaceSceneContent(String fxml) throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
@@ -131,8 +111,7 @@ public class Main extends Application {
         } finally {
             in.close();
         } 
-        //Scene scene = new Scene(page, MAX_WINDOW_WIDTH, MIN_WINDOW_WIDTH);
-        Scene scene = new Scene(page);
+        Scene scene = new Scene(page, MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();

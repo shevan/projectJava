@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.LoginController">
   <children>
-    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="800.0" useSystemMenuBar="false">
+    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="1366.0" useSystemMenuBar="false">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -30,16 +30,16 @@
         </Menu>
       </menus>
     </MenuBar>
-    <TextField fx:id="adminId" layoutX="296.0" layoutY="256.0" prefWidth="200.0" />
-    <PasswordField fx:id="password" layoutX="296.0" layoutY="291.0" prefWidth="200.0" />
-    <ImageView fitHeight="95.0" fitWidth="138.57549857549859" layoutX="327.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+    <TextField fx:id="adminId" editable="true" layoutX="583.0" layoutY="328.0" mouseTransparent="false" prefWidth="200.0" />
+    <PasswordField fx:id="password" layoutX="583.0" layoutY="364.0" prefWidth="200.0" />
+    <ImageView fitHeight="236.90820274905258" fitWidth="345.57550048828125" layoutX="510.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@../resources/logo.png" />
       </image>
     </ImageView>
-    <Button fx:id="login" defaultButton="true" layoutX="296.0" layoutY="363.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
-    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="296.0" layoutY="403.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
-    <Label fx:id="errorMsg" layoutX="238.0" layoutY="331.0" prefWidth="324.0" text="Label" />
+    <Button fx:id="login" defaultButton="true" layoutX="583.0" layoutY="436.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
+    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="583.0" layoutY="474.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
+    <Label fx:id="errorMsg" alignment="CENTER" layoutX="521.0" layoutY="402.0" prefWidth="324.0" text="Label" textAlignment="LEFT" />
   </children>
   <stylesheets>
     <URL value="@stage.css" />
