@@ -22,6 +22,13 @@ import javafx.scene.layout.VBox;
 public class HoofdSchermController extends VBox implements Initializable {
     private Model model;
     private Main application;
+    
+    @FXML
+    private OverzichtController overzichtController;
+    
+    //@FXML
+    //private  "die andere controller"
+            
     @FXML
     private AnchorPane anchorPane001;
 
@@ -42,6 +49,9 @@ public class HoofdSchermController extends VBox implements Initializable {
 
     void setUpWithModel(Model model) {
         this.model = model;
+        if(model==null) System.out.println("No Link");
+        if(overzichtController==null) System.out.println("No controler");
+        overzichtController.setUpWithModel(model);
     }
     
 }
