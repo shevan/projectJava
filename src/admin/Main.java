@@ -38,8 +38,8 @@ public class Main extends Application {
             /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
             stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
-           //gotoLogin(); <------------------------------------tijdelijke verandering voor development
-            gotoOverzicht();
+           gotoLogin(); // <------------------------------------tijdelijke verandering voor development
+           // gotoOverzicht();
             stage.show();
         } catch (Exception ex)
         {
@@ -103,18 +103,12 @@ public class Main extends Application {
     
     private Initializable replaceSceneContent(String fxml) throws Exception
     {
-        FXMLLoader loader = new FXMLLoader();
-        InputStream in = Main.class.getResourceAsStream(fxml);
-        loader.setBuilderFactory(new JavaFXBuilderFactory());
-        loader.setLocation(Main.class.getResource(fxml));
-        AnchorPane page;
-        try {
-            page = (AnchorPane) loader.load(in);
-        } finally {
-            in.close();
-        } 
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxml));
+        loader.load();
+        AnchorPane root = loader.getRoot();
+
         //Scene scene = new Scene(page, MAX_WINDOW_WIDTH, MIN_WINDOW_WIDTH);
-        Scene scene = new Scene(page);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.sizeToScene();
         return (Initializable) loader.getController();
