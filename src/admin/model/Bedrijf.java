@@ -7,26 +7,29 @@
 package admin.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Pieter Pletinckx
+ * @author shevan
  */
 @Entity
+@Table(name = "bedrijf")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bedrijf.findAll", query = "SELECT b FROM Bedrijf b"),
     @NamedQuery(name = "Bedrijf.findByBedrijfsId", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsId = :bedrijfsId"),
@@ -42,25 +45,40 @@ public class Bedrijf implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "BedrijfsId")
     private Integer bedrijfsId;
-    
+    @Basic(optional = false)
+    @Column(name = "BedrijfsNaam")
     private String bedrijfsNaam;
-    private String email;
+    @Basic(optional = false)
+    @Column(name = "Telefoon")
     private int telefoon;
+    @Basic(optional = false)
+    @Column(name = "Straat")
     private String straat;
+    @Basic(optional = false)
+    @Column(name = "Gemeente")
     private String gemeente;
+    @Basic(optional = false)
+    @Column(name = "Postcode")
     private int postcode;
-    private int aantalbedrijfsleden;
+    @Column(name = "Aantalbedrijfsleden")
+    private Integer aantalbedrijfsleden;
+    @Column(name = "Bereikbaarheid")
     private String bereikbaarheid;
+    @Lob
+    @Column(name = "Website")
     private String website;
+    @Column(name = "Fax")
     private Integer fax;
-    @JoinColumn(name = "UserId", referencedColumnName = "Id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Aspnetusers userId;
-    @OneToMany(mappedBy = "bedrijfBedrijfsId", fetch = FetchType.EAGER)
-    private List<Bedrijfspersoon> bedrijfspersoonList;
-    @OneToMany(mappedBy = "bedrijfBedrijfsId", fetch = FetchType.EAGER)
-    private List<Stage> stageList;
+    @Lob
+    @Column(name = "UserId")
+    private String userId;
+    @OneToMany(mappedBy = "bedrijfBedrijfsId")
+    private Collection<Bedrijfspersoon> bedrijfspersoonCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bedrijfId")
+    private Collection<Stage> stageCollection;
 
     public Bedrijf() {
     }
@@ -69,15 +87,13 @@ public class Bedrijf implements Serializable {
         this.bedrijfsId = bedrijfsId;
     }
 
-    public Bedrijf(Integer bedrijfsId, String bedrijfsNaam, String email, int telefoon, String straat, String gemeente, int postcode, int aantalbedrijfsleden) {
+    public Bedrijf(Integer bedrijfsId, String bedrijfsNaam, int telefoon, String straat, String gemeente, int postcode) {
         this.bedrijfsId = bedrijfsId;
         this.bedrijfsNaam = bedrijfsNaam;
-        this.email = email;
         this.telefoon = telefoon;
         this.straat = straat;
         this.gemeente = gemeente;
         this.postcode = postcode;
-        this.aantalbedrijfsleden = aantalbedrijfsleden;
     }
 
     public Integer getBedrijfsId() {
@@ -94,14 +110,6 @@ public class Bedrijf implements Serializable {
 
     public void setBedrijfsNaam(String bedrijfsNaam) {
         this.bedrijfsNaam = bedrijfsNaam;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getTelefoon() {
@@ -136,11 +144,11 @@ public class Bedrijf implements Serializable {
         this.postcode = postcode;
     }
 
-    public int getAantalbedrijfsleden() {
+    public Integer getAantalbedrijfsleden() {
         return aantalbedrijfsleden;
     }
 
-    public void setAantalbedrijfsleden(int aantalbedrijfsleden) {
+    public void setAantalbedrijfsleden(Integer aantalbedrijfsleden) {
         this.aantalbedrijfsleden = aantalbedrijfsleden;
     }
 
@@ -168,28 +176,30 @@ public class Bedrijf implements Serializable {
         this.fax = fax;
     }
 
-    public Aspnetusers getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Aspnetusers userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public List<Bedrijfspersoon> getBedrijfspersoonList() {
-        return bedrijfspersoonList;
+    @XmlTransient
+    public Collection<Bedrijfspersoon> getBedrijfspersoonCollection() {
+        return bedrijfspersoonCollection;
     }
 
-    public void setBedrijfspersoonList(List<Bedrijfspersoon> bedrijfspersoonList) {
-        this.bedrijfspersoonList = bedrijfspersoonList;
+    public void setBedrijfspersoonCollection(Collection<Bedrijfspersoon> bedrijfspersoonCollection) {
+        this.bedrijfspersoonCollection = bedrijfspersoonCollection;
     }
 
-    public List<Stage> getStageList() {
-        return stageList;
+    @XmlTransient
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
     }
 
-    public void setStageList(List<Stage> stageList) {
-        this.stageList = stageList;
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -214,7 +224,7 @@ public class Bedrijf implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
+        return "ch.makery.address.model.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
     }
     
 }

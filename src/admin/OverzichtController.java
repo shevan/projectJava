@@ -58,11 +58,11 @@ public class OverzichtController extends AnchorPane implements Initializable
      private void displayStages(ActionEvent action){
          listItems.clear();
          //goede plaats voor een try catch blok
-         List<Stage> stages = model.getStagesFromDatabase();
+         List<Stage> stages = model.getStageFromDatabase();
          if(stages.isEmpty())listItems.add("<<Tabel is leeg>>");
          for(Stage stage : stages)
          {
-             listItems.add(stage.getAcademiejaar()+" "+stage.getBeheersysteem());
+             listItems.add(stage.getBeheersysteem());
          }
          
      }

@@ -7,25 +7,28 @@
 package admin.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Pieter Pletinckx
+ * @author shevan
  */
 @Entity
+@Table(name = "begeleider")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Begeleider.findAll", query = "SELECT b FROM Begeleider b"),
     @NamedQuery(name = "Begeleider.findByBegeleiderId", query = "SELECT b FROM Begeleider b WHERE b.begeleiderId = :begeleiderId"),
@@ -37,22 +40,28 @@ public class Begeleider implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "BegeleiderId")
     private Integer begeleiderId;
     @Basic(optional = false)
+    @Column(name = "Familienaam")
     private String familienaam;
     @Basic(optional = false)
+    @Column(name = "Voornaam")
     private String voornaam;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @Lob
+    @Column(name = "Email")
     private String email;
     @Basic(optional = false)
+    @Column(name = "Password")
     private String password;
-    @JoinColumn(name = "UserId", referencedColumnName = "Id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Aspnetusers userId;
-    @OneToMany(mappedBy = "begeleiderBegeleiderId", fetch = FetchType.EAGER)
-    private List<Stage> stageList;
+    @Lob
+    @Column(name = "UserId")
+    private String userId;
+    @OneToMany(mappedBy = "begeleiderBegeleiderId")
+    private Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection;
+    @OneToMany(mappedBy = "begeleiderBegeleiderId")
+    private Collection<Stage> stageCollection;
 
     public Begeleider() {
     }
@@ -109,20 +118,30 @@ public class Begeleider implements Serializable {
         this.password = password;
     }
 
-    public Aspnetusers getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Aspnetusers userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public List<Stage> getStageList() {
-        return stageList;
+    @XmlTransient
+    public Collection<Begeleiderstageaanvraag> getBegeleiderstageaanvraagCollection() {
+        return begeleiderstageaanvraagCollection;
     }
 
-    public void setStageList(List<Stage> stageList) {
-        this.stageList = stageList;
+    public void setBegeleiderstageaanvraagCollection(Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection) {
+        this.begeleiderstageaanvraagCollection = begeleiderstageaanvraagCollection;
+    }
+
+    @XmlTransient
+    public Collection<Stage> getStageCollection() {
+        return stageCollection;
+    }
+
+    public void setStageCollection(Collection<Stage> stageCollection) {
+        this.stageCollection = stageCollection;
     }
 
     @Override
@@ -147,7 +166,7 @@ public class Begeleider implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Begeleider[ begeleiderId=" + begeleiderId + " ]";
+        return "ch.makery.address.model.Begeleider[ begeleiderId=" + begeleiderId + " ]";
     }
     
 }

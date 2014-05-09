@@ -67,12 +67,11 @@ public class ModelTest {
      * Test of getStagesFromDatabase method, of class Model.
      */
     @Test
-    public void testGetStagesFromDatabase()
-    {
+    public void testGetStagesFromDatabase() {
         System.out.println("getStagesFromDatabase");
         Model instance = new Model();
         List<Stage> expResult = null;
-        List<Stage> result = instance.getStagesFromDatabase();
+        List<Stage> result = instance.getStageFromDatabase();
 
         // TODO review the generated test code and remove the default call to fail.
         
@@ -86,8 +85,7 @@ public class ModelTest {
      * Test of getStudentenFromDatabase method, of class Model.
      */
     @Test
-    public void testGetStudentenFromDatabase()
-    {
+    public void testGetStudentenFromDatabase() {
         System.out.println("getStudentenFromDatabase");
         Model instance = new Model();
         List<Student> expResult = null;

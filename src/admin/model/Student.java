@@ -7,9 +7,10 @@
 package admin.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,13 +19,18 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Pieter Pletinckx
+ * @author shevan
  */
 @Entity
+@Table(name = "student")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "Student.findByStudentId", query = "SELECT s FROM Student s WHERE s.studentId = :studentId"),
@@ -38,23 +44,50 @@ import javax.persistence.NamedQuery;
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "StudentId")
     private Integer studentId;
-
+    @Basic(optional = false)
+    @Column(name = "Familienaam")
     private String familienaam;
+    @Basic(optional = false)
+    @Column(name = "Voornaam")
     private String voornaam;
+    @Basic(optional = false)
+    @Column(name = "Straat")
     private String straat;
+    @Basic(optional = false)
+    @Column(name = "Gemeente")
     private String gemeente;
+    @Basic(optional = false)
+    @Column(name = "Postcode")
     private int postcode;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "EmailPrive")
     private String emailPrive;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "EmailHogent")
     private String emailHogent;
+    @Basic(optional = false)
+    @Column(name = "Password")
     private String password;
+    @Basic(optional = false)
+    @Column(name = "Telefoon")
     private int telefoon;
-    @JoinColumn(name = "UserId", referencedColumnName = "Id")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Aspnetusers userId;
+    @Lob
+    @Column(name = "UserId")
+    private String userId;
+    @Lob
+    @Column(name = "Foto")
+    private String foto;
     @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Stage stageStageId;
+    @OneToMany(mappedBy = "studentStudentId")
+    private Collection<Studentstagesollicitatie> studentstagesollicitatieCollection;
 
     public Student() {
     }
@@ -156,12 +189,20 @@ public class Student implements Serializable {
         this.telefoon = telefoon;
     }
 
-    public Aspnetusers getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Aspnetusers userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public Stage getStageStageId() {
@@ -170,6 +211,15 @@ public class Student implements Serializable {
 
     public void setStageStageId(Stage stageStageId) {
         this.stageStageId = stageStageId;
+    }
+
+    @XmlTransient
+    public Collection<Studentstagesollicitatie> getStudentstagesollicitatieCollection() {
+        return studentstagesollicitatieCollection;
+    }
+
+    public void setStudentstagesollicitatieCollection(Collection<Studentstagesollicitatie> studentstagesollicitatieCollection) {
+        this.studentstagesollicitatieCollection = studentstagesollicitatieCollection;
     }
 
     @Override
@@ -194,7 +244,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Student[ studentId=" + studentId + " ]";
+        return "ch.makery.address.model.Student[ studentId=" + studentId + " ]";
     }
     
 }

@@ -7,49 +7,54 @@
 package admin.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Pieter Pletinckx
+ * @author shevan
  */
 @Entity
+@Table(name = "stage")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Stage.findAll", query = "SELECT s FROM Stage s"),
     @NamedQuery(name = "Stage.findByStageId", query = "SELECT s FROM Stage s WHERE s.stageId = :stageId"),
     @NamedQuery(name = "Stage.findByHardware", query = "SELECT s FROM Stage s WHERE s.hardware = :hardware"),
     @NamedQuery(name = "Stage.findByBeheersysteem", query = "SELECT s FROM Stage s WHERE s.beheersysteem = :beheersysteem"),
-    @NamedQuery(name = "Stage.findByDbms", query = "SELECT s FROM Stage s WHERE s.dbms = :dbms"),
     @NamedQuery(name = "Stage.findByProgrammeertaal", query = "SELECT s FROM Stage s WHERE s.programmeertaal = :programmeertaal"),
-    @NamedQuery(name = "Stage.findByNetwerkprotocol", query = "SELECT s FROM Stage s WHERE s.netwerkprotocol = :netwerkprotocol"),
     @NamedQuery(name = "Stage.findByAnalyse", query = "SELECT s FROM Stage s WHERE s.analyse = :analyse"),
-    @NamedQuery(name = "Stage.findByCasetools", query = "SELECT s FROM Stage s WHERE s.casetools = :casetools"),
     @NamedQuery(name = "Stage.findByOntwikkelingstools", query = "SELECT s FROM Stage s WHERE s.ontwikkelingstools = :ontwikkelingstools"),
     @NamedQuery(name = "Stage.findByProjectTitel", query = "SELECT s FROM Stage s WHERE s.projectTitel = :projectTitel"),
     @NamedQuery(name = "Stage.findBySpecialisatie", query = "SELECT s FROM Stage s WHERE s.specialisatie = :specialisatie"),
     @NamedQuery(name = "Stage.findByProjectOmschrijving", query = "SELECT s FROM Stage s WHERE s.projectOmschrijving = :projectOmschrijving"),
     @NamedQuery(name = "Stage.findByAantalStudenten", query = "SELECT s FROM Stage s WHERE s.aantalStudenten = :aantalStudenten"),
-    @NamedQuery(name = "Stage.findByContactpersoon", query = "SELECT s FROM Stage s WHERE s.contactpersoon = :contactpersoon"),
     @NamedQuery(name = "Stage.findByConfiguratiehardware", query = "SELECT s FROM Stage s WHERE s.configuratiehardware = :configuratiehardware"),
-    @NamedQuery(name = "Stage.findByProgrammeerlogica", query = "SELECT s FROM Stage s WHERE s.programmeerlogica = :programmeerlogica"),
-    @NamedQuery(name = "Stage.findByGl", query = "SELECT s FROM Stage s WHERE s.gl = :gl"),
     @NamedQuery(name = "Stage.findByPeriode", query = "SELECT s FROM Stage s WHERE s.periode = :periode"),
-    @NamedQuery(name = "Stage.findByGoedgekeurd", query = "SELECT s FROM Stage s WHERE s.goedgekeurd = :goedgekeurd"),
+    @NamedQuery(name = "Stage.findByOpleidingsOnderwerp", query = "SELECT s FROM Stage s WHERE s.opleidingsOnderwerp = :opleidingsOnderwerp"),
+    @NamedQuery(name = "Stage.findByOpleidingBegindatum", query = "SELECT s FROM Stage s WHERE s.opleidingBegindatum = :opleidingBegindatum"),
+    @NamedQuery(name = "Stage.findByOpleidingEinddatum", query = "SELECT s FROM Stage s WHERE s.opleidingEinddatum = :opleidingEinddatum"),
+    @NamedQuery(name = "Stage.findByStageBegindatum", query = "SELECT s FROM Stage s WHERE s.stageBegindatum = :stageBegindatum"),
+    @NamedQuery(name = "Stage.findByStageEindatum", query = "SELECT s FROM Stage s WHERE s.stageEindatum = :stageEindatum"),
+    @NamedQuery(name = "Stage.findByGoedkeurStatus", query = "SELECT s FROM Stage s WHERE s.goedkeurStatus = :goedkeurStatus"),
+    @NamedQuery(name = "Stage.findByStagecontractOpgesteld", query = "SELECT s FROM Stage s WHERE s.stagecontractOpgesteld = :stagecontractOpgesteld"),
+    @NamedQuery(name = "Stage.findByGetekendeStagecontract", query = "SELECT s FROM Stage s WHERE s.getekendeStagecontract = :getekendeStagecontract"),
     @NamedQuery(name = "Stage.findByAanmaakdatum", query = "SELECT s FROM Stage s WHERE s.aanmaakdatum = :aanmaakdatum"),
     @NamedQuery(name = "Stage.findByWijzigingsdatum", query = "SELECT s FROM Stage s WHERE s.wijzigingsdatum = :wijzigingsdatum"),
     @NamedQuery(name = "Stage.findByAantalBeschikbarePlaatsen", query = "SELECT s FROM Stage s WHERE s.aantalBeschikbarePlaatsen = :aantalBeschikbarePlaatsen")})
@@ -58,67 +63,80 @@ public class Stage implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "StageId")
     private Integer stageId;
-    @Basic(optional = false)
-
+    @Column(name = "Hardware")
     private String hardware;
-    @Basic(optional = false)
+    @Column(name = "Beheersysteem")
     private String beheersysteem;
-    @Basic(optional = false)
-    private String dbms;
-    @Basic(optional = false)
+    @Column(name = "Programmeertaal")
     private String programmeertaal;
-    @Basic(optional = false)
-    private String netwerkprotocol;
-    @Basic(optional = false)
+    @Column(name = "Analyse")
     private String analyse;
-    @Basic(optional = false)
-    private String casetools;
-    @Basic(optional = false)
+    @Column(name = "Ontwikkelingstools")
     private String ontwikkelingstools;
     @Basic(optional = false)
+    @Column(name = "ProjectTitel")
     private String projectTitel;
-    @Basic(optional = false)
+    @Column(name = "Specialisatie")
     private String specialisatie;
     @Basic(optional = false)
+    @Column(name = "ProjectOmschrijving")
     private String projectOmschrijving;
     @Basic(optional = false)
+    @Column(name = "AantalStudenten")
     private int aantalStudenten;
-    private String contactpersoon;
-    @Basic(optional = false)
+    @Column(name = "Configuratiehardware")
     private String configuratiehardware;
     @Basic(optional = false)
-    private String programmeerlogica;
-    @Basic(optional = false)
-    private String gl;
-    @Basic(optional = false)
+    @Column(name = "Periode")
     private String periode;
-    @Basic(optional = false)
-    @Lob
-    private String academiejaar;
-    private Boolean goedgekeurd;
+    @Column(name = "OpleidingsOnderwerp")
+    private String opleidingsOnderwerp;
+    @Column(name = "OpleidingBegindatum")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date opleidingBegindatum;
+    @Column(name = "OpleidingEinddatum")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date opleidingEinddatum;
+    @Column(name = "StageBegindatum")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date stageBegindatum;
+    @Column(name = "StageEindatum")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date stageEindatum;
+    @Column(name = "GoedkeurStatus")
+    private Integer goedkeurStatus;
+    @Column(name = "StagecontractOpgesteld")
+    private Boolean stagecontractOpgesteld;
+    @Column(name = "GetekendeStagecontract")
+    private Boolean getekendeStagecontract;
+    @Column(name = "Aanmaakdatum")
     @Temporal(TemporalType.TIMESTAMP)
     private Date aanmaakdatum;
+    @Column(name = "Wijzigingsdatum")
     @Temporal(TemporalType.TIMESTAMP)
     private Date wijzigingsdatum;
+    @Column(name = "AantalBeschikbarePlaatsen")
     private Integer aantalBeschikbarePlaatsen;
-    @OneToMany(mappedBy = "stageStageId", fetch = FetchType.EAGER)
-    private List<Student> studentList;
-    @JoinColumn(name = "Opleiding_OpleidingId", referencedColumnName = "OpleidingId")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Opleiding opleidingOpleidingId;
+    @OneToMany(mappedBy = "stageStageId")
+    private Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection;
+    @OneToMany(mappedBy = "stageStageId")
+    private Collection<Student> studentCollection;
+    @OneToMany(mappedBy = "stageStageId")
+    private Collection<Studentstagesollicitatie> studentstagesollicitatieCollection;
+    @JoinColumn(name = "BedrijfId", referencedColumnName = "BedrijfsId")
+    @ManyToOne(optional = false)
+    private Bedrijf bedrijfId;
+    @JoinColumn(name = "StagementorId", referencedColumnName = "BedrijfspersoonId")
+    @ManyToOne
+    private Bedrijfspersoon stagementorId;
+    @JoinColumn(name = "ContractondertekenaarId", referencedColumnName = "BedrijfspersoonId")
+    @ManyToOne
+    private Bedrijfspersoon contractondertekenaarId;
     @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Begeleider begeleiderBegeleiderId;
-    @JoinColumn(name = "Bedrijf_BedrijfsId", referencedColumnName = "BedrijfsId")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Bedrijf bedrijfBedrijfsId;
-    @JoinColumn(name = "Contractondertekenaar_BedrijfspersoonId", referencedColumnName = "BedrijfspersoonId")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Bedrijfspersoon contractondertekenaarBedrijfspersoonId;
-    @JoinColumn(name = "Stagementor_BedrijfspersoonId", referencedColumnName = "BedrijfspersoonId")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Bedrijfspersoon stagementorBedrijfspersoonId;
 
     public Stage() {
     }
@@ -127,25 +145,12 @@ public class Stage implements Serializable {
         this.stageId = stageId;
     }
 
-    public Stage(Integer stageId, String hardware, String beheersysteem, String dbms, String programmeertaal, String netwerkprotocol, String analyse, String casetools, String ontwikkelingstools, String projectTitel, String specialisatie, String projectOmschrijving, int aantalStudenten, String configuratiehardware, String programmeerlogica, String gl, String periode, String academiejaar) {
+    public Stage(Integer stageId, String projectTitel, String projectOmschrijving, int aantalStudenten, String periode) {
         this.stageId = stageId;
-        this.hardware = hardware;
-        this.beheersysteem = beheersysteem;
-        this.dbms = dbms;
-        this.programmeertaal = programmeertaal;
-        this.netwerkprotocol = netwerkprotocol;
-        this.analyse = analyse;
-        this.casetools = casetools;
-        this.ontwikkelingstools = ontwikkelingstools;
         this.projectTitel = projectTitel;
-        this.specialisatie = specialisatie;
         this.projectOmschrijving = projectOmschrijving;
         this.aantalStudenten = aantalStudenten;
-        this.configuratiehardware = configuratiehardware;
-        this.programmeerlogica = programmeerlogica;
-        this.gl = gl;
         this.periode = periode;
-        this.academiejaar = academiejaar;
     }
 
     public Integer getStageId() {
@@ -172,14 +177,6 @@ public class Stage implements Serializable {
         this.beheersysteem = beheersysteem;
     }
 
-    public String getDbms() {
-        return dbms;
-    }
-
-    public void setDbms(String dbms) {
-        this.dbms = dbms;
-    }
-
     public String getProgrammeertaal() {
         return programmeertaal;
     }
@@ -188,28 +185,12 @@ public class Stage implements Serializable {
         this.programmeertaal = programmeertaal;
     }
 
-    public String getNetwerkprotocol() {
-        return netwerkprotocol;
-    }
-
-    public void setNetwerkprotocol(String netwerkprotocol) {
-        this.netwerkprotocol = netwerkprotocol;
-    }
-
     public String getAnalyse() {
         return analyse;
     }
 
     public void setAnalyse(String analyse) {
         this.analyse = analyse;
-    }
-
-    public String getCasetools() {
-        return casetools;
-    }
-
-    public void setCasetools(String casetools) {
-        this.casetools = casetools;
     }
 
     public String getOntwikkelingstools() {
@@ -252,36 +233,12 @@ public class Stage implements Serializable {
         this.aantalStudenten = aantalStudenten;
     }
 
-    public String getContactpersoon() {
-        return contactpersoon;
-    }
-
-    public void setContactpersoon(String contactpersoon) {
-        this.contactpersoon = contactpersoon;
-    }
-
     public String getConfiguratiehardware() {
         return configuratiehardware;
     }
 
     public void setConfiguratiehardware(String configuratiehardware) {
         this.configuratiehardware = configuratiehardware;
-    }
-
-    public String getProgrammeerlogica() {
-        return programmeerlogica;
-    }
-
-    public void setProgrammeerlogica(String programmeerlogica) {
-        this.programmeerlogica = programmeerlogica;
-    }
-
-    public String getGl() {
-        return gl;
-    }
-
-    public void setGl(String gl) {
-        this.gl = gl;
     }
 
     public String getPeriode() {
@@ -292,20 +249,68 @@ public class Stage implements Serializable {
         this.periode = periode;
     }
 
-    public String getAcademiejaar() {
-        return academiejaar;
+    public String getOpleidingsOnderwerp() {
+        return opleidingsOnderwerp;
     }
 
-    public void setAcademiejaar(String academiejaar) {
-        this.academiejaar = academiejaar;
+    public void setOpleidingsOnderwerp(String opleidingsOnderwerp) {
+        this.opleidingsOnderwerp = opleidingsOnderwerp;
     }
 
-    public Boolean getGoedgekeurd() {
-        return goedgekeurd;
+    public Date getOpleidingBegindatum() {
+        return opleidingBegindatum;
     }
 
-    public void setGoedgekeurd(Boolean goedgekeurd) {
-        this.goedgekeurd = goedgekeurd;
+    public void setOpleidingBegindatum(Date opleidingBegindatum) {
+        this.opleidingBegindatum = opleidingBegindatum;
+    }
+
+    public Date getOpleidingEinddatum() {
+        return opleidingEinddatum;
+    }
+
+    public void setOpleidingEinddatum(Date opleidingEinddatum) {
+        this.opleidingEinddatum = opleidingEinddatum;
+    }
+
+    public Date getStageBegindatum() {
+        return stageBegindatum;
+    }
+
+    public void setStageBegindatum(Date stageBegindatum) {
+        this.stageBegindatum = stageBegindatum;
+    }
+
+    public Date getStageEindatum() {
+        return stageEindatum;
+    }
+
+    public void setStageEindatum(Date stageEindatum) {
+        this.stageEindatum = stageEindatum;
+    }
+
+    public Integer getGoedkeurStatus() {
+        return goedkeurStatus;
+    }
+
+    public void setGoedkeurStatus(Integer goedkeurStatus) {
+        this.goedkeurStatus = goedkeurStatus;
+    }
+
+    public Boolean getStagecontractOpgesteld() {
+        return stagecontractOpgesteld;
+    }
+
+    public void setStagecontractOpgesteld(Boolean stagecontractOpgesteld) {
+        this.stagecontractOpgesteld = stagecontractOpgesteld;
+    }
+
+    public Boolean getGetekendeStagecontract() {
+        return getekendeStagecontract;
+    }
+
+    public void setGetekendeStagecontract(Boolean getekendeStagecontract) {
+        this.getekendeStagecontract = getekendeStagecontract;
     }
 
     public Date getAanmaakdatum() {
@@ -332,20 +337,55 @@ public class Stage implements Serializable {
         this.aantalBeschikbarePlaatsen = aantalBeschikbarePlaatsen;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
+    @XmlTransient
+    public Collection<Begeleiderstageaanvraag> getBegeleiderstageaanvraagCollection() {
+        return begeleiderstageaanvraagCollection;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public void setBegeleiderstageaanvraagCollection(Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection) {
+        this.begeleiderstageaanvraagCollection = begeleiderstageaanvraagCollection;
     }
 
-    public Opleiding getOpleidingOpleidingId() {
-        return opleidingOpleidingId;
+    @XmlTransient
+    public Collection<Student> getStudentCollection() {
+        return studentCollection;
     }
 
-    public void setOpleidingOpleidingId(Opleiding opleidingOpleidingId) {
-        this.opleidingOpleidingId = opleidingOpleidingId;
+    public void setStudentCollection(Collection<Student> studentCollection) {
+        this.studentCollection = studentCollection;
+    }
+
+    @XmlTransient
+    public Collection<Studentstagesollicitatie> getStudentstagesollicitatieCollection() {
+        return studentstagesollicitatieCollection;
+    }
+
+    public void setStudentstagesollicitatieCollection(Collection<Studentstagesollicitatie> studentstagesollicitatieCollection) {
+        this.studentstagesollicitatieCollection = studentstagesollicitatieCollection;
+    }
+
+    public Bedrijf getBedrijfId() {
+        return bedrijfId;
+    }
+
+    public void setBedrijfId(Bedrijf bedrijfId) {
+        this.bedrijfId = bedrijfId;
+    }
+
+    public Bedrijfspersoon getStagementorId() {
+        return stagementorId;
+    }
+
+    public void setStagementorId(Bedrijfspersoon stagementorId) {
+        this.stagementorId = stagementorId;
+    }
+
+    public Bedrijfspersoon getContractondertekenaarId() {
+        return contractondertekenaarId;
+    }
+
+    public void setContractondertekenaarId(Bedrijfspersoon contractondertekenaarId) {
+        this.contractondertekenaarId = contractondertekenaarId;
     }
 
     public Begeleider getBegeleiderBegeleiderId() {
@@ -354,30 +394,6 @@ public class Stage implements Serializable {
 
     public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
         this.begeleiderBegeleiderId = begeleiderBegeleiderId;
-    }
-
-    public Bedrijf getBedrijfBedrijfsId() {
-        return bedrijfBedrijfsId;
-    }
-
-    public void setBedrijfBedrijfsId(Bedrijf bedrijfBedrijfsId) {
-        this.bedrijfBedrijfsId = bedrijfBedrijfsId;
-    }
-
-    public Bedrijfspersoon getContractondertekenaarBedrijfspersoonId() {
-        return contractondertekenaarBedrijfspersoonId;
-    }
-
-    public void setContractondertekenaarBedrijfspersoonId(Bedrijfspersoon contractondertekenaarBedrijfspersoonId) {
-        this.contractondertekenaarBedrijfspersoonId = contractondertekenaarBedrijfspersoonId;
-    }
-
-    public Bedrijfspersoon getStagementorBedrijfspersoonId() {
-        return stagementorBedrijfspersoonId;
-    }
-
-    public void setStagementorBedrijfspersoonId(Bedrijfspersoon stagementorBedrijfspersoonId) {
-        this.stagementorBedrijfspersoonId = stagementorBedrijfspersoonId;
     }
 
     @Override
@@ -402,7 +418,7 @@ public class Stage implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Stage[ stageId=" + stageId + " ]";
+        return "ch.makery.address.model.Stage[ stageId=" + stageId + " ]";
     }
     
 }

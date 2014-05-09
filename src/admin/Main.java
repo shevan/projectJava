@@ -1,13 +1,14 @@
 package admin;
 
-import admin.model.Aspnetusers;
-import admin.model.User;
+import admin.model.*;
 import java.io.InputStream;
 import admin.security.Authenticator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -16,19 +17,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
     
     private Stage stage;
-    private User loggedUser;
+  //  private User loggedUser;
     private Model model;
     
-    private final double MIN_WINDOW_HEIGHT = 1366.0;
-    private final double MIN_WINDOW_WIDTH = 768.0;
+    private final double MIN_WINDOW_HEIGHT = 800.0;
+    private final double MIN_WINDOW_WIDTH = 600.0;
+    
     
     public static void main(String[] args)
     {
         Application.launch(Main.class, (java.lang.String[]) null);
     }
+    
     
     @Override
     public void start(Stage primaryStage)
@@ -41,61 +45,27 @@ public class Main extends Application {
             /*stage.setMinHeight(MIN_WINDOW_HEIGHT);
             stage.setMinWidth(MIN_WINDOW_WIDTH);*/
 
-
-            initializeUsers();
-            //gotoLogin(); //<------------------------------------tijdelijke verandering voor development
-            //gotoOverzicht();
-
            //gotoLogin(); // <------------------------------------tijdelijke verandering voor development
            // gotoOverzicht();
-            gotoHoofdscherm();
-
+        //    gotoHoofdscherm();
+            gotobegHoofdscherm();
             stage.show();
         } catch (Exception ex)
         {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null,  ex);
         }
     }
+    
+    
 
-    public User getLoggedUser()
-    {
-        return loggedUser;
-    }
     
-    protected boolean userLogging(String userId, String password)
-    {
-        if (Authenticator.validate(userId, password))
-        {
-            loggedUser = User.of(userId);
-            gotoOverzicht();
-            return true;
-        } else {
-            return false;
-        }
-    }
     
-    private void initializeUsers()
-    {
-        List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
-        
-        if (aspnetusers.isEmpty())
-        {
-            // error geen users bekend
-        } else {
-            for (Aspnetusers user : aspnetusers)
-            {
-                Authenticator.putUser(user.getUserName(), user.getPasswordHash());
-            }
-        }
-    }
-    
-    protected void gotoLogin()
+    private void gotoLogin()
     {
         try
         {
             LoginController login = (LoginController) replaceSceneContent("login.fxml");
             login.setApp(this);
-            login.setUpWithModel(model);
         }
         catch(Exception ex)
         {
@@ -103,12 +73,13 @@ public class Main extends Application {
         }
     }
     
-    protected void gotoOverzicht()
+    private void gotoOverzicht()
     {
         try
         {
             OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
             overzicht.setApp(this);
+            overzicht.setUpWithModel(model);
         }
         catch(Exception ex)
         {
@@ -131,6 +102,20 @@ public class Main extends Application {
         } 
     }
     
+    private void gotobegHoofdscherm()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+             BegeleiderStageController hoofdscherm = (BegeleiderStageController) replaceSceneContent("BegeleiderStage.fxml");
+             hoofdscherm.setApp(this);
+             hoofdscherm.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
     /*private void gotoStudenten(){
         try{
             StudentController studenten = (StudentController) replaceSceneContent("student.fxml");
@@ -154,4 +139,46 @@ public class Main extends Application {
         return (Initializable) loader.getController();
     }
     
+    //---------------------- lijst naar observable lijst --------------------------------
+    
+    public ObservableList<Bedrijf> getBedrijfData() {
+        ObservableList<Bedrijf> bedrijvenData = FXCollections.observableArrayList();
+        List <Bedrijf> bedrijven = model.getBedrijvenFromDatabase();
+        for(Bedrijf bedrijf : bedrijven)
+        {
+            bedrijvenData.add(bedrijf);
+        }  
+       	return bedrijvenData;
+    } 
+    
+    public ObservableList<Begeleider> getBegeleiderData() {
+        ObservableList<Begeleider> begeleidersData = FXCollections.observableArrayList();
+        List <Begeleider> begeleiders = model.getBegeleidersFromDatabase();
+        for(Begeleider begeleider : begeleiders)
+        {
+            begeleidersData.add(begeleider);
+        }  
+       	return begeleidersData;
+    } 
+    
+   
+    public ObservableList<admin.model.Stage> getStageData() {
+        ObservableList<admin.model.Stage> stagesData = FXCollections.observableArrayList();
+        List <admin.model.Stage> stages = model.getStageFromDatabase();
+        for(admin.model.Stage stage : stages)
+        {
+            stagesData.add(stage);
+        }  
+       	return stagesData;
+    } 
+   
+    public ObservableList<Student> getStudentData() {
+        ObservableList<Student> studentenData = FXCollections.observableArrayList();
+        List <Student> studenten = model.getStudentenFromDatabase();
+        for(Student student : studenten)
+        {
+            studentenData.add(student);
+        }  
+       	return studentenData;
+    } 
 }
