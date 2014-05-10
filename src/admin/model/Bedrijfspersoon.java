@@ -192,7 +192,7 @@ public class Bedrijfspersoon implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Bedrijfspersoon[ bedrijfspersoonId=" + bedrijfspersoonId + " ]";
+        return "admin.model.Bedrijfspersoon[ bedrijfspersoonId=" + bedrijfspersoonId + " ]";
     }
     
 }

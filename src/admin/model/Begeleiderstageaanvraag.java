@@ -97,7 +97,7 @@ public class Begeleiderstageaanvraag implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Begeleiderstageaanvraag[ begeleiderStageAanvraagId=" + begeleiderStageAanvraagId + " ]";
+        return "admin.model.Begeleiderstageaanvraag[ begeleiderStageAanvraagId=" + begeleiderStageAanvraagId + " ]";
     }
     
 }

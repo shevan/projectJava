@@ -85,7 +85,7 @@ public class Gegeven implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Gegeven[ gegevenId=" + gegevenId + " ]";
+        return "admin.model.Gegeven[ gegevenId=" + gegevenId + " ]";
     }
     
 }

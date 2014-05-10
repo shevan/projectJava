@@ -97,7 +97,7 @@ public class Studentstagesollicitatie implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Studentstagesollicitatie[ studentStageSollicitatieId=" + studentStageSollicitatieId + " ]";
+        return "admin.model.Studentstagesollicitatie[ studentStageSollicitatieId=" + studentStageSollicitatieId + " ]";
     }
     
 }

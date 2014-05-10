@@ -418,7 +418,7 @@ public class Stage implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Stage[ stageId=" + stageId + " ]";
+        return "admin.model.Stage[ stageId=" + stageId + " ]";
     }
     
 }

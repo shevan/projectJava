@@ -166,7 +166,7 @@ public class Begeleider implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Begeleider[ begeleiderId=" + begeleiderId + " ]";
+        return "admin.model.Begeleider[ begeleiderId=" + begeleiderId + " ]";
     }
     
 }

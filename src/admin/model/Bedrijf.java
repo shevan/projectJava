@@ -224,7 +224,7 @@ public class Bedrijf implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
+        return "admin.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
     }
     
 }

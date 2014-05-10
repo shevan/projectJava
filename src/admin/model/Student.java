@@ -244,7 +244,7 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        return "ch.makery.address.model.Student[ studentId=" + studentId + " ]";
+        return "admin.model.Student[ studentId=" + studentId + " ]";
     }
     
 }

@@ -30,19 +30,22 @@ import javafx.scene.layout.VBox;
     private Main application;
     
     @FXML
-    private TableView<Begeleider> begeleiderTabel;
+    private TableView<Student> begeleiderTabel;
     @FXML
-    private TableColumn<Begeleider, String> begeleiderKolom;
+    private TableColumn<Student, String> begeleiderKolom;
     @FXML
-    private TableColumn<Begeleider, String> studentKolom;
+    private TableColumn<?, ?> studentKolom;
 
     @FXML
     private BegeleiderStageController begeleiderStageController;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      begeleiderKolom.setCellValueFactory(new PropertyValueFactory<Begeleider, String>("voornaam"));
-      studentKolom.setCellValueFactory(new PropertyValueFactory<Begeleider, String>("voornaam"));
+  //      begeleiderKolom.setCellValueFactory(new PropertyValueFactory<Begeleider, Store>("store"));
+  //    begeleiderKolom.setCellValueFactory(new PropertyValueFactory<Begeleider, String>("voornaam"));
+        studentKolom.setCellValueFactory(new PropertyValueFactory("Stage.hardware"));
+    
+  //    studentKolom.setCellValueFactory(new SimpleStringProperty("sdf"));
 		// Auto resize columns
       begeleiderTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -51,7 +54,7 @@ import javafx.scene.layout.VBox;
     void setApp(Main app) {
         
         this.application=app;
-        begeleiderTabel.setItems(app.getBegeleiderData());
+        begeleiderTabel.setItems(app.getStudentData());
    //     model.test();
  //       begeleiderTabel.setItems(model.test());
         

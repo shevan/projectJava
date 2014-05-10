@@ -2,7 +2,6 @@ package admin;
 
 import admin.model.*;
 import java.io.InputStream;
-import admin.security.Authenticator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,7 +63,7 @@ public class Main extends Application {
     {
         try
         {
-            LoginController login = (LoginController) replaceSceneContent("login.fxml");
+            LoginController login = (LoginController) replaceSceneContent("view/login.fxml");
             login.setApp(this);
         }
         catch(Exception ex)
@@ -77,7 +76,7 @@ public class Main extends Application {
     {
         try
         {
-            OverzichtController overzicht = (OverzichtController) replaceSceneContent("overzicht.fxml");
+            OverzichtController overzicht = (OverzichtController) replaceSceneContent("view/overzicht.fxml");
             overzicht.setApp(this);
             overzicht.setUpWithModel(model);
         }
@@ -92,7 +91,7 @@ public class Main extends Application {
         try
         {
             //gelieve nieuwe methode van Van Impe toepassen hier
-             HoofdSchermController hoofdscherm = (HoofdSchermController) replaceSceneContent("hoofdScherm.fxml");
+             HoofdSchermController hoofdscherm = (HoofdSchermController) replaceSceneContent("view/hoofdScherm.fxml");
              hoofdscherm.setApp(this);
              hoofdscherm.setUpWithModel(model);
         }
@@ -107,7 +106,7 @@ public class Main extends Application {
         try
         {
             //gelieve nieuwe methode van Van Impe toepassen hier
-             BegeleiderStageController hoofdscherm = (BegeleiderStageController) replaceSceneContent("BegeleiderStage.fxml");
+             BegeleiderStageController hoofdscherm = (BegeleiderStageController) replaceSceneContent("view/BegeleiderStage.fxml");
              hoofdscherm.setApp(this);
              hoofdscherm.setUpWithModel(model);
         }
