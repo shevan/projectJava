@@ -32,36 +32,47 @@ public class Model {
     }
     
     public List <Aspnetusers> getUsersFromDatabase(){
-        //verplaats dit op een andere thread      
-        TypedQuery<Aspnetusers> queryAspnetusers = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);
-        return queryAspnetusers.getResultList();
-    }
-  
-    public List <Student> getStudentenFromDatabase(){
-        //verplaats dit op een andere thread      
-        TypedQuery<Student> queryAspnetusers = em.createNamedQuery("Student.findAll", Student.class);
-        return queryAspnetusers.getResultList();
+        TypedQuery<Aspnetusers> qurey = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);
+        return qurey.getResultList();
     }
     
     public List <Bedrijf> getBedrijvenFromDatabase(){
-        //verplaats dit op een andere thread      
-        TypedQuery<Bedrijf> queryAspnetusers = em.createNamedQuery("Bedrijf.findAll", Bedrijf.class);
-        return queryAspnetusers.getResultList();
+          TypedQuery<Bedrijf> qurey = em.createNamedQuery("Bedrijf.findAll", Bedrijf.class);
+          return qurey.getResultList();
+    }
+    
+    public List <Bedrijfspersoon> getBedrijfpersonenFromDatabase(){
+          TypedQuery<Bedrijfspersoon> qurey = em.createNamedQuery("Bedrijfspersoon.findAll", Bedrijfspersoon.class);
+          return qurey.getResultList();
+    }
+    
+    public List <Begeleider> getBegeleidersFromDatabase(){
+        TypedQuery<Begeleider> qurey = em.createNamedQuery("Begeleider.findAll", Begeleider.class);
+        return qurey.getResultList();
+    }
+    
+    public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagFromDatabase(){
+        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag.findAll", Begeleiderstageaanvraag.class);
+        return qurey.getResultList();
+    }
+    
+    public List <Gegeven> getGegevensFromDatabase(){
+        TypedQuery<Gegeven> qurey = em.createNamedQuery("Gegeven.findAll", Gegeven.class);
+        return qurey.getResultList();
     }
     
     public List <Stage> getStageFromDatabase(){
-        //verplaats dit op een andere thread      
-        TypedQuery<Stage> queryAspnetusers = em.createNamedQuery("Stage.findAll", Stage.class);
-        return queryAspnetusers.getResultList();
+        TypedQuery<Stage> qurey = em.createNamedQuery("Stage.findAll", Stage.class);
+        return qurey.getResultList();
     }
     
-    
-    public List <Begeleider> getBegeleidersFromDatabase(){
-        //verplaats dit op een andere thread      
-        TypedQuery<Begeleider> queryAspnetusers = em.createNamedQuery("Begeleider.findAll", Begeleider.class);
-        return queryAspnetusers.getResultList();
+    public List <Student> getStudentenFromDatabase(){
+        TypedQuery<Student> qurey = em.createNamedQuery("Student.findAll", Student.class);
+        return qurey.getResultList();
     }
     
-    
-    
+    public List <Studentstagesollicitatie> getStudentStageSollicitatieFromDatabase(){
+        TypedQuery<Studentstagesollicitatie> qurey = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstagesollicitatie.class);
+        return qurey.getResultList();
+    }
 }

@@ -9,7 +9,10 @@ package admin;
 import admin.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +26,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-
 /**
  * FXML Controller class
  *
@@ -34,61 +36,61 @@ import javafx.util.Callback;
     private Main application;
     
     @FXML
-    private TableView<Student> begeleiderTabel;
+    private TableView<Begeleiderstageaanvraag> begeleiderTabel;
     @FXML
-    private TableColumn<Student, String> begeleiderKolom;
+    private TableColumn<Begeleiderstageaanvraag, String> begeleiderKolom;
     @FXML
-    private TableColumn<Student, String> studentKolom;
+    private TableColumn<Begeleiderstageaanvraag, String> studentKolom;
 
+    @FXML
+    private Label firstNameLabel;
+        
     @FXML
     private BegeleiderStageController begeleiderStageController;
-   
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   //     begeleiderKolom.setCellValueFactory(new PropertyValueFactory<Stage, String>("stageStageId"));
-  //    begeleiderKolom.setCellValueFactory(new PropertyValueFactory<Begeleider, String>("voornaam"));
-   //     studentKolom.setCellValueFactory(Stage.class);
-    begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Student, String >, ObservableValue < String > >()
-            {
+        
+        begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >(){ @ Override
+        public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p ) {
+            return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam()); }});
+        
+        studentKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >(){ @ Override
+        public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p ) {
+            return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam()); }});
+        
+        // Auto resize columns
+        begeleiderTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        // clear person
+	showStageDetails(null);
+		
+        // Listen for selection changes
+        begeleiderTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>() {
 
-                @ Override
-                public ObservableValue < String > call(
-                    CellDataFeatures < Student, String > p )
-                {
-
-                    return new ReadOnlyStringWrapper( ( p.getValue()
-                        .getGemeente()== null )
-                        ? ""
-                        : p.getValue()
-                            .getStageStageId().getHardware());
+                @Override
+                public void changed(ObservableValue<? extends Begeleiderstageaanvraag> observable,
+                                Begeleiderstageaanvraag oldValue, Begeleiderstageaanvraag newValue) {
+                        showStageDetails(newValue);
                 }
-
-            } );
-  //    studentKolom.setCellValueFactory(new SimpleStringProperty("sdf"));
-		// Auto resize columns
-      begeleiderTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
+        });
     }    
-    public abstract class CellValueFactory<S, T> implements Callback<TableColumn.CellDataFeatures<S,T>,ObservableValue<T>> {
-
-    @Override
-    public final ObservableValue<T> call(TableColumn.CellDataFeatures<S,T> p) {
-        return createObservableValue(p.getTableView(), p.getTableColumn(), p.getValue());
-    }
+   
     
-    protected abstract ObservableValue<T> createObservableValue (TableView<S> table, TableColumn<S,T> column, S value);
-}
-
+    private void showStageDetails(Begeleiderstageaanvraag stage) {
+		if (stage != null) {
+			firstNameLabel.setText(stage.getStageStageId().getProjectTitel());
+		} else {
+			firstNameLabel.setText("");
+		}
+	}
+    
     void setApp(Main app) {
         
         this.application=app;
-         begeleiderTabel.getItems().addAll(app.getStudentData());
-    //     System.print.out()
-    //    begeleiderTabel.setItems(app.getStudentData());
-        
-   //     model.test();
- //       begeleiderTabel.setItems(model.test());
-        
+        begeleiderTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
+       
     }
     
     

@@ -138,48 +138,70 @@ public class Main extends Application {
         return (Initializable) loader.getController();
     }
     
-    //---------------------- lijst naar observable lijst --------------------------------
     
+    //---------------------- lijst naar observable lijst --------------------------------
     public ObservableList<Bedrijf> getBedrijfData() {
-        ObservableList<Bedrijf> bedrijvenData = FXCollections.observableArrayList();
-        List <Bedrijf> bedrijven = model.getBedrijvenFromDatabase();
-        for(Bedrijf bedrijf : bedrijven)
-        {
-            bedrijvenData.add(bedrijf);
-        }  
-       	return bedrijvenData;
+        ObservableList<Bedrijf> data = FXCollections.observableArrayList();
+        List <Bedrijf> list = model.getBedrijvenFromDatabase(); 
+        for(Bedrijf item : list){
+            data.add(item);}  
+       	return data;
+    } 
+    
+    public ObservableList<Bedrijfspersoon> getBedrijfspersoonData() {
+        ObservableList<Bedrijfspersoon> data = FXCollections.observableArrayList();
+        List <Bedrijfspersoon> list = model.getBedrijfpersonenFromDatabase(); 
+        for(Bedrijfspersoon item : list){
+            data.add(item);}  
+       	return data;
     } 
     
     public ObservableList<Begeleider> getBegeleiderData() {
-        ObservableList<Begeleider> begeleidersData = FXCollections.observableArrayList();
-        List <Begeleider> begeleiders = model.getBegeleidersFromDatabase();
-        for(Begeleider begeleider : begeleiders)
-        {
-            begeleidersData.add(begeleider);
-        }  
-       	return begeleidersData;
-    } 
+        ObservableList<Begeleider> data = FXCollections.observableArrayList();
+        List <Begeleider> list = model.getBegeleidersFromDatabase();
+        for(Begeleider item : list){
+            data.add(item);}  
+       	return data;
+    }
     
-   
     public ObservableList<admin.model.Stage> getStageData() {
-        ObservableList<admin.model.Stage> stagesData = FXCollections.observableArrayList();
-        List <admin.model.Stage> stages = model.getStageFromDatabase();
-        for(admin.model.Stage stage : stages)
-        {
-            stagesData.add(stage);
+        ObservableList<admin.model.Stage> data = FXCollections.observableArrayList();
+        List <admin.model.Stage> list = model.getStageFromDatabase();
+        for(admin.model.Stage item : list){
+            data.add(item);
         }  
-       	return stagesData;
+       	return data;
     } 
    
     public ObservableList<Student> getStudentData() {
-        ObservableList<Student> studentenData = FXCollections.observableArrayList();
-        List <Student> studenten = model.getStudentenFromDatabase();
-        for(Student student : studenten)
-        {
-            studentenData.add(student);
-          
-        }  
-        
-       	return studentenData;
+        ObservableList<Student> data = FXCollections.observableArrayList();
+        List <Student> list = model.getStudentenFromDatabase();
+        for(Student item : list){
+            data.add(item);}  
+        return data;
+    }
+    
+    public ObservableList<Studentstagesollicitatie> getStudenStageSollicitatietData() {
+        ObservableList<Studentstagesollicitatie> data = FXCollections.observableArrayList();
+        List <Studentstagesollicitatie> list = model.getStudentStageSollicitatieFromDatabase();
+        for(Studentstagesollicitatie item : list){
+            data.add(item);}  
+        return data;
+    }
+    
+    public ObservableList<Gegeven> getGegevensData() {
+        ObservableList<Gegeven> data = FXCollections.observableArrayList();
+        List <Gegeven> list = model.getGegevensFromDatabase();
+        for(Gegeven item : list){
+            data.add(item);}  
+        return data;
+    }
+    
+    public ObservableList<Begeleiderstageaanvraag> getBegeleiderStageAanvraagData() {
+        ObservableList<Begeleiderstageaanvraag> data = FXCollections.observableArrayList();
+        List <Begeleiderstageaanvraag> list = model.getBegeleiderStageAanvraagFromDatabase();
+        for(Begeleiderstageaanvraag item : list){
+            data.add(item);}
+       	return data;
     } 
 }
