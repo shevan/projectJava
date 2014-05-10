@@ -177,7 +177,9 @@ public class Main extends Application {
         for(Student student : studenten)
         {
             studentenData.add(student);
+          
         }  
+        
        	return studentenData;
     } 
 }

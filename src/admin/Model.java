@@ -7,6 +7,8 @@
 package admin;
 
 import admin.model.*;
+import java.security.Key;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -59,5 +61,7 @@ public class Model {
         TypedQuery<Begeleider> queryAspnetusers = em.createNamedQuery("Begeleider.findAll", Begeleider.class);
         return queryAspnetusers.getResultList();
     }
+    
+    
     
 }
