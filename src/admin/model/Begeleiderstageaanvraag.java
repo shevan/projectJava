@@ -29,7 +29,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Begeleiderstageaanvraag.findAll", query = "SELECT b FROM Begeleiderstageaanvraag b"),
-    @NamedQuery(name = "Begeleiderstageaanvraag.findByBegeleiderStageAanvraagId", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.begeleiderStageAanvraagId = :begeleiderStageAanvraagId")})
+    @NamedQuery(name = "Begeleiderstageaanvraag.findByBegeleiderStageAanvraagId", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.begeleiderStageAanvraagId = :begeleiderStageAanvraagId"),
+    @NamedQuery(name = "Begeleiderstageaanvraag.findByGoedgekeurd", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd = :goedgekeurd"),
+    @NamedQuery(name = "Begeleiderstageaanvraag.findNogNietBeslist", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd IS NULL")})
+   
+
 public class Begeleiderstageaanvraag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,12 +41,14 @@ public class Begeleiderstageaanvraag implements Serializable {
     @Basic(optional = false)
     @Column(name = "BegeleiderStageAanvraagId")
     private Integer begeleiderStageAanvraagId;
-    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
-    @ManyToOne
-    private Begeleider begeleiderBegeleiderId;
+    @Column(name = "Goedgekeurd")
+    private Boolean goedgekeurd;
     @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
     @ManyToOne
     private Stage stageStageId;
+    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
+    @ManyToOne
+    private Begeleider begeleiderBegeleiderId;
 
     public Begeleiderstageaanvraag() {
     }
@@ -59,12 +65,12 @@ public class Begeleiderstageaanvraag implements Serializable {
         this.begeleiderStageAanvraagId = begeleiderStageAanvraagId;
     }
 
-    public Begeleider getBegeleiderBegeleiderId() {
-        return begeleiderBegeleiderId;
+    public Boolean getGoedgekeurd() {
+        return goedgekeurd;
     }
 
-    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
-        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
+    public void setGoedgekeurd(Boolean goedgekeurd) {
+        this.goedgekeurd = goedgekeurd;
     }
 
     public Stage getStageStageId() {
@@ -73,6 +79,14 @@ public class Begeleiderstageaanvraag implements Serializable {
 
     public void setStageStageId(Stage stageStageId) {
         this.stageStageId = stageStageId;
+    }
+
+    public Begeleider getBegeleiderBegeleiderId() {
+        return begeleiderBegeleiderId;
+    }
+
+    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
+        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
     }
 
     @Override

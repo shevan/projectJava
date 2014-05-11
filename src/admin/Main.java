@@ -199,7 +199,7 @@ public class Main extends Application {
     
     public ObservableList<Begeleiderstageaanvraag> getBegeleiderStageAanvraagData() {
         ObservableList<Begeleiderstageaanvraag> data = FXCollections.observableArrayList();
-        List <Begeleiderstageaanvraag> list = model.getBegeleiderStageAanvraagFromDatabase();
+        List <Begeleiderstageaanvraag> list =  model.getBegeleiderStageAanvraagFromDatabase();
         for(Begeleiderstageaanvraag item : list){
             data.add(item);}
        	return data;

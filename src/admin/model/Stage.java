@@ -125,6 +125,9 @@ public class Stage implements Serializable {
     private Collection<Student> studentCollection;
     @OneToMany(mappedBy = "stageStageId")
     private Collection<Studentstagesollicitatie> studentstagesollicitatieCollection;
+    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
+    @ManyToOne
+    private Begeleider begeleiderBegeleiderId;
     @JoinColumn(name = "BedrijfId", referencedColumnName = "BedrijfsId")
     @ManyToOne(optional = false)
     private Bedrijf bedrijfId;
@@ -134,9 +137,6 @@ public class Stage implements Serializable {
     @JoinColumn(name = "ContractondertekenaarId", referencedColumnName = "BedrijfspersoonId")
     @ManyToOne
     private Bedrijfspersoon contractondertekenaarId;
-    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
-    @ManyToOne
-    private Begeleider begeleiderBegeleiderId;
 
     public Stage() {
     }
@@ -364,6 +364,14 @@ public class Stage implements Serializable {
         this.studentstagesollicitatieCollection = studentstagesollicitatieCollection;
     }
 
+    public Begeleider getBegeleiderBegeleiderId() {
+        return begeleiderBegeleiderId;
+    }
+
+    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
+        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
+    }
+
     public Bedrijf getBedrijfId() {
         return bedrijfId;
     }
@@ -386,14 +394,6 @@ public class Stage implements Serializable {
 
     public void setContractondertekenaarId(Bedrijfspersoon contractondertekenaarId) {
         this.contractondertekenaarId = contractondertekenaarId;
-    }
-
-    public Begeleider getBegeleiderBegeleiderId() {
-        return begeleiderBegeleiderId;
-    }
-
-    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
-        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
     }
 
     @Override

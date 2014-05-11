@@ -224,7 +224,7 @@ public class Bedrijf implements Serializable {
 
     @Override
     public String toString() {
-        return "admin.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
+        return "admin.model.Bedrijf[ bedrijfsId=" + bedrijfsId + " ]";
     }
     
 }

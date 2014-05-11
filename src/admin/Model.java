@@ -17,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 /**
- *
  * @author Pieter Pletinckx
  * Model gaat over databank toegang, uiteindelijk met Task uit concurrency
  */
@@ -52,7 +51,7 @@ public class Model {
     }
     
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagFromDatabase(){
-        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag.findAll", Begeleiderstageaanvraag.class);
+        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag.findNogNietBeslist", Begeleiderstageaanvraag.class);
         return qurey.getResultList();
     }
     

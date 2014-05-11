@@ -7,54 +7,57 @@
 package admin.model;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Pieter Pletinckx
+ * @author shevan
  */
 @Entity
+@Table(name = "aspnetusers")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Aspnetusers.findAll", query = "SELECT a FROM Aspnetusers a"),
     @NamedQuery(name = "Aspnetusers.findById", query = "SELECT a FROM Aspnetusers a WHERE a.id = :id"),
     @NamedQuery(name = "Aspnetusers.findByDiscriminator", query = "SELECT a FROM Aspnetusers a WHERE a.discriminator = :discriminator")})
-    //@NamedQuery(name = "Aspnetuserroles.findUserRole", query = "SELECT r.roleId FROM Aspnetuserroles r WHERE r.userId = :id")})
 public class Aspnetusers implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id")
     private String id;
-    
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "UserName")
     private String userName;
+    @Lob
+    @Column(name = "PasswordHash")
     private String passwordHash;
+    @Lob
+    @Column(name = "SecurityStamp")
     private String securityStamp;
+    @Basic(optional = false)
+    @Column(name = "Discriminator")
     private String discriminator;
 
     public Aspnetusers() {
     }
 
-    public Aspnetusers(String id, String userName, String passwordHash, String securityStamp, String discriminator)
-    {
+    public Aspnetusers(String id) {
+        this.id = id;
+    }
+
+    public Aspnetusers(String id, String userName, String discriminator) {
         this.id = id;
         this.userName = userName;
-        this.passwordHash = passwordHash;
-        this.securityStamp = securityStamp;
         this.discriminator = discriminator;
     }
 
@@ -99,6 +102,13 @@ public class Aspnetusers implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Aspnetusers)) {
@@ -111,13 +121,9 @@ public class Aspnetusers implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Entity.Aspnetusers[ id=" + id + " ]";
-//    }
-    
     @Override
     public String toString() {
-        return "\n" + id + ", " + userName + ", " + passwordHash + ", " + securityStamp + ", " + discriminator + "\n";
-    } 
+        return "admin.model.Aspnetusers[ id=" + id + " ]";
+    }
+    
 }

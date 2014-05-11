@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Studentstagesollicitatie.findAll", query = "SELECT s FROM Studentstagesollicitatie s"),
-    @NamedQuery(name = "Studentstagesollicitatie.findByStudentStageSollicitatieId", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.studentStageSollicitatieId = :studentStageSollicitatieId")})
+    @NamedQuery(name = "Studentstagesollicitatie.findByStudentStageSollicitatieId", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.studentStageSollicitatieId = :studentStageSollicitatieId"),
+    @NamedQuery(name = "Studentstagesollicitatie.findByGoedgekeurd", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.goedgekeurd = :goedgekeurd")})
 public class Studentstagesollicitatie implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,12 +38,14 @@ public class Studentstagesollicitatie implements Serializable {
     @Basic(optional = false)
     @Column(name = "StudentStageSollicitatieId")
     private Integer studentStageSollicitatieId;
-    @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
-    @ManyToOne
-    private Stage stageStageId;
+    @Column(name = "Goedgekeurd")
+    private Boolean goedgekeurd;
     @JoinColumn(name = "Student_StudentId", referencedColumnName = "StudentId")
     @ManyToOne
     private Student studentStudentId;
+    @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
+    @ManyToOne
+    private Stage stageStageId;
 
     public Studentstagesollicitatie() {
     }
@@ -59,12 +62,12 @@ public class Studentstagesollicitatie implements Serializable {
         this.studentStageSollicitatieId = studentStageSollicitatieId;
     }
 
-    public Stage getStageStageId() {
-        return stageStageId;
+    public Boolean getGoedgekeurd() {
+        return goedgekeurd;
     }
 
-    public void setStageStageId(Stage stageStageId) {
-        this.stageStageId = stageStageId;
+    public void setGoedgekeurd(Boolean goedgekeurd) {
+        this.goedgekeurd = goedgekeurd;
     }
 
     public Student getStudentStudentId() {
@@ -73,6 +76,14 @@ public class Studentstagesollicitatie implements Serializable {
 
     public void setStudentStudentId(Student studentStudentId) {
         this.studentStudentId = studentStudentId;
+    }
+
+    public Stage getStageStageId() {
+        return stageStageId;
+    }
+
+    public void setStageStageId(Stage stageStageId) {
+        this.stageStageId = stageStageId;
     }
 
     @Override
