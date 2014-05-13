@@ -12,7 +12,7 @@
   <children>
     <Button id="stage" fx:id="stageButton" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
     <Button id="studenten" fx:id="studentenButton" layoutX="96.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
-    <ListView fx:id="tabListView" layoutX="22.0" layoutY="79.0" prefHeight="391.0" prefWidth="583.0" />
+    <ListView fx:id="tabListView" layoutX="22.0" layoutY="79.0" onMouseClicked="#itemDoubleclickAction" prefHeight="396.0" prefWidth="583.0" />
     <Button id="stage" fx:id="gebruikersButton" layoutX="191.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
     <Button id="stage" fx:id="button4" layoutX="286.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 4" />
     <Button id="stage" fx:id="button5" layoutX="367.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />

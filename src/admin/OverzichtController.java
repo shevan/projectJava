@@ -1,6 +1,8 @@
 package admin;
 
 import admin.model.Aspnetusers;
+import admin.model.Bedrijf;
+import admin.model.Bedrijfspersoon;
 import admin.model.Stage;
 import admin.model.Student;
 import java.net.URL;
@@ -13,11 +15,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 
 public class OverzichtController extends AnchorPane implements Initializable
 {   
+    private List activelist;
     @FXML
     Button stageButton;
     
@@ -53,12 +57,18 @@ public class OverzichtController extends AnchorPane implements Initializable
     private void addAction(ActionEvent action){
         System.out.println("Test button pushed");
     }
-    
+    /**
+     *         Voor elke tabel die moet getoond worden in de lijst
+     *  moet er een ander type opgehaald worden
+     *  met respectievelijk elk een knop
+     *  hierop moet per type een geformateerde string van gemaakt worden 
+     */
      @FXML 
      private void displayStages(ActionEvent action){
          listItems.clear();
          //goede plaats voor een try catch blok
          List<Stage> stages = model.getStageFromDatabase();
+         activelist = stages;
          if(stages.isEmpty())listItems.add("<<Tabel is leeg>>");
          for(Stage stage : stages)
          {
@@ -71,6 +81,7 @@ public class OverzichtController extends AnchorPane implements Initializable
      private void displayStudenten(ActionEvent action){
         listItems.clear();
         List <Student> studenten = model.getStudentenFromDatabase();
+        activelist = studenten;
         if(studenten.isEmpty())listItems.add("<<Tabel is leeg>>");
         for(Student student : studenten)
         {
@@ -83,6 +94,7 @@ public class OverzichtController extends AnchorPane implements Initializable
      private void displayGebruikers(ActionEvent action){
         listItems.clear();
         List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
+        activelist= aspnetusers;
         if(aspnetusers.isEmpty())listItems.add("<<Tabel is leeg>>");
         for(Aspnetusers user : aspnetusers)
         {
@@ -151,14 +163,7 @@ public class OverzichtController extends AnchorPane implements Initializable
         hierop moet per type een geformateerde string van gemaakt worden
         
         */
-        
-        
         List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
-        //dummielijst
-        /*
-        List<Aspnetusers> aspnetuserses= new ArrayList<>();
-        aspnetuserses.add(new Aspnetusers("007", "John","generic discriminator" ));
-        */
                 for (Aspnetusers user: aspnetusers){
             System.out.println(user.getUserName());
         }
@@ -168,6 +173,19 @@ public class OverzichtController extends AnchorPane implements Initializable
             //set username max char = tab space
         }
             
+    }
+    public void itemDoubleclickAction (MouseEvent event){
+         if (event.getClickCount() > 1) 
+         {
+            if(activelist.isEmpty());
+            else{
+                if(activelist.get(0) instanceof Stage) /*openview*/System.out.println("Stage double clicked");
+                if(activelist.get(0) instanceof Student) /*openview*/;
+                if(activelist.get(0) instanceof Aspnetusers) /*openview*/;
+                if(activelist.get(0) instanceof Bedrijf) /*openview*/;
+                if(activelist.get(0) instanceof Bedrijfspersoon) /*openview*/;
+                } 
+         }
     }
     
 }
