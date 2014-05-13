@@ -17,11 +17,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 
 public class OverzichtController extends AnchorPane implements Initializable
 {   
     private List activelist;
+    private HoofdSchermController master;
     @FXML
     Button stageButton;
     
@@ -50,7 +52,7 @@ public class OverzichtController extends AnchorPane implements Initializable
     
     private Main application;
     private Model model;
-    final ObservableList<String> listItems = FXCollections.observableArrayList("Add Items Here");
+    final ObservableList<String> listItems = FXCollections.observableArrayList();
     
     //add event handlers
     @FXML
@@ -113,6 +115,11 @@ public class OverzichtController extends AnchorPane implements Initializable
     {
         this.application = application;
     }
+    public void setMaster(HoofdSchermController master) 
+    {
+        this.master = master;
+    }
+            
     /**
     public OverzichtController()
     { 
@@ -179,7 +186,13 @@ public class OverzichtController extends AnchorPane implements Initializable
          {
             if(activelist.isEmpty());
             else{
-                if(activelist.get(0) instanceof Stage) /*openview*/System.out.println("Stage double clicked");
+                int s = tabListView.getSelectionModel().getSelectedIndex();
+                if(activelist.get(0) instanceof Stage)
+                {
+                    master.getBSControler().bewerkGegevens((Stage)activelist.get(s));
+                    master.veranderView(3);
+                    System.out.println("Stage double clicked");
+                }
                 if(activelist.get(0) instanceof Student) /*openview*/;
                 if(activelist.get(0) instanceof Aspnetusers) /*openview*/;
                 if(activelist.get(0) instanceof Bedrijf) /*openview*/;

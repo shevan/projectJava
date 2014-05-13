@@ -68,5 +68,44 @@ public class HoofdSchermController extends VBox implements Initializable {
         if(overzichtController==null) System.out.println("No controler");
         overzichtController.setUpWithModel(model);
     }
+    private void setChildrenHome()
+    { //debatable of ik dit niet via javafx loader kan doen
+        overzichtController.setMaster(this);
+    }
+    
+    public BegeleiderStageController getBSControler() //vervangen door loader
+    {
+        return begeleiderStageController;
+    }
+    
+    public void veranderView (int v)
+    {
+        switch (v)
+        {
+            case 1: 
+            {
+                hideAllViews();
+                overzicht.visibleProperty().set(true);
+            }
+            case 2:
+            {
+                hideAllViews();
+                moderatieScherm.visibleProperty().set(true);
+            }
+            case 3:
+            {
+                hideAllViews();
+                BegeleiderStage.visibleProperty().set(true);
+            }
+        }
+    }
+    
+    private void hideAllViews()
+    {
+        moderatieScherm.visibleProperty().set(false);
+        overzicht.visibleProperty().set(false);
+        BegeleiderStage.visibleProperty().set(false);
+    }
+
     
 }

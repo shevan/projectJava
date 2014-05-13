@@ -157,4 +157,27 @@ import javafx.util.Callback;
         if(model==null) System.out.println("No Link");
     }
     
+    public void bewerkGegevens (Stage stage)
+    {
+        
+    }
+    
+    public void bewerkGegevens (Bedrijf bedrijf)
+    {
+        
+    }
+    
+    public void bewerkGegevens (Begeleider begeleider)
+    {
+        
+    }
+    
+    public void bewerkGegevens (/*contactondertekenaar*/)
+    {
+        
+    }
+    
+    
+    
+    
 }
