@@ -8,9 +8,11 @@ package admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -44,6 +46,12 @@ public class HoofdSchermController extends VBox implements Initializable {
     @FXML
     private AnchorPane moderatieScherm;
     
+    @FXML
+    private MenuItem test1;
+    
+    @FXML
+    private MenuItem test2;
+    
     
     
 
@@ -72,6 +80,7 @@ public class HoofdSchermController extends VBox implements Initializable {
     private void setChildrenHome()
     { //debatable of ik dit niet via javafx loader kan doen
         overzichtController.setMaster(this);
+        begeleiderStageController.setMaster(this);
     }
     
     public BegeleiderStageController getBSControler() //vervangen door loader
@@ -79,34 +88,49 @@ public class HoofdSchermController extends VBox implements Initializable {
         return begeleiderStageController;
     }
     
-    public void veranderView (int v)
+    public void changeView (int v)
     {
         switch (v)
         {
             case 1: 
             {
                 hideAllViews();
-                overzicht.visibleProperty().set(true);
+                overzicht.setVisible(true);
             }
+            break;
             case 2:
             {
                 hideAllViews();
-                moderatieScherm.visibleProperty().set(true);
+                moderatieScherm.setVisible(true);
             }
+            break;
             case 3:
             {
                 hideAllViews();
-                begeleiderStage.visibleProperty().set(true);
+                begeleiderStage.setVisible(true);
             }
+            break;
         }
     }
     
     private void hideAllViews()
     {
-        moderatieScherm.visibleProperty().set(false);
-        overzicht.visibleProperty().set(false);
-        begeleiderStage.visibleProperty().set(false);
+       moderatieScherm.setVisible(false);
+       overzicht.setVisible(false);
+       begeleiderStage.setVisible(false);
     }
-
+    @FXML
+    void testView1(ActionEvent Action){
+        changeView(1);
+        System.out.println("button works");
+    }
+    @FXML
+    void testView2(ActionEvent Action){
+        changeView(2);
+    }
+    @FXML
+    void testView3(ActionEvent Action){
+        changeView(3);
+    }
     
 }

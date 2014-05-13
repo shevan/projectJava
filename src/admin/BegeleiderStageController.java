@@ -14,8 +14,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -86,6 +88,9 @@ import javafx.util.Callback;
     private TextField mentorTelefoonTxt;
     @FXML
     private TextField mentorEmailTxt;
+    @FXML 
+    Button back;
+    private HoofdSchermController master;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -149,6 +154,10 @@ import javafx.util.Callback;
         begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
        
     }
+    public void setMaster(HoofdSchermController master) 
+    {
+        this.master = master;
+    }
     
     
 
@@ -156,7 +165,12 @@ import javafx.util.Callback;
         this.model = model;
         if(model==null) System.out.println("No Link");
     }
-    
+    //navigatie
+    private void goBack(ActionEvent action)
+    {
+        master.changeView(1);
+    }
+    // Methodes voor configureren van deze vieuw per gebruik
     public void bewerkGegevens (Stage stage)
     {
         

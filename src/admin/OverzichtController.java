@@ -191,11 +191,14 @@ public class OverzichtController extends AnchorPane implements Initializable
                 if(activelist.get(0) instanceof Stage)
                 {
                     master.getBSControler().bewerkGegevens((Stage)activelist.get(s));
-                    master.veranderView(3);
+                    master.changeView(3);
                     System.out.println("Stage double clicked");
                 }
                 if(activelist.get(0) instanceof Student)
                 {
+                    //master.getBSControler().bewerkGegevens((Student)activelist.get(s));
+                    //ERROR view bevat geen student
+                    master.changeView(3);
                     System.out.println("Student double clicked");/*openview*/
                 }
                 if(activelist.get(0) instanceof Aspnetusers)

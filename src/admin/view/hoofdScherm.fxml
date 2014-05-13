@@ -41,6 +41,13 @@
             <MenuItem mnemonicParsing="false" text="Unselect All" />
           </items>
         </Menu>
+        <Menu mnemonicParsing="false" text="View">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#testView1" text="Switch to view 1" fx:id="test1" />
+            <MenuItem mnemonicParsing="false" onAction="#testView2" text="Switch to view 2" />
+            <MenuItem mnemonicParsing="false" onAction="#testView3" text="Switch to view 3" />
+          </items>
+        </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />

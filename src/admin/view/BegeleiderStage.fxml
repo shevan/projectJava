@@ -15,7 +15,7 @@
       <children>
         <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
           <children>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="92.0" text="Terug">
+            <Button fx:id="back" mnemonicParsing="false" onAction="#goBack" prefHeight="24.0" prefWidth="92.0" text="Terug">
               <font>
                 <Font size="14.0" fx:id="x1" />
               </font>
