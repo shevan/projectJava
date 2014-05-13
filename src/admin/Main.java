@@ -55,7 +55,9 @@ public class Main extends Application {
         }
     }
     
-    
+    public Stage getStage() {
+		return stage;
+    }
 
     
     

@@ -14,8 +14,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -38,6 +42,12 @@ import javafx.util.Callback;
     private Model model;
     private Main application;
     
+    @FXML
+    private Button terugBtn;
+    @FXML
+    private Button aanvaardenBtn;
+    @FXML
+    private Button WeigerenBtn;
     @FXML
     private TableView<Begeleiderstageaanvraag> begeleiderAanvragenTabel;
     @FXML
@@ -87,6 +97,8 @@ import javafx.util.Callback;
     @FXML
     private TextField mentorEmailTxt;
     
+    private int begeleiderAanvraagId;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -104,16 +116,14 @@ import javafx.util.Callback;
         
         
 	showStageAanvraagDetails(null);
+        begeleiderAanvraagId = 0;
+        aanvaardenBtn.setVisible(false);
+        WeigerenBtn.setVisible(false);
 		
         // Listen for selection changes
-        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>() {
-
-                @Override
-                public void changed(ObservableValue<? extends Begeleiderstageaanvraag> observable,
-                                Begeleiderstageaanvraag oldValue, Begeleiderstageaanvraag newValue) {
-                        showStageAanvraagDetails(newValue);
-                }
-        });
+        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>() { @Override
+                public void changed(ObservableValue<? extends Begeleiderstageaanvraag> observable, Begeleiderstageaanvraag oldValue, Begeleiderstageaanvraag newValue) {
+                        showStageAanvraagDetails(newValue); }});
     }    
    
     private void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag) {
@@ -138,9 +148,36 @@ import javafx.util.Callback;
                 ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
                 ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
                 ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
-
+                
+                aanvaardenBtn.setVisible(true);
+                WeigerenBtn.setVisible(true);
+               
         } 
                 
+    }
+    
+    @FXML
+    private void handleAanvaardStageAanvraag() {
+            int selectedIndex = begeleiderAanvragenTabel.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                  model.setBegeleiderStageAanvraagGoedgekeurd(begeleiderAanvragenTabel.getSelectionModel().getSelectedItem().getBegeleiderStageAanvraagId());
+                  begeleiderAanvragenTabel.getItems().remove(selectedIndex);
+            } 
+            else 
+                Dialogs.showWarningDialog(application.getStage(),"Gelieve een aanvraag te selecteren uit het lijst");
+    }
+    
+    @FXML
+    private void handleWeigerStageAanvraag() {
+            int selectedIndex = begeleiderAanvragenTabel.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                  model.setBegeleiderStageAanvraagGeweigerd(begeleiderAanvragenTabel.getSelectionModel().getSelectedItem().getBegeleiderStageAanvraagId());
+                  begeleiderAanvragenTabel.getItems().remove(selectedIndex);
+                  aanvaardenBtn.setVisible(false);
+                WeigerenBtn.setVisible(false);
+            } 
+            else 
+                Dialogs.showWarningDialog(application.getStage(),"Gelieve een aanvraag te selecteren uit het lijst");
     }
     
     void setApp(Main app) {

@@ -30,6 +30,22 @@ public class Model {
         em = emf.createEntityManager();
     }
     
+    public void setBegeleiderStageAanvraagGoedgekeurd (int i)
+    {
+        Begeleiderstageaanvraag aanvraag = em.find(Begeleiderstageaanvraag.class, i);
+        em.getTransaction().begin();
+        aanvraag.setGoedgekeurd(Boolean.TRUE);
+        em.getTransaction().commit();
+    }
+    
+    public void setBegeleiderStageAanvraagGeweigerd (int i)
+    {
+        Begeleiderstageaanvraag aanvraag = em.find(Begeleiderstageaanvraag.class, i);
+        em.getTransaction().begin();
+        aanvraag.setGoedgekeurd(Boolean.FALSE);
+        em.getTransaction().commit();
+    }
+    
     public List <Aspnetusers> getUsersFromDatabase(){
         TypedQuery<Aspnetusers> qurey = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);
         return qurey.getResultList();
