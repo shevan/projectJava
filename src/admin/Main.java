@@ -46,8 +46,8 @@ public class Main extends Application {
 
            //gotoLogin(); // <------------------------------------tijdelijke verandering voor development
            // gotoOverzicht();
-        //    gotoHoofdscherm();
-            gotobegHoofdscherm();
+            gotoHoofdscherm();
+            //gotobegHoofdscherm();
             stage.show();
         } catch (Exception ex)
         {

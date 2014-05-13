@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="533.0" prefWidth="785.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HoofdSchermController">
+<VBox prefHeight="554.0" prefWidth="785.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HoofdSchermController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -48,10 +48,10 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane fx:id="anchorPane001" maxHeight="-1.0" maxWidth="-1.0" prefHeight="526.0" prefWidth="785.0000999999975" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="anchorPane001" maxHeight="-1.0" maxWidth="-1.0" prefHeight="529.0" prefWidth="785.0" VBox.vgrow="ALWAYS">
       <children>
-        <fx:include source="BegeleiderStage.fxml" layoutX="0.0" layoutY="-3.0" visible="false" />
-        <fx:include fx:id="overzicht" source="overzicht.fxml" layoutX="0.0" layoutY="0.0" visible="false" />
+        <fx:include fx:id="begeleiderStage" source="BegeleiderStage.fxml" layoutX="0.0" layoutY="-3.0" visible="false" />
+        <fx:include fx:id="overzicht" source="overzicht.fxml" layoutX="0.0" layoutY="0.0" visible="true" />
         <fx:include fx:id="moderatieScherm" source="moderatieScherm.fxml" layoutX="0.0" layoutY="0.0" prefHeight="495.0" prefWidth="656.0" visible="false" />
       </children>
     </AnchorPane>

@@ -26,11 +26,26 @@ public class HoofdSchermController extends VBox implements Initializable {
     @FXML
     private OverzichtController overzichtController;
     
+    @FXML 
+    private BegeleiderStageController begeleiderStageController;
+    
+    @FXML 
+    private ModeratieSchermController moderatieSchermController;
+    
     //@FXML
     //private  "die andere controller"
             
     @FXML
-    private AnchorPane anchorPane001;
+    private VBox BegeleiderStage;
+    
+    @FXML
+    private AnchorPane overzicht;
+    
+    @FXML
+    private AnchorPane moderatieScherm;
+    
+    
+    
 
 
     /**

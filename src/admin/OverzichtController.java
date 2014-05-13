@@ -62,7 +62,7 @@ public class OverzichtController extends AnchorPane implements Initializable
          if(stages.isEmpty())listItems.add("<<Tabel is leeg>>");
          for(Stage stage : stages)
          {
-             listItems.add(stage.getBeheersysteem());
+             listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
          }
          
      }
@@ -164,7 +164,7 @@ public class OverzichtController extends AnchorPane implements Initializable
         }
         for(Aspnetusers user : aspnetusers)
         {
-            listItems.add(user.getUserName()+" "+user.getDiscriminator());
+            listItems.add(user.getUserName());
             //set username max char = tab space
         }
             
