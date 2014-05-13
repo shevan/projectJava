@@ -92,6 +92,12 @@ import javafx.util.Callback;
     Button back;
     private HoofdSchermController master;
     
+    @FXML
+    private void goBack(ActionEvent action)
+    {
+        master.changeView(1);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -166,10 +172,7 @@ import javafx.util.Callback;
         if(model==null) System.out.println("No Link");
     }
     //navigatie
-    private void goBack(ActionEvent action)
-    {
-        master.changeView(1);
-    }
+
     // Methodes voor configureren van deze vieuw per gebruik
     public void bewerkGegevens (Stage stage)
     {
