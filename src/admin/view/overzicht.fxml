@@ -14,7 +14,7 @@
     <Button id="studenten" fx:id="studentenButton" layoutX="96.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
     <ListView fx:id="tabListView" layoutX="22.0" layoutY="79.0" onMouseClicked="#itemDoubleclickAction" prefHeight="396.0" prefWidth="583.0" />
     <Button id="stage" fx:id="gebruikersButton" layoutX="191.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
-    <Button id="stage" fx:id="button4" layoutX="286.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 4" />
+    <Button id="stage" fx:id="button4" layoutX="286.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBedrijven" text="Bedrijven" />
     <Button id="stage" fx:id="button5" layoutX="367.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
     <Button id="stage" fx:id="button6" layoutX="447.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
     <Button id="stage" fx:id="button7" layoutX="537.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />

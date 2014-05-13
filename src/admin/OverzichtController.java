@@ -105,6 +105,21 @@ public class OverzichtController extends AnchorPane implements Initializable
         }
      }
      
+     @FXML
+     private void displayBedrijven(ActionEvent action){
+        listItems.clear();
+        List<Bedrijf> bedrijven= model.getBedrijvenFromDatabase();
+        activelist=bedrijven;
+        if(bedrijven.isEmpty())listItems.add("<<Tabel is leeg>>");
+        for(Bedrijf bedrijf : bedrijven)
+        {
+            listItems.add(bedrijf.getBedrijfsNaam()+""+bedrijf.getWebsite());
+            //set username max char = tab space
+        }
+        
+         
+     }
+     
      @FXML 
      private void displayAction(ActionEvent action){
          
@@ -120,23 +135,6 @@ public class OverzichtController extends AnchorPane implements Initializable
         this.master = master;
     }
             
-    /**
-    public OverzichtController()
-    { 
-        emf = Persistence.createEntityManagerFactory("ProjectJavaPU");
-        em = emf.createEntityManager();
-
-        TypedQuery<Aspnetusers> queryAspnetusers = em.createNamedQuery("Aspnetusers.findAll", Aspnetusers.class);
-        aspnetusers = queryAspnetusers.getResultList();
-        for(Aspnetusers user : aspnetusers)
-        {
-            listItems.add(user.getUserName()+" "+user.getDiscriminator());
-            //set username max char = tab space
-        }
-             
-               
-    }
-    **/
         public void setUpWithModel(Model model)
     {
         this.model = model;
@@ -170,6 +168,8 @@ public class OverzichtController extends AnchorPane implements Initializable
         hierop moet per type een geformateerde string van gemaakt worden
         
         */
+        listItems.add("Gelieve een Tabel te selecteren");
+        /*
         List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
                 for (Aspnetusers user: aspnetusers){
             System.out.println(user.getUserName());
@@ -179,7 +179,7 @@ public class OverzichtController extends AnchorPane implements Initializable
             listItems.add(user.getUserName());
             //set username max char = tab space
         }
-            
+         */   
     }
     public void itemDoubleclickAction (MouseEvent event){
          if (event.getClickCount() > 1) 
@@ -188,6 +188,7 @@ public class OverzichtController extends AnchorPane implements Initializable
             {
             
                 int s = tabListView.getSelectionModel().getSelectedIndex();
+                
                 if(activelist.get(0) instanceof Stage)
                 {
                     master.getBSControler().bewerkGegevens((Stage)activelist.get(s));
