@@ -36,7 +36,7 @@ public class HoofdSchermController extends VBox implements Initializable {
     //private  "die andere controller"
             
     @FXML
-    private VBox BegeleiderStage;
+    private VBox begeleiderStage;
     
     @FXML
     private AnchorPane overzicht;
@@ -67,6 +67,7 @@ public class HoofdSchermController extends VBox implements Initializable {
         if(model==null) System.out.println("No Link");
         if(overzichtController==null) System.out.println("No controler");
         overzichtController.setUpWithModel(model);
+        setChildrenHome();
     }
     private void setChildrenHome()
     { //debatable of ik dit niet via javafx loader kan doen
@@ -95,7 +96,7 @@ public class HoofdSchermController extends VBox implements Initializable {
             case 3:
             {
                 hideAllViews();
-                BegeleiderStage.visibleProperty().set(true);
+                begeleiderStage.visibleProperty().set(true);
             }
         }
     }
@@ -104,7 +105,7 @@ public class HoofdSchermController extends VBox implements Initializable {
     {
         moderatieScherm.visibleProperty().set(false);
         overzicht.visibleProperty().set(false);
-        BegeleiderStage.visibleProperty().set(false);
+        begeleiderStage.visibleProperty().set(false);
     }
 
     

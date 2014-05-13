@@ -184,8 +184,9 @@ public class OverzichtController extends AnchorPane implements Initializable
     public void itemDoubleclickAction (MouseEvent event){
          if (event.getClickCount() > 1) 
          {
-            if(activelist.isEmpty());
-            else{
+            if(!activelist.isEmpty())
+            {
+            
                 int s = tabListView.getSelectionModel().getSelectedIndex();
                 if(activelist.get(0) instanceof Stage)
                 {
@@ -193,11 +194,26 @@ public class OverzichtController extends AnchorPane implements Initializable
                     master.veranderView(3);
                     System.out.println("Stage double clicked");
                 }
-                if(activelist.get(0) instanceof Student) /*openview*/;
-                if(activelist.get(0) instanceof Aspnetusers) /*openview*/;
-                if(activelist.get(0) instanceof Bedrijf) /*openview*/;
-                if(activelist.get(0) instanceof Bedrijfspersoon) /*openview*/;
-                } 
+                if(activelist.get(0) instanceof Student)
+                {
+                    System.out.println("Student double clicked");/*openview*/
+                }
+                if(activelist.get(0) instanceof Aspnetusers)
+                {
+                    System.out.println("Gebruikers double clicked");
+                    /*openview*/
+                }
+                if(activelist.get(0) instanceof Bedrijf)
+                {
+                    System.out.println("Bedrijf double clicked");
+                    /*openview*/
+                }
+                if(activelist.get(0) instanceof Bedrijfspersoon)
+                {   
+                    System.out.println("Bedrijfspersoon double clicked");
+                    /*openview*/
+                }
+            } 
          }
     }
     
