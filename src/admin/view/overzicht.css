@@ -1,0 +1,15 @@
+.mainFxmlClass
+{
+
+}
+
+#notificationLabel
+{
+    -fx-background-color: rgba(255,35,35,1);
+    -fx-text-fill: white;
+}
+
+#notificationButton
+{
+     
+}

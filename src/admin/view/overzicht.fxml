@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
+  <children>
+    <Button id="stage" fx:id="stageButton" layoutX="122.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
+    <Button id="studenten" fx:id="studentenButton" layoutX="195.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
+    <ListView fx:id="tabListView" layoutX="22.0" layoutY="79.0" onMouseClicked="#itemDoubleclickAction" prefHeight="396.0" prefWidth="583.0" />
+    <Button id="stage" fx:id="gebruikersButton" layoutX="293.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
+    <Button id="stage" fx:id="button4" layoutX="394.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBedrijven" text="Bedrijven" />
+    <Button id="stage" fx:id="button5" layoutX="485.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
+    <Button id="stage" fx:id="button6" layoutX="574.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
+    <Button id="stage" fx:id="button7" layoutX="663.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
+    <Button id="stage" fx:id="aanvraagButton" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" text="Aanvragen" />
+  </children>
+  <stylesheets>
+    <URL value="@stage.css" />
+  </stylesheets>
+</AnchorPane>

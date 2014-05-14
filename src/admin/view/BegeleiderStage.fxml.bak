@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="533.0" prefWidth="785.0" xmlns:fx="http://javafx.com/fxml" fx:controller="admin.BegeleiderStageController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="40.0" prefWidth="785.0">
+      <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="388.0" HBox.hgrow="ALWAYS">
+          <children>
+            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="92.0" text="Terug">
+              <font>
+                <Font size="14.0" fx:id="x1" />
+              </font>
+              <HBox.margin>
+                <Insets left="10.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="397.0" HBox.hgrow="ALWAYS">
+          <children>
+            <Button font="$x1" text="Aanvaarden" />
+            <Button font="$x1" mnemonicParsing="false" text="Weigeren">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
+        </HBox>
+      </children>
+      <VBox.margin>
+        <Insets />
+      </VBox.margin>
+    </HBox>
+    <SplitPane dividerPositions="0.24010217113665389" focusTraversable="true" prefHeight="478.0" prefWidth="785.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
+          <children>
+            <TableView id="begeleiderStage" fx:id="begeleiderAanvragenTabel" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Begeleider" fx:id="begeleiderKolom" />
+                <TableColumn prefWidth="75.0" text="Student" fx:id="studentKolom" />
+              </columns>
+            </TableView>
+          </children>
+        </AnchorPane>
+        <Accordion>
+          <expandedPane>
+            <TitledPane fx:id="stageTab" text="Stage gegevens">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="572.0">
+                          <children>
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="285.0" prefWidth="556.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
+                              <children>
+                                <Label id="projectTitelLbl" text="Titel :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Label id="projectOmschrijvingLbl" text="Omschrijving" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextArea fx:id="projectOmschrijvingTxt" editable="false" prefHeight="67.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                  <GridPane.margin>
+                                    <Insets />
+                                  </GridPane.margin>
+                                </TextArea>
+                                <Label id="specialisatieLbl" text="Specialisatie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <Label id="stagePeriodeLbl" text="Periode :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <Label text="Aantal studenten :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <TextField fx:id="projectTitelTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="specialisatieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <TextField fx:id="periodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </ScrollPane>
+                  </children>
+                </AnchorPane>
+              </content>
+              <font>
+                <Font size="16.0" fx:id="x3" />
+              </font>
+            </TitledPane>
+          </expandedPane>
+          <panes>
+            <fx:reference source="stageTab" />
+            <TitledPane id="x2" font="$x3" text="Bedrijf">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ScrollPane prefHeight="411.0" prefWidth="630.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" prefHeight="192.0" prefWidth="572.0">
+                          <children>
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="151.5" prefWidth="532.0" AnchorPane.bottomAnchor="30.5" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="10.0">
+                              <children>
+                                <Label id="specialisatieLbl" text="Bedrijfsnaam :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Label id="stagePeriodeLbl" text="Straat en nr :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Label text="Postcode :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="bedrijfsnaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                  <GridPane.margin>
+                                    <Insets />
+                                  </GridPane.margin>
+                                </TextField>
+                                <TextField fx:id="bedrijfStraatEnNrTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="bedrijfPostcodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Gemeente :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <TextField fx:id="bedrijfsGemeenteTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </ScrollPane>
+                  </children>
+                </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane expanded="false" font="$x3" graphicTextGap="10.0" text="Mentor">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ScrollPane prefHeight="313.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="572.0">
+                          <children>
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="197.0" prefWidth="532.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="10.0">
+                              <children>
+                                <Label id="specialisatieLbl" text="Naam :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Label id="stagePeriodeLbl" text="Functie :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Label text="Telefoon :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="mentorNaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="mentorFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="mentorTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <TextField fx:id="mentorEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </ScrollPane>
+                  </children>
+                </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane fx:id="x2" font="$x3" text="Contract ondertekenaar">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <ScrollPane prefHeight="313.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <content>
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="572.0">
+                          <children>
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="197.0" prefWidth="532.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="10.0">
+                              <children>
+                                <Label id="specialisatieLbl" text="Naam :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <Label id="stagePeriodeLbl" text="Functie :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Label text="Telefoon :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="ondertekenaarNaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <TextField fx:id="ondertekenaarFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="ondertekenaarTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                <TextField fx:id="ondertekenaarEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              </children>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                            </GridPane>
+                          </children>
+                        </AnchorPane>
+                      </content>
+                    </ScrollPane>
+                  </children>
+                </AnchorPane>
+              </content>
+            </TitledPane>
+          </panes>
+        </Accordion>
+      </items>
+      <VBox.margin>
+        <Insets />
+      </VBox.margin>
+    </SplitPane>
+  </children>
+  <stylesheets>
+    <URL value="@stage.css" />
+  </stylesheets>
+</VBox>
