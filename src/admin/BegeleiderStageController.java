@@ -55,7 +55,9 @@ import javafx.util.Callback;
     @FXML
     private TitledPane x2;
     @FXML
-    private TextField ondertekenaarNaamTxt;
+    private TextField ondertekenaarVoornaamTxt;
+    @FXML
+    private TextField ondertekenaarFamilienaamTxt;
     @FXML
     private TextField ondertekenaarFunctieTxt;
     @FXML
@@ -83,7 +85,9 @@ import javafx.util.Callback;
     @FXML
     private TextField bedrijfsGemeenteTxt;
     @FXML
-    private TextField mentorNaamTxt;
+    private TextField mentorVoornaamTxt;
+    @FXML
+    private TextField mentorFamilienaamTxt;
     @FXML
     private TextField mentorFunctieTxt;
     @FXML
@@ -147,7 +151,8 @@ import javafx.util.Callback;
 
             if (stageaanvraag.getStageStageId().getStagementorId() != null)
             {
-                mentorNaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam()+" "+stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
+                mentorVoornaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam());
+                mentorFamilienaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
                 mentorFunctieTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFunctie());
                 mentorTelefoonTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getTelefoon()+"");
                 mentorEmailTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getEmail());
@@ -155,7 +160,8 @@ import javafx.util.Callback;
 
             if (stageaanvraag.getStageStageId().getContractondertekenaarId() != null)
             {
-                ondertekenaarNaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam()+" "+stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
+                ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam());
+                ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
                 ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
                 ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
                 ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
@@ -176,12 +182,14 @@ import javafx.util.Callback;
         bedrijfsGemeenteTxt.setText("");
         bedrijfPostcodeTxt.setText("");
 
-        mentorNaamTxt.setText("");
+        mentorVoornaamTxt.setText("");
+        mentorFamilienaamTxt.setText("");
         mentorFunctieTxt.setText("");
         mentorTelefoonTxt.setText("");
         mentorEmailTxt.setText("");
 
-        ondertekenaarNaamTxt.setText("");
+        ondertekenaarVoornaamTxt.setText("");
+        ondertekenaarFamilienaamTxt.setText("");
         ondertekenaarFunctieTxt.setText("");
         ondertekenaarTelefoonTxt.setText("");
         ondertekenaarEmailTxt.setText(""); 
@@ -202,16 +210,14 @@ import javafx.util.Callback;
             stageaanvraag.getStageStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
             stageaanvraag.getStageStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
 
-            // split voornaam en familienaam !!!
-            stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorNaamTxt.getText());
-            stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorNaamTxt.getText());
+            stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
+            stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
             stageaanvraag.getStageStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
             stageaanvraag.getStageStageId().getStagementorId().setTelefoon(Integer.parseInt(mentorTelefoonTxt.getText()));
             stageaanvraag.getStageStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
 
-            // split voornaam en familienaam !!!
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarNaamTxt.getText());
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarNaamTxt.getText());
+            stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
+            stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
             stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
             stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
             stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
