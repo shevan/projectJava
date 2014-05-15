@@ -6,6 +6,7 @@ import admin.model.Bedrijfspersoon;
 import admin.model.Stage;
 import admin.model.Begeleiderstageaanvraag;
 import admin.model.Student;
+import java.awt.Component;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.DefaultListCellRenderer;
 
 public class HomeController extends AnchorPane implements Initializable
 {
@@ -70,19 +72,21 @@ public class HomeController extends AnchorPane implements Initializable
     @FXML 
     private void displayBegeleiderStageAanvragen(ActionEvent action)
     {
-       listItems.clear();
-       //goede plaats voor een try catch blok         
-       List<Begeleiderstageaanvraag> stages = model.getBegeleiderStageAanvraagFromDatabase();
-       activelist = stages;
+        listItems.clear();
+        //goede plaats voor een try catch blok         
+        List<Begeleiderstageaanvraag> stages = model.getBegeleiderStageAanvraagFromDatabase();
+        activelist = stages;
 
-       if(stages.isEmpty())
-           listItems.add("<<Tabel is leeg>>");
+        if (stages.isEmpty())
+            listItems.add("<<Tabel is leeg>>");
 
-       for(Begeleiderstageaanvraag stage : stages)
-       {
-           listItems.add(stage.getStageStageId().getProjectTitel()+" "+stage.getStageStageId().getProjectOmschrijving());
-       }
+        for (Begeleiderstageaanvraag stage : stages)
+        {
+            listItems.add(stage.getStageStageId().getProjectTitel()+" "+stage.getStageStageId().getProjectOmschrijving());
+        }
     }
+    
+
     @FXML 
     private void displayStages(ActionEvent action)
     {
@@ -183,7 +187,7 @@ public class HomeController extends AnchorPane implements Initializable
         hierop moet per type een geformateerde string van gemaakt worden
         
         */
-        listItems.add("Gelieve een Tabel te selecteren");
+//        listItems.add("Gelieve een Tabel te selecteren");
         /*
         List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
                 for (Aspnetusers user: aspnetusers){
@@ -194,7 +198,17 @@ public class HomeController extends AnchorPane implements Initializable
             listItems.add(user.getUserName());
             //set username max char = tab space
         }
-         */   
+         */
+        List<Stage> stages = model.getStageFromDatabase();
+        activelist = stages;
+
+        if(stages.isEmpty())
+            listItems.add("<<Tabel is leeg>>");
+
+        for(Stage stage : stages)
+        {
+            listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
+        }
     }
     @FXML
     public void itemDoubleclickAction (MouseEvent event)
@@ -208,8 +222,13 @@ public class HomeController extends AnchorPane implements Initializable
                 
                 if(activelist.get(0) instanceof Begeleiderstageaanvraag)
                 {
-                    System.out.println("Begeleiderstageaanvraag double clicked");                    
-                    master.getBegeleiderStageEditorController().bewerkGegevens((Begeleiderstageaanvraag)activelist.get(s));
+                    System.out.println("Begeleiderstageaanvraag double clicked => " + activelist.get(s));
+                    try {master.getBegeleiderStageEditorController().showStageAanvraagDetails((Begeleiderstageaanvraag)activelist.get(s));
+                    } catch (NullPointerException e)
+                    {
+                        e.printStackTrace();
+                        
+                    }
                     master.changeView(2);
                 }
                 if(activelist.get(0) instanceof Stage)

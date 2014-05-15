@@ -84,6 +84,8 @@ public class HoofdSchermController extends VBox implements Initializable
         //debatable of ik dit niet via javafx loader kan doen
         homeController.setMaster(this);
         begeleiderStageEditorController.setMaster(this);
+        studentEditorController.setMaster(this);
+        stageEditorController.setMaster(this);
     }
 
     public HomeController getHomeController()

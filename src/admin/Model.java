@@ -51,6 +51,11 @@ public class Model {
     }
     
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagFromDatabase(){
+        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag", Begeleiderstageaanvraag.class);
+        return qurey.getResultList();
+    }
+    
+    public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagOnbeslistFromDatabase(){
         TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag.findNogNietBeslist", Begeleiderstageaanvraag.class);
         return qurey.getResultList();
     }

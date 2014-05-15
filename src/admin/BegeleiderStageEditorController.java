@@ -91,6 +91,7 @@ public class BegeleiderStageEditorController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        System.out.println("called");
         begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
         {
             @ Override
@@ -112,7 +113,7 @@ public class BegeleiderStageEditorController implements Initializable
         // Auto resize columns
         begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        //showStageAanvraagDetails(null);
+        showStageAanvraagDetails(null);
 		
         // Listen for selection changes
         begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
@@ -125,8 +126,9 @@ public class BegeleiderStageEditorController implements Initializable
         });
     }     
    
-    private void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
+    protected void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
+        System.out.println("showStageAanvraagDetails called");
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten
         if (stageaanvraag != null)
         {
@@ -233,10 +235,5 @@ public class BegeleiderStageEditorController implements Initializable
         
         if(model == null)
             System.out.println("No Link");
-    }
-    
-    public void bewerkGegevens (Begeleiderstageaanvraag stageaanvraag)
-    {
-//        showStageAanvraagDetails(stageaanvraag);
     }
 }
