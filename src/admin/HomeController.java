@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 
-public class OverzichtController extends AnchorPane implements Initializable
+public class HomeController extends AnchorPane implements Initializable
 {   
     private List activelist;
     private HoofdSchermController master;
@@ -46,8 +46,6 @@ public class OverzichtController extends AnchorPane implements Initializable
     @FXML
     Button button7;
     
-    
-    
     @FXML
     ListView <String>tabListView;
     
@@ -61,90 +59,90 @@ public class OverzichtController extends AnchorPane implements Initializable
         System.out.println("Test button pushed");
     }
     /**
-     *         Voor elke tabel die moet getoond worden in de lijst
-     *  moet er een ander type opgehaald worden
-     *  met respectievelijk elk een knop
-     *  hierop moet per type een geformateerde string van gemaakt worden 
-     */
-     @FXML 
-     private void displayBegeleiderStageAanvragen(ActionEvent action){
+    *         Voor elke tabel die moet getoond worden in de lijst
+    *  moet er een ander type opgehaald worden
+    *  met respectievelijk elk een knop
+    *  hierop moet per type een geformateerde string van gemaakt worden 
+    */
+    @FXML 
+    private void displayBegeleiderStageAanvragen(ActionEvent action){
+       listItems.clear();
+       //goede plaats voor een try catch blok         
+       List<Begeleiderstageaanvraag> stages = model.getBegeleiderStageAanvraagFromDatabase();
+       activelist = stages;
+
+       if(stages.isEmpty())
+           listItems.add("<<Tabel is leeg>>");
+
+       for(Begeleiderstageaanvraag stage : stages)
+       {
+           listItems.add(stage.getStageStageId().getProjectTitel()+" "+stage.getStageStageId().getProjectOmschrijving());
+       }
+    }
+    @FXML 
+    private void displayStages(ActionEvent action){
         listItems.clear();
-        //goede plaats voor een try catch blok         
-        List<Begeleiderstageaanvraag> stages = model.getBegeleiderStageAanvraagFromDatabase();
+        //goede plaats voor een try catch blok
+
+        List<Stage> stages = model.getStageFromDatabase();
         activelist = stages;
-         
+
         if(stages.isEmpty())
             listItems.add("<<Tabel is leeg>>");
-         
-        for(Begeleiderstageaanvraag stage : stages)
+
+        for(Stage stage : stages)
         {
-            listItems.add(stage.getStageStageId().getProjectTitel()+" "+stage.getStageStageId().getProjectOmschrijving());
+            listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
         }
-     }
-     @FXML 
-     private void displayStages(ActionEvent action){
-         listItems.clear();
-         //goede plaats voor een try catch blok
-         
-         List<Stage> stages = model.getStageFromDatabase();
-         activelist = stages;
-         
-         if(stages.isEmpty())
-             listItems.add("<<Tabel is leeg>>");
-         
-         for(Stage stage : stages)
-         {
-             listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
-         }
-     }     
-     
-     @FXML 
-     private void displayStudenten(ActionEvent action){
-        listItems.clear();
-        List <Student> studenten = model.getStudentenFromDatabase();
-        activelist = studenten;
-        if(studenten.isEmpty())listItems.add("<<Tabel is leeg>>");
-        for(Student student : studenten)
-        {
-            listItems.add(student.getVoornaam()+" "+student.getFamilienaam());
-            //set username max char = tab space
-        }         
-     }
-     
-     @FXML 
-     private void displayGebruikers(ActionEvent action){
-        listItems.clear();
-        List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
-        activelist= aspnetusers;
-        if(aspnetusers.isEmpty())listItems.add("<<Tabel is leeg>>");
-        for(Aspnetusers user : aspnetusers)
-        {
-            listItems.add(user.getUserName()+" "+user.getDiscriminator());
-            //set username max char = tab space
-        }
-     }
-     
-     @FXML
-     private void displayBedrijven(ActionEvent action){
-        listItems.clear();
-        List<Bedrijf> bedrijven= model.getBedrijvenFromDatabase();
-        activelist=bedrijven;
-        if(bedrijven.isEmpty())listItems.add("<<Tabel is leeg>>");
-        for(Bedrijf bedrijf : bedrijven)
-        {
-            listItems.add(bedrijf.getBedrijfsNaam()+""+bedrijf.getWebsite());
-            //set username max char = tab space
-        }
-        
-         
-     }
-     
-     @FXML 
-     private void displayAction(ActionEvent action){
-         
-     }
-     
-            
+    }     
+
+    @FXML 
+    private void displayStudenten(ActionEvent action){
+       listItems.clear();
+       List <Student> studenten = model.getStudentenFromDatabase();
+       activelist = studenten;
+       if(studenten.isEmpty())listItems.add("<<Tabel is leeg>>");
+       for(Student student : studenten)
+       {
+           listItems.add(student.getVoornaam()+" "+student.getFamilienaam());
+           //set username max char = tab space
+       }         
+    }
+
+    @FXML 
+    private void displayGebruikers(ActionEvent action){
+       listItems.clear();
+       List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
+       activelist= aspnetusers;
+       if(aspnetusers.isEmpty())listItems.add("<<Tabel is leeg>>");
+       for(Aspnetusers user : aspnetusers)
+       {
+           listItems.add(user.getUserName()+" "+user.getDiscriminator());
+           //set username max char = tab space
+       }
+    }
+
+    @FXML
+    private void displayBedrijven(ActionEvent action){
+       listItems.clear();
+       List<Bedrijf> bedrijven= model.getBedrijvenFromDatabase();
+       activelist=bedrijven;
+       if(bedrijven.isEmpty())listItems.add("<<Tabel is leeg>>");
+       for(Bedrijf bedrijf : bedrijven)
+       {
+           listItems.add(bedrijf.getBedrijfsNaam()+""+bedrijf.getWebsite());
+           //set username max char = tab space
+       }
+
+
+    }
+
+    @FXML 
+    private void displayAction(ActionEvent action)
+    {
+
+    }
+      
     public void setApp(Main application)
     {
         this.application = application;
@@ -200,7 +198,8 @@ public class OverzichtController extends AnchorPane implements Initializable
         }
          */   
     }
-    public void itemDoubleclickAction (MouseEvent event){
+    public void itemDoubleclickAction (MouseEvent event)
+    {
          if (event.getClickCount() > 1) 
          {
             if(!activelist.isEmpty())
@@ -210,14 +209,13 @@ public class OverzichtController extends AnchorPane implements Initializable
                 
                 if(activelist.get(0) instanceof Begeleiderstageaanvraag)
                 {
-                    master.getBSControler().bewerkGegevens((Begeleiderstageaanvraag)activelist.get(s));
+                    master.getBegeleiderStageEditorController().bewerkGegevens((Begeleiderstageaanvraag)activelist.get(s));
                     master.changeView(3);
                     System.out.println("Begeleiderstageaanvraag double clicked");
                 }
                 if(activelist.get(0) instanceof Student)
                 {
-                    //master.getBSControler().bewerkGegevens((Student)activelist.get(s));
-                    //ERROR view bevat geen student
+                    master.getStudentEditorController().bewerkGegevens((Student)activelist.get(s));
                     master.changeView(3);
                     System.out.println("Student double clicked");/*openview*/
                 }

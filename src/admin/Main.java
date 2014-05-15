@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     private Stage stage;
-  //  private User loggedUser;
+    // private User loggedUser;
     private Model model;
     
     private final double MIN_WINDOW_HEIGHT = 1366.0;
@@ -32,7 +32,6 @@ public class Main extends Application {
         Application.launch(Main.class, (java.lang.String[]) null);
     }
     
-    
     @Override
     public void start(Stage primaryStage)
     {
@@ -42,10 +41,11 @@ public class Main extends Application {
             stage = primaryStage;
             stage.setTitle("STUA");
 
-           //gotoLogin(); // <------------------------------------tijdelijke verandering voor development
-           // gotoOverzicht();
-            gotoHoofdscherm();
-            //gotobegHoofdscherm();
+            //gotoLogin();
+            gotoHomepage();
+            //gotoBegeleiderStageEditor();
+            //gotoStageEditor();
+            //gotoStudentEditor();
             stage.show();
         } catch (Exception ex)
         {
@@ -53,15 +53,12 @@ public class Main extends Application {
         }
     }
     
-    
-
-    
-    
+    /*------------------------------ VIEWS ------------------------------*/
     private void gotoLogin()
     {
         try
         {
-            LoginController login = (LoginController) replaceSceneContent("view/login.fxml");
+            LoginController login = (LoginController) replaceSceneContent("view/Login.fxml");
             login.setApp(this);
         }
         catch(Exception ex)
@@ -70,13 +67,13 @@ public class Main extends Application {
         }
     }
     
-    private void gotoOverzicht()
+    private void gotoHomepage()
     {
         try
         {
-            OverzichtController overzicht = (OverzichtController) replaceSceneContent("view/overzicht.fxml");
-            overzicht.setApp(this);
-            overzicht.setUpWithModel(model);
+            HomeController home = (HomeController) replaceSceneContent("view/Home.fxml");
+            home.setApp(this);
+            home.setUpWithModel(model);
         }
         catch(Exception ex)
         {
@@ -84,44 +81,50 @@ public class Main extends Application {
         }
     }
     
-    private void gotoHoofdscherm()
+    private void gotoBegeleiderStageEditor()
     {
         try
         {
             //gelieve nieuwe methode van Van Impe toepassen hier
-             HoofdSchermController hoofdscherm = (HoofdSchermController) replaceSceneContent("view/hoofdScherm.fxml");
-             hoofdscherm.setApp(this);
-             hoofdscherm.setUpWithModel(model);
+            BegeleiderStageEditorController begeleiderStage = (BegeleiderStageEditorController) replaceSceneContent("view/BegeleiderStageEditor.fxml");
+            begeleiderStage.setApp(this);
+            begeleiderStage.setUpWithModel(model);
         }
         catch(Exception ex)
         {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+    }
+
+    private void gotoStageEditor()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+            StageEditorController stage = (StageEditorController) replaceSceneContent("view/StageEditor.fxml");
+            stage.setApp(this);
+            stage.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    private void gotobegHoofdscherm()
+    private void gotoStudentEditor()
     {
         try
         {
             //gelieve nieuwe methode van Van Impe toepassen hier
-             BegeleiderStageController hoofdscherm = (BegeleiderStageController) replaceSceneContent("view/BegeleiderStage.fxml");
-             hoofdscherm.setApp(this);
-             hoofdscherm.setUpWithModel(model);
+            StudentEditorController student = (StudentEditorController) replaceSceneContent("view/StudentEditor.fxml");
+            student.setApp(this);
+            student.setUpWithModel(model);
         }
         catch(Exception ex)
         {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
-    /*private void gotoStudenten(){
-        try{
-            StudentController studenten = (StudentController) replaceSceneContent("student.fxml");
-            studenten.setApp(this);
-        }
-        catch(Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     
     private Initializable replaceSceneContent(String fxml) throws Exception
     {
@@ -136,69 +139,93 @@ public class Main extends Application {
     }
     
     
-    //---------------------- lijst naar observable lijst --------------------------------
-    public ObservableList<Bedrijf> getBedrijfData() {
+    /*------------------------------ OBSERVABLE LISTS ------------------------------*/
+    public ObservableList<Bedrijf> getBedrijfData()
+    {
         ObservableList<Bedrijf> data = FXCollections.observableArrayList();
         List <Bedrijf> list = model.getBedrijvenFromDatabase(); 
-        for(Bedrijf item : list){
-            data.add(item);}  
+        for(Bedrijf item : list)
+        {
+            data.add(item);  
+        }
        	return data;
     } 
     
-    public ObservableList<Bedrijfspersoon> getBedrijfspersoonData() {
+    public ObservableList<Bedrijfspersoon> getBedrijfspersoonData()
+    {
         ObservableList<Bedrijfspersoon> data = FXCollections.observableArrayList();
         List <Bedrijfspersoon> list = model.getBedrijfpersonenFromDatabase(); 
-        for(Bedrijfspersoon item : list){
-            data.add(item);}  
+        
+        for(Bedrijfspersoon item : list)
+        {
+            data.add(item);
+        }    
        	return data;
     } 
     
-    public ObservableList<Begeleider> getBegeleiderData() {
+    public ObservableList<Begeleider> getBegeleiderData()
+    {
         ObservableList<Begeleider> data = FXCollections.observableArrayList();
         List <Begeleider> list = model.getBegeleidersFromDatabase();
-        for(Begeleider item : list){
-            data.add(item);}  
+        for(Begeleider item : list)
+        {
+            data.add(item);
+        }
        	return data;
     }
     
-    public ObservableList<admin.model.Stage> getStageData() {
+    public ObservableList<admin.model.Stage> getStageData()
+    {
         ObservableList<admin.model.Stage> data = FXCollections.observableArrayList();
         List <admin.model.Stage> list = model.getStageFromDatabase();
-        for(admin.model.Stage item : list){
+        for(admin.model.Stage item : list)
+        {
             data.add(item);
         }  
        	return data;
     } 
    
-    public ObservableList<Student> getStudentData() {
+    public ObservableList<Student> getStudentData()
+    {
         ObservableList<Student> data = FXCollections.observableArrayList();
         List <Student> list = model.getStudentenFromDatabase();
-        for(Student item : list){
-            data.add(item);}  
+        for(Student item : list)
+        {
+            data.add(item);
+        }  
         return data;
     }
     
-    public ObservableList<Studentstagesollicitatie> getStudenStageSollicitatietData() {
+    public ObservableList<Studentstagesollicitatie> getStudenStageSollicitatietData()
+    {
         ObservableList<Studentstagesollicitatie> data = FXCollections.observableArrayList();
         List <Studentstagesollicitatie> list = model.getStudentStageSollicitatieFromDatabase();
-        for(Studentstagesollicitatie item : list){
-            data.add(item);}  
+        for(Studentstagesollicitatie item : list)
+        {
+            data.add(item);
+        }  
         return data;
     }
     
-    public ObservableList<Gegeven> getGegevensData() {
+    public ObservableList<Gegeven> getGegevensData()
+    {
         ObservableList<Gegeven> data = FXCollections.observableArrayList();
         List <Gegeven> list = model.getGegevensFromDatabase();
-        for(Gegeven item : list){
-            data.add(item);}  
+        for(Gegeven item : list)
+        {
+            data.add(item);
+        }  
         return data;
     }
     
-    public ObservableList<Begeleiderstageaanvraag> getBegeleiderStageAanvraagData() {
+    public ObservableList<Begeleiderstageaanvraag> getBegeleiderStageAanvraagData()
+    {
         ObservableList<Begeleiderstageaanvraag> data = FXCollections.observableArrayList();
         List <Begeleiderstageaanvraag> list =  model.getBegeleiderStageAanvraagFromDatabase();
-        for(Begeleiderstageaanvraag item : list){
-            data.add(item);}
+        for(Begeleiderstageaanvraag item : list)
+        {
+            data.add(item);
+        }
        	return data;
     } 
 }

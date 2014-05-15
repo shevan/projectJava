@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package admin;
 
 import admin.model.*;
@@ -31,12 +25,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
-/**
- * FXML Controller class
- *
- * @author Shevan
- */
-    public class BegeleiderStageController implements Initializable {
+
+public class BegeleiderStageEditorController implements Initializable
+{
     private Model model;
     private Main application;
     
@@ -49,9 +40,9 @@ import javafx.util.Callback;
     @FXML
     private TextArea projectOmschrijvingTxt;
     @FXML
-    private BegeleiderStageController begeleiderStageController;
+    private BegeleiderStageEditorController begeleiderStageEditorController;
     @FXML
-    private OverzichtController overzichtController;
+    private HomeController homeController;
     @FXML
     private TitledPane x2;
     @FXML
@@ -105,22 +96,30 @@ import javafx.util.Callback;
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
+        {
+            @ Override
+            public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam());
+            }
+        });
         
-        
-        begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >(){ @ Override
-        public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p ) {
-            return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam()); }});
-        
-        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >(){ @ Override
-        public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p ) {
-            return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam()); }});
-        
+        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
+        {
+            @ Override
+            public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam());
+            }
+        });
+
         // Auto resize columns
         begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
-        
-	showStageAanvraagDetails(null);
+
+        //showStageAanvraagDetails(null);
 		
         // Listen for selection changes
         begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
@@ -131,7 +130,7 @@ import javafx.util.Callback;
                     showStageAanvraagDetails(newValue);
             }
         });
-    }    
+    }     
    
     private void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
@@ -224,9 +223,9 @@ import javafx.util.Callback;
         } 
     }
     
-    void setApp(Main app) {
-        
-        this.application=app;
+    void setApp(Main app)
+    {
+        this.application = app;
         begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
        
     }
@@ -235,49 +234,21 @@ import javafx.util.Callback;
         this.master = master;
     }
 
-    void setUpWithModel(Model model) {
+    void setUpWithModel(Model model)
+    {
         this.model = model;
-        if(model==null) System.out.println("No Link");
+        
+        if(model == null)
+            System.out.println("No Link");
     }
     
-    public OverzichtController getOController() //vervangen door loader
+    public BegeleiderStageEditorController getBegeleiderStageEditorController()
     {
-        return overzichtController;
-    }
-    //navigatie
-
-    // Methodes voor configureren van deze vieuw per gebruik
-    public void bewerkGegevens (Stage stage)
-    {
-        //showStageAanvraagDetails(master.getOController.);
+        return begeleiderStageEditorController;
     }
 
     public void bewerkGegevens (Begeleiderstageaanvraag stageaanvraag)
     {
         showStageAanvraagDetails(stageaanvraag);
     }
-    
-    public void bewerkGegevens (Bedrijf bedrijf)
-    {
-        
-    }
-    
-    public void bewerkGegevens (Student student)
-    {
-        
-    }
-    
-    public void bewerkGegevens (Begeleider begeleider)
-    {
-        
-    }
-    
-    public void bewerkGegevens (/*contactondertekenaar*/)
-    {
-        
-    }
-    
-    
-    
-    
 }

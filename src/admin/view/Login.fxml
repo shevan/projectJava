@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.LoginController">
+  <children>
+    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="800.0" useSystemMenuBar="false">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <TextField fx:id="adminId" layoutX="296.0" layoutY="256.0" prefWidth="200.0" />
+    <PasswordField fx:id="password" layoutX="296.0" layoutY="291.0" prefWidth="200.0" />
+    <ImageView fitHeight="95.0" fitWidth="138.57549857549859" layoutX="327.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../resources/logo.png" />
+      </image>
+    </ImageView>
+    <Button fx:id="login" defaultButton="true" layoutX="296.0" layoutY="363.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
+    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="296.0" layoutY="403.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
+    <Label fx:id="errorMsg" layoutX="238.0" layoutY="331.0" prefWidth="324.0" text="Label" />
+  </children>
+  <stylesheets>
+    <URL value="@stage.css" />
+  </stylesheets>
+</AnchorPane>

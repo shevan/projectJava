@@ -46,7 +46,7 @@ public class LoginController extends AnchorPane implements Initializable
         adminId.setPromptText("admin");
         password.setPromptText("admin");
         errorMsg.setText("");
-    }
+    }   
     
     public void processLogin(ActionEvent event)
     {

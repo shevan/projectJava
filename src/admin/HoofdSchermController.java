@@ -21,18 +21,20 @@ import javafx.scene.layout.VBox;
  *
  * @author Pieter Pletinckx
  */
-public class HoofdSchermController extends VBox implements Initializable {
+public class HoofdSchermController extends VBox implements Initializable
+{
     private Model model;
     private Main application;
     
     @FXML
-    private OverzichtController overzichtController;
+    private HomeController homeController;
     
     @FXML 
-    private BegeleiderStageController begeleiderStageController;
-    
+    private BegeleiderStageEditorController begeleiderStageEditorController;
     @FXML 
-    private ModeratieSchermController moderatieSchermController;
+    private StudentEditorController studentEditorController;
+    @FXML 
+    private StageEditorController stageEditorController;
     
     //@FXML
     //private  "die andere controller"
@@ -50,42 +52,47 @@ public class HoofdSchermController extends VBox implements Initializable {
     private MenuItem test1;
     
     @FXML
-    private MenuItem test2;
-    
-    
-    
-
-
-    /**
-     * Initializes the controller class.
-     */
-    
+    private MenuItem test2;  
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         // TODO
     }    
 
-    void setApp(Main app) {
-        this.application=app;
+    void setApp(Main app)
+    {
+        this.application = app;
     }
 
-    void setUpWithModel(Model model) {
+    void setUpWithModel(Model model)
+    {
         this.model = model;
-        if(model==null) System.out.println("No Link");
-        if(overzichtController==null) System.out.println("No controler");
-        overzichtController.setUpWithModel(model);
+        
+        if(model == null)
+            System.out.println("No Link");
+        
+        if(homeController == null)
+            System.out.println("No controler");
+        
+        homeController.setUpWithModel(model);
         setChildrenHome();
     }
     private void setChildrenHome()
-    { //debatable of ik dit niet via javafx loader kan doen
-        overzichtController.setMaster(this);
-        begeleiderStageController.setMaster(this);
+    {
+        //debatable of ik dit niet via javafx loader kan doen
+        homeController.setMaster(this);
+        begeleiderStageEditorController.setMaster(this);
     }
     
-    public BegeleiderStageController getBSControler() //vervangen door loader
+    public BegeleiderStageEditorController getBegeleiderStageEditorController() //vervangen door loader
     {
-        return begeleiderStageController;
+        return begeleiderStageEditorController;
+    }
+    
+    public StageEditorController getStageEditorController() //vervangen door loader
+    {
+        return stageEditorController;
     }
     
     public void changeView (int v)
@@ -119,17 +126,21 @@ public class HoofdSchermController extends VBox implements Initializable {
        overzicht.setVisible(false);
        begeleiderStage.setVisible(false);
     }
+    
     @FXML
-    void testView1(ActionEvent Action){
+    void testView1(ActionEvent Action)
+    {
         changeView(1);
         System.out.println("button works");
     }
     @FXML
-    void testView2(ActionEvent Action){
+    void testView2(ActionEvent Action)
+    {
         changeView(2);
     }
     @FXML
-    void testView3(ActionEvent Action){
+    void testView3(ActionEvent Action)
+    {
         changeView(3);
     }
     
