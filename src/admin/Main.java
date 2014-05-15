@@ -1,6 +1,7 @@
 package admin;
 
 import admin.model.*;
+import admin.security.*;
 import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,12 +17,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-public class Main extends Application {
+public class Main extends Application
+{
     
     private Stage stage;
-    // private User loggedUser;
     private Model model;
+    private User loggedUser;
     
     private final double MIN_WINDOW_HEIGHT = 1366.0;
     private final double MIN_WINDOW_WIDTH = 768.0;
@@ -42,17 +43,34 @@ public class Main extends Application {
             stage.setTitle("STUA");
 
             //gotoLogin();
-            gotoHomepage();
+            gotoHome();
             //gotoBegeleiderStageEditor();
             //gotoStageEditor();
             //gotoStudentEditor();
+            initializeUsers();
             stage.show();
         } catch (Exception ex)
         {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null,  ex);
         }
     }
+
+    public User getLoggedUser()
+    {
+        return loggedUser;
+    }
     
+    public boolean userLogging(String userId, String password)
+    {
+        if (Authenticator.validate(userId, password))
+        {
+            loggedUser = User.of(userId);
+            gotoHome();
+            return true;
+        } else {
+            return false;
+        }
+    }    
     /*------------------------------ VIEWS ------------------------------*/
     private void gotoLogin()
     {
@@ -67,7 +85,7 @@ public class Main extends Application {
         }
     }
     
-    private void gotoHomepage()
+    protected void gotoHome()
     {
         try
         {
@@ -81,7 +99,7 @@ public class Main extends Application {
         }
     }
     
-    private void gotoBegeleiderStageEditor()
+    protected void gotoBegeleiderStageEditor()
     {
         try
         {
@@ -96,7 +114,7 @@ public class Main extends Application {
         }
     }
 
-    private void gotoStageEditor()
+    protected void gotoStageEditor()
     {
         try
         {
@@ -111,7 +129,7 @@ public class Main extends Application {
         }
     }
     
-    private void gotoStudentEditor()
+    protected void gotoStudentEditor()
     {
         try
         {
@@ -130,7 +148,7 @@ public class Main extends Application {
     {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxml));
         loader.load();
-        VBox root = loader.getRoot();
+        AnchorPane root = loader.getRoot();
 
         Scene scene = new Scene(root, MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH);
         stage.setScene(scene);
@@ -138,6 +156,12 @@ public class Main extends Application {
         return (Initializable) loader.getController();
     }
     
+    private void initializeUsers()
+    {
+        Authenticator.putUser("admin", "admin");
+    }
+    
+
     
     /*------------------------------ OBSERVABLE LISTS ------------------------------*/
     public ObservableList<Bedrijf> getBedrijfData()

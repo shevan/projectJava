@@ -1,6 +1,8 @@
 package admin;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,31 +45,36 @@ public class LoginController extends AnchorPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        adminId.setPromptText("admin");
-        password.setPromptText("admin");
-        errorMsg.setText("");
+        adminId.setPromptText("Gebruikersnaam");
+        password.setPromptText("Wachtwoord");
     }   
     
     public void processLogin(ActionEvent event)
     {
-        if (application == null)
+        if (application != null)
         {
-            errorMsg.setText("Welkom " + adminId.getText());
-        } else {
-        /*    if (!application.userLogging(adminId.getText(), password.getText()))
+            if (adminId.getText().isEmpty())
+            {
+                errorMsg.setText("Het veld gebruikersnaam moet ingevuld worden!");
+                return;
+            }
+            if (password.getText().isEmpty())
+            {
+                errorMsg.setText("Het veld wachtwoord moet ingevuld worden!");
+                return;
+            }
+            if (!application.userLogging(adminId.getText(), password.getText()))
             {
                 errorMsg.setText("Gebruikersnaam en/of wachtwoord is incorrect!");
-            }*/
+                return;
+            }
+            
+            application.gotoHome();
         }
     }
     
     public void processCancel(ActionEvent event)
     {
-        if (application == null)
-        {
-
-        } else {
-
-        }
+        System.exit(1);
     }
 }

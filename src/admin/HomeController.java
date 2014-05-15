@@ -18,44 +18,47 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-
 
 public class HomeController extends AnchorPane implements Initializable
-{   
-    private List activelist;
-    private HoofdSchermController master;
-    @FXML
-    Button begeleiderstageaanvraagButton;
-    
-    @FXML
-    Button studentenButton;
-    
-    @FXML
-    Button gebruikersButton;
-    
-    @FXML
-    Button button4;
-    
-    @FXML
-    Button button5;
-    
-    @FXML 
-    Button button6;
-    
-    @FXML
-    Button button7;
-    
-    @FXML
-    ListView <String>tabListView;
-    
+{
     private Main application;
     private Model model;
     final ObservableList<String> listItems = FXCollections.observableArrayList();
+    private List activelist;
+    private HoofdSchermController master;
+    
+    @FXML
+    private Button begeleiderstageaanvraagButton;
+        
+    @FXML
+    private Button stageButton;
+    
+    @FXML
+    private Button studentenButton;
+    
+    @FXML
+    private Button gebruikersButton;
+    
+    @FXML
+    private Button button4;
+    
+    @FXML
+    private Button button5;
+    
+    @FXML 
+    private Button button6;
+    
+    @FXML
+    private Button button7;
+    
+    @FXML
+    ListView<String> tabListView;
+    @FXML
+    private Button aanvraagButton;
     
     //add event handlers
-    @FXML
-    private void addAction(ActionEvent action){
+    private void addAction(ActionEvent action)
+    {
         System.out.println("Test button pushed");
     }
     /**
@@ -65,7 +68,8 @@ public class HomeController extends AnchorPane implements Initializable
     *  hierop moet per type een geformateerde string van gemaakt worden 
     */
     @FXML 
-    private void displayBegeleiderStageAanvragen(ActionEvent action){
+    private void displayBegeleiderStageAanvragen(ActionEvent action)
+    {
        listItems.clear();
        //goede plaats voor een try catch blok         
        List<Begeleiderstageaanvraag> stages = model.getBegeleiderStageAanvraagFromDatabase();
@@ -80,7 +84,8 @@ public class HomeController extends AnchorPane implements Initializable
        }
     }
     @FXML 
-    private void displayStages(ActionEvent action){
+    private void displayStages(ActionEvent action)
+    {
         listItems.clear();
         //goede plaats voor een try catch blok
 
@@ -97,7 +102,8 @@ public class HomeController extends AnchorPane implements Initializable
     }     
 
     @FXML 
-    private void displayStudenten(ActionEvent action){
+    private void displayStudenten(ActionEvent action)
+    {
        listItems.clear();
        List <Student> studenten = model.getStudentenFromDatabase();
        activelist = studenten;
@@ -110,7 +116,8 @@ public class HomeController extends AnchorPane implements Initializable
     }
 
     @FXML 
-    private void displayGebruikers(ActionEvent action){
+    private void displayGebruikers(ActionEvent action)
+    {
        listItems.clear();
        List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
        activelist= aspnetusers;
@@ -123,7 +130,8 @@ public class HomeController extends AnchorPane implements Initializable
     }
 
     @FXML
-    private void displayBedrijven(ActionEvent action){
+    private void displayBedrijven(ActionEvent action)
+    {
        listItems.clear();
        List<Bedrijf> bedrijven= model.getBedrijvenFromDatabase();
        activelist=bedrijven;
@@ -133,14 +141,6 @@ public class HomeController extends AnchorPane implements Initializable
            listItems.add(bedrijf.getBedrijfsNaam()+""+bedrijf.getWebsite());
            //set username max char = tab space
        }
-
-
-    }
-
-    @FXML 
-    private void displayAction(ActionEvent action)
-    {
-
     }
       
     public void setApp(Main application)
@@ -152,7 +152,7 @@ public class HomeController extends AnchorPane implements Initializable
         this.master = master;
     }
             
-        public void setUpWithModel(Model model)
+    public void setUpWithModel(Model model)
     {
         this.model = model;
         setTabListView();  //deze hoort hier niet maar moet aangeroepen worden na init en setupwithmodel
@@ -161,12 +161,10 @@ public class HomeController extends AnchorPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     { 
-
         tabListView.setItems(listItems);
-        
-        
     }
     
+    @FXML
     public void processStages(ActionEvent event)
     {
         if (application == null)
@@ -198,6 +196,7 @@ public class HomeController extends AnchorPane implements Initializable
         }
          */   
     }
+    @FXML
     public void itemDoubleclickAction (MouseEvent event)
     {
          if (event.getClickCount() > 1) 
@@ -209,15 +208,21 @@ public class HomeController extends AnchorPane implements Initializable
                 
                 if(activelist.get(0) instanceof Begeleiderstageaanvraag)
                 {
+                    System.out.println("Begeleiderstageaanvraag double clicked");                    
                     master.getBegeleiderStageEditorController().bewerkGegevens((Begeleiderstageaanvraag)activelist.get(s));
-                    master.changeView(3);
-                    System.out.println("Begeleiderstageaanvraag double clicked");
+                    master.changeView(2);
                 }
+                if(activelist.get(0) instanceof Stage)
+                {
+                    System.out.println("Stage double clicked");                   
+                    master.getStageEditorController().bewerkGegevens((Stage)activelist.get(s));
+                    master.changeView(3);
+                }                
                 if(activelist.get(0) instanceof Student)
                 {
+                    System.out.println("Student double clicked");                    
                     master.getStudentEditorController().bewerkGegevens((Student)activelist.get(s));
-                    master.changeView(3);
-                    System.out.println("Student double clicked");/*openview*/
+                    master.changeView(4);
                 }
                 if(activelist.get(0) instanceof Aspnetusers)
                 {
@@ -237,5 +242,4 @@ public class HomeController extends AnchorPane implements Initializable
             } 
          }
     }
-    
 }

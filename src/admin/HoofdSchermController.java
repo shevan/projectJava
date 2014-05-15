@@ -38,15 +38,16 @@ public class HoofdSchermController extends VBox implements Initializable
     
     //@FXML
     //private  "die andere controller"
-            
+   
     @FXML
-    private VBox begeleiderStage;
+    private AnchorPane home;
     
     @FXML
-    private AnchorPane overzicht;
-    
+    private AnchorPane begeleiderStageAanvragen;  
     @FXML
-    private AnchorPane moderatieScherm;
+    private AnchorPane studentEditor;  
+    @FXML
+    private AnchorPane stageEditor;
     
     @FXML
     private MenuItem test1;
@@ -70,10 +71,10 @@ public class HoofdSchermController extends VBox implements Initializable
         this.model = model;
         
         if(model == null)
-            System.out.println("No Link");
+            System.out.println("No link");
         
         if(homeController == null)
-            System.out.println("No controler");
+            System.out.println("No controller");
         
         homeController.setUpWithModel(model);
         setChildrenHome();
@@ -84,15 +85,25 @@ public class HoofdSchermController extends VBox implements Initializable
         homeController.setMaster(this);
         begeleiderStageEditorController.setMaster(this);
     }
+
+    public HomeController getHomeController()
+    {
+        return homeController;
+    }    
     
-    public BegeleiderStageEditorController getBegeleiderStageEditorController() //vervangen door loader
+    public BegeleiderStageEditorController getBegeleiderStageEditorController()
     {
         return begeleiderStageEditorController;
     }
     
-    public StageEditorController getStageEditorController() //vervangen door loader
+    public StageEditorController getStageEditorController()
     {
         return stageEditorController;
+    }
+    
+    public StudentEditorController getStudentEditorController()
+    {
+        return studentEditorController;
     }
     
     public void changeView (int v)
@@ -102,29 +113,37 @@ public class HoofdSchermController extends VBox implements Initializable
             case 1: 
             {
                 hideAllViews();
-                overzicht.setVisible(true);
+                home.setVisible(true);
+                break;                
             }
-            break;
             case 2:
             {
                 hideAllViews();
-                moderatieScherm.setVisible(true);
+                begeleiderStageAanvragen.setVisible(true);
+                break; 
             }
-            break;
             case 3:
             {
                 hideAllViews();
-                begeleiderStage.setVisible(true);
+                studentEditor.setVisible(true);
+                break; 
             }
-            break;
+            case 4:
+            {
+                hideAllViews();
+                stageEditor.setVisible(true);
+                break; 
+            }
         }
     }
     
     private void hideAllViews()
     {
-       moderatieScherm.setVisible(false);
-       overzicht.setVisible(false);
-       begeleiderStage.setVisible(false);
+        home.setVisible(false);
+        begeleiderStageAanvragen.setVisible(false);        
+        studentEditor.setVisible(false);
+        stageEditor.setVisible(false);
+
     }
     
     @FXML
@@ -143,5 +162,4 @@ public class HoofdSchermController extends VBox implements Initializable
     {
         changeView(3);
     }
-    
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.OverzichtController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeController">
   <children>
     <Button id="stage" fx:id="stageButton" layoutX="122.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
     <Button id="studenten" fx:id="studentenButton" layoutX="195.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
@@ -21,6 +21,6 @@
     <Button id="stage" fx:id="aanvraagButton" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" text="Aanvragen" />
   </children>
   <stylesheets>
-    <URL value="@stage.css" />
+    <URL value="@STUA.css" />
   </stylesheets>
 </AnchorPane>
