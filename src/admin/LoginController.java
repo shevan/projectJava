@@ -1,8 +1,6 @@
 package admin;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,9 +23,6 @@ public class LoginController extends AnchorPane implements Initializable
     Button login;
     
     @FXML
-    Button cancel;
-    
-    @FXML
     Button help; // eventueel naar label veranderen en tekst verschijnt bij hoveren
     
     @FXML
@@ -47,6 +42,7 @@ public class LoginController extends AnchorPane implements Initializable
     {
         adminId.setPromptText("Gebruikersnaam");
         password.setPromptText("Wachtwoord");
+        errorMsg.setText("");
     }   
     
     public void processLogin(ActionEvent event)

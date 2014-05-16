@@ -51,7 +51,7 @@ public class Model {
     }
     
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagFromDatabase(){
-        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag", Begeleiderstageaanvraag.class);
+        TypedQuery<Begeleiderstageaanvraag> qurey = em.createNamedQuery("Begeleiderstageaanvraag.findAll", Begeleiderstageaanvraag.class);
         return qurey.getResultList();
     }
     

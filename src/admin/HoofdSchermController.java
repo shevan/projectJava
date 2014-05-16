@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -28,45 +27,33 @@ public class HoofdSchermController extends VBox implements Initializable
     
     @FXML
     private HomeController homeController;
-    
-    @FXML 
+    @FXML
     private BegeleiderStageEditorController begeleiderStageEditorController;
-    @FXML 
+    @FXML
     private StudentEditorController studentEditorController;
-    @FXML 
+    @FXML
     private StageEditorController stageEditorController;
     
-    //@FXML
-    //private  "die andere controller"
-   
-    @FXML
-    private AnchorPane home;
-    
-    @FXML
-    private AnchorPane begeleiderStageAanvragen;  
-    @FXML
-    private AnchorPane studentEditor;  
-    @FXML
-    private AnchorPane stageEditor;
+    public AnchorPane home;
+    public AnchorPane begeleiderStageEditor;  
+    public AnchorPane studentEditor;  
+    public AnchorPane stageEditor;
     
     @FXML
     private MenuItem test1;
     
-    @FXML
-    private MenuItem test2;  
-    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        System.out.println("initialize hoofdschermcontroller called");
     }    
 
-    void setApp(Main app)
+    public void setApp(Main app)
     {
         this.application = app;
     }
 
-    void setUpWithModel(Model model)
+    public void setUpWithModel(Model model)
     {
         this.model = model;
         
@@ -81,6 +68,7 @@ public class HoofdSchermController extends VBox implements Initializable
     }
     private void setChildrenHome()
     {
+        System.out.println("setChildrenHome called");
         //debatable of ik dit niet via javafx loader kan doen
         homeController.setMaster(this);
         begeleiderStageEditorController.setMaster(this);
@@ -95,6 +83,7 @@ public class HoofdSchermController extends VBox implements Initializable
     
     public BegeleiderStageEditorController getBegeleiderStageEditorController()
     {
+        System.out.println("getBegStaEdiCon called");
         return begeleiderStageEditorController;
     }
     
@@ -112,25 +101,25 @@ public class HoofdSchermController extends VBox implements Initializable
     {
         switch (v)
         {
-            case 1: 
+            case 0: 
             {
                 hideAllViews();
                 home.setVisible(true);
                 break;                
             }
-            case 2:
+            case 1:
             {
                 hideAllViews();
-                begeleiderStageAanvragen.setVisible(true);
+                begeleiderStageEditor.setVisible(true);
                 break; 
             }
-            case 3:
+            case 2:
             {
                 hideAllViews();
                 studentEditor.setVisible(true);
                 break; 
             }
-            case 4:
+            case 3:
             {
                 hideAllViews();
                 stageEditor.setVisible(true);
@@ -141,8 +130,8 @@ public class HoofdSchermController extends VBox implements Initializable
     
     private void hideAllViews()
     {
-        home.setVisible(false);
-        begeleiderStageAanvragen.setVisible(false);        
+        //home.setVisible(false); //keep menu bar
+        begeleiderStageEditor.setVisible(false);        
         studentEditor.setVisible(false);
         stageEditor.setVisible(false);
 

@@ -6,7 +6,6 @@ import admin.model.Bedrijfspersoon;
 import admin.model.Stage;
 import admin.model.Begeleiderstageaanvraag;
 import admin.model.Student;
-import java.awt.Component;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javax.swing.DefaultListCellRenderer;
 
 public class HomeController extends AnchorPane implements Initializable
 {
@@ -82,7 +80,7 @@ public class HomeController extends AnchorPane implements Initializable
 
         for (Begeleiderstageaanvraag stage : stages)
         {
-            listItems.add(stage.getStageStageId().getProjectTitel()+" "+stage.getStageStageId().getProjectOmschrijving());
+            listItems.add(stage.getStageStageId().getProjectTitel() + " " + stage.getStageStageId().getProjectOmschrijving());
         }
     }
     
@@ -101,7 +99,7 @@ public class HomeController extends AnchorPane implements Initializable
 
         for(Stage stage : stages)
         {
-            listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
+            listItems.add(stage.getProjectTitel() + " " + stage.getProjectOmschrijving());
         }
     }     
 
@@ -151,6 +149,7 @@ public class HomeController extends AnchorPane implements Initializable
     {
         this.application = application;
     }
+    
     public void setMaster(HoofdSchermController master) 
     {
         this.master = master;
@@ -199,49 +198,41 @@ public class HomeController extends AnchorPane implements Initializable
             //set username max char = tab space
         }
          */
-        List<Stage> stages = model.getStageFromDatabase();
-        activelist = stages;
-
-        if(stages.isEmpty())
-            listItems.add("<<Tabel is leeg>>");
-
-        for(Stage stage : stages)
-        {
-            listItems.add(stage.getProjectTitel()+" "+stage.getProjectOmschrijving());
-        }
+        displayBegeleiderStageAanvragen(null);
     }
     @FXML
     public void itemDoubleclickAction (MouseEvent event)
     {
          if (event.getClickCount() > 1) 
          {
-            if(!activelist.isEmpty())
+            if (!activelist.isEmpty())
             {
             
                 int s = tabListView.getSelectionModel().getSelectedIndex();
                 
-                if(activelist.get(0) instanceof Begeleiderstageaanvraag)
+                if (activelist.get(0) instanceof Begeleiderstageaanvraag)
                 {
                     System.out.println("Begeleiderstageaanvraag double clicked => " + activelist.get(s));
-                    try {master.getBegeleiderStageEditorController().showStageAanvraagDetails((Begeleiderstageaanvraag)activelist.get(s));
-                    } catch (NullPointerException e)
-                    {
-                        e.printStackTrace();
-                        
-                    }
-                    master.changeView(2);
+//                    try {master.getBegeleiderStageEditorController().showStageAanvraagDetails((Begeleiderstageaanvraag)activelist.get(s));
+//                    } catch (NullPointerException e)
+//                    {
+//                        e.printStackTrace();
+//                        
+//                    }
+//                    System.out.println("zoof" + activelist.get(s));
+                    master.changeView(1);
                 }
                 if(activelist.get(0) instanceof Stage)
                 {
                     System.out.println("Stage double clicked");                   
-                    master.getStageEditorController().bewerkGegevens((Stage)activelist.get(s));
-                    master.changeView(3);
+                    master.getStageEditorController().showStageDetails((Stage)activelist.get(s));
+                    master.changeView(2);
                 }                
                 if(activelist.get(0) instanceof Student)
                 {
                     System.out.println("Student double clicked");                    
-                    master.getStudentEditorController().bewerkGegevens((Student)activelist.get(s));
-                    master.changeView(4);
+                    //master.getStudentEditorController().showStudentDetails((Student)activelist.get(s));
+                    master.changeView(3);
                 }
                 if(activelist.get(0) instanceof Aspnetusers)
                 {

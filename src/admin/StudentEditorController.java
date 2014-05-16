@@ -65,7 +65,7 @@ public class StudentEditorController implements Initializable
         });
     }    
    
-    private void showStudentDetails(Student student)
+    protected void showStudentDetails(Student student)
     {
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten
         /*if (stageaanvraag != null)

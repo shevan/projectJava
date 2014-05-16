@@ -43,7 +43,8 @@ public class Main extends Application
             stage.setTitle("STUA");
 
             //gotoLogin();
-            gotoHome();
+            gotoHoofdscherm();
+            //gotoHome();
             //gotoBegeleiderStageEditor();
             //gotoStageEditor();
             //gotoStudentEditor();
@@ -65,7 +66,7 @@ public class Main extends Application
         if (Authenticator.validate(userId, password))
         {
             loggedUser = User.of(userId);
-            gotoHome();
+            gotoHoofdscherm();
             return true;
         } else {
             return false;
@@ -84,6 +85,21 @@ public class Main extends Application
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    protected void gotoHoofdscherm()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+             HoofdSchermController hoofdscherm = (HoofdSchermController) replaceSceneContent("view/HoofdScherm.fxml");
+             hoofdscherm.setApp(this);
+             hoofdscherm.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }    
     
     protected void gotoHome()
     {

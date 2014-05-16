@@ -123,7 +123,7 @@ public class StageEditorController implements Initializable
         });
     }    
    
-    private void showStageDetails(Stage stage)
+    protected void showStageDetails(Stage stage)
     {
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die op dit moment leeg moeten zijn nog oude gegevens van vorige stage bevatten
         /*if (stageaanvraag != null)

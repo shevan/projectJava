@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
+<AnchorPane id="AnchorPane" maxHeight="15.0" maxWidth="-1.0" prefHeight="15.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
   <children>
-    <SplitPane dividerPositions="0.19732937685459942" focusTraversable="true" layoutX="0.0" layoutY="80.0" prefHeight="670.0" prefWidth="1350.0" rotate="0.0">
+    <SplitPane dividerPositions="0.20087976539589442" focusTraversable="true" layoutX="0.0" layoutY="80.0" prefHeight="688.0" prefWidth="1366.0" rotate="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
           <children>
