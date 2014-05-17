@@ -3,72 +3,116 @@ package admin;
 import admin.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.util.Callback;
 
 public class StudentEditorController implements Initializable
 {
-    private Model model;
     private Main application;
+    private Model model;
+    private HomeController master;
     
     @FXML
-    private TableView<Student> begeleiderAanvragenTabel;
+    private TableView<Begeleiderstageaanvraag> begeleiderAanvragenTabel;
     @FXML
-    private TableColumn<Student, String> begeleiderKolom;
+    private TableColumn<Begeleiderstageaanvraag, String> begeleiderKolom;
     @FXML
-    private TableColumn<Student, String> bedrijfKolom;
+    private TableColumn<Begeleiderstageaanvraag, String> bedrijfKolom;
     @FXML
     private TextArea projectOmschrijvingTxt;
     @FXML
-    private BegeleiderStageEditorController studentEditorController;
+    private TextField ondertekenaarVoornaamTxt;
     @FXML
-    private HomeController homeController;
-    @FXML 
-    Button back;
-    private HoofdSchermController master;
-    
+    private TextField ondertekenaarFamilienaamTxt;
     @FXML
-    private void goBack(ActionEvent action)
-    {
-        master.changeView(1);
-    }
+    private TextField ondertekenaarFunctieTxt;
+    @FXML
+    private TextField ondertekenaarTelefoonTxt;
+    @FXML
+    private TextField ondertekenaarEmailTxt;
+    @FXML
+    private TextField projectTitelTxt;
+    @FXML
+    private TextField specialisatieTxt;
+    @FXML
+    private TextField periodeTxt;
+    @FXML
+    private TextField aantalStudentenTxt;
+    @FXML
+    private TextField bedrijfsnaamTxt;
+    @FXML
+    private TextField bedrijfStraatEnNrTxt;
+    @FXML
+    private TextField bedrijfPostcodeTxt;
+    @FXML
+    private TextField bedrijfsGemeenteTxt;
+    @FXML
+    private TextField mentorVoornaamTxt;
+    @FXML
+    private TextField mentorFamilienaamTxt;
+    @FXML
+    private TextField mentorFunctieTxt;
+    @FXML
+    private TextField mentorTelefoonTxt;
+    @FXML
+    private TextField mentorEmailTxt;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        /*begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Student, String >, ObservableValue < String > >(){ @ Override
-        public ObservableValue < String > call(CellDataFeatures < Student, String > p ) {
-            return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam()); }});
-        
-        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Student, String >, ObservableValue < String > >(){ @ Override
-        public ObservableValue < String > call(CellDataFeatures < Student, String > p ) {
-            return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam()); }});
-        */
-        // Auto resize columns
-        begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
-        // Listen for selection changes
-        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Student>()
+        // only called when controller is run directly, not when going through HomeController
+    }
+    
+    public void initBegeleiderStageEditor()
+    {
+        System.out.println("initBegeleiderEditor called");
+        begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
         {
             @Override
-            public void changed(ObservableValue<? extends Student> observable,
-                            Student oldValue, Student newValue) {
-                    showStudentDetails(newValue);
+            public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam());
             }
         });
-    }    
+        
+        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
+        {
+            @Override
+            public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam());
+            }
+        });
+
+        // Auto resize columns
+        begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        showStageAanvraagDetails(null);
+		
+        // Listen for selection changes
+        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Begeleiderstageaanvraag> observable,
+                            Begeleiderstageaanvraag oldValue, Begeleiderstageaanvraag newValue) {
+                    showStageAanvraagDetails(newValue);
+            }
+        });
+    }     
    
-    protected void showStudentDetails(Student student)
+    protected void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten
-        /*if (stageaanvraag != null)
+        if (stageaanvraag != null)
         {
             projectTitelTxt.setText(stageaanvraag.getStageStageId().getProjectTitel());
             projectOmschrijvingTxt.setText(stageaanvraag.getStageStageId().getProjectOmschrijving());
@@ -98,17 +142,38 @@ public class StudentEditorController implements Initializable
                 ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
                 ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
             }
-        } */
+        } 
     }
     
     private void emptyTextFields()
     {
-        //projectTitelTxt.setText("");
+        projectTitelTxt.setText("");
+        projectOmschrijvingTxt.setText("");
+        specialisatieTxt.setText("");
+        periodeTxt.setText("");
+        aantalStudentenTxt.setText("");
+
+        bedrijfsnaamTxt.setText("");
+        bedrijfStraatEnNrTxt.setText("");
+        bedrijfsGemeenteTxt.setText("");
+        bedrijfPostcodeTxt.setText("");
+
+        mentorVoornaamTxt.setText("");
+        mentorFamilienaamTxt.setText("");
+        mentorFunctieTxt.setText("");
+        mentorTelefoonTxt.setText("");
+        mentorEmailTxt.setText("");
+
+        ondertekenaarVoornaamTxt.setText("");
+        ondertekenaarFamilienaamTxt.setText("");
+        ondertekenaarFunctieTxt.setText("");
+        ondertekenaarTelefoonTxt.setText("");
+        ondertekenaarEmailTxt.setText(""); 
     }
     
-    private void saveStudentDetails(Student student)
+    private void saveStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
-        /*if (stageaanvraag != null)
+        if (stageaanvraag != null)
         {         
             stageaanvraag.getStageStageId().setProjectTitel(projectTitelTxt.getText());
             stageaanvraag.getStageStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
@@ -132,27 +197,25 @@ public class StudentEditorController implements Initializable
             stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
             stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
             stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
-        } */
+        } 
     }
     
-    void setApp(Main app) {
-        
-        this.application=app;
-        begeleiderAanvragenTabel.getItems().addAll(app.getStudentData());
+    void setApp(Main app)
+    {
+        this.application = app;
+        begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
        
     }
-    public void setMaster(HoofdSchermController master) 
+    public void setMaster(HomeController master) 
     {
         this.master = master;
     }
 
-    void setUpWithModel(Model model) {
-        this.model = model;
-        if(model==null) System.out.println("No Link");
-    }
-    
-    public void bewerkGegevens (Student student)
+    void setUpWithModel(Model model)
     {
-        showStudentDetails(student);
+        this.model = model;
+        
+        if(model == null)
+            System.out.println("No Link");
     }
 }

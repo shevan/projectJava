@@ -11,6 +11,16 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.LoginController">
   <children>
+    <ImageView fitHeight="212.51953125" fitWidth="310.0" layoutX="528.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@../../resources/logo.png" />
+      </image>
+    </ImageView>
+    <TextField fx:id="adminId" layoutX="583.0" layoutY="350.0" prefWidth="200.0" />
+    <PasswordField fx:id="password" layoutX="583.0" layoutY="385.0" prefWidth="200.0" />
+    <Button fx:id="login" defaultButton="true" layoutX="583.0" layoutY="457.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
+    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="583.0" layoutY="497.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
+    <Label fx:id="errorMsg" layoutX="525.0" layoutY="425.0" prefWidth="324.0" text="Label" />
     <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="1366.0" useSystemMenuBar="false">
       <menus>
         <Menu mnemonicParsing="false" text="File">
@@ -30,20 +40,5 @@
         </Menu>
       </menus>
     </MenuBar>
-    <TextField fx:id="adminId" layoutX="583.0" layoutY="350.0" prefWidth="200.0" />
-    <PasswordField fx:id="password" layoutX="583.0" layoutY="385.0" prefWidth="200.0" />
-    <ImageView fitHeight="95.0" fitWidth="138.57549857549859" layoutX="614.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@../resources/logo.png" />
-      </image>
-    </ImageView>
-    <Button fx:id="login" defaultButton="true" layoutX="583.0" layoutY="457.0" mnemonicParsing="false" onAction="#processLogin" prefWidth="200.0" text="Inloggen" />
-    <Button fx:id="cancel" cancelButton="true" defaultButton="false" disable="false" focusTraversable="true" layoutX="583.0" layoutY="497.0" mnemonicParsing="false" onAction="#processCancel" opacity="1.0" prefWidth="200.0" text="Annuleren" visible="true" wrapText="false" />
-    <Label fx:id="errorMsg" layoutX="525.0" layoutY="425.0" prefWidth="324.0" text="Label" />
-    <ImageView fitHeight="212.51953125" fitWidth="310.0" layoutX="528.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-        <Image url="@../../resources/logo.png" />
-      </image>
-    </ImageView>
   </children>
 </AnchorPane>

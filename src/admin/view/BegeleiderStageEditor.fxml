@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="15.0" maxWidth="-1.0" prefHeight="15.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
+<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
   <children>
-    <SplitPane dividerPositions="0.20087976539589442" focusTraversable="true" layoutX="0.0" layoutY="80.0" prefHeight="688.0" prefWidth="1366.0" rotate="0.0">
+    <SplitPane dividerPositions="0.500733137829912" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
           <children>
@@ -204,19 +204,14 @@
         </Accordion>
       </items>
     </SplitPane>
-    <HBox alignment="CENTER_LEFT" layoutX="375.0" layoutY="27.0" prefHeight="30.0" prefWidth="300.0">
+    <HBox alignment="CENTER" layoutX="539.0" layoutY="617.0" prefHeight="30.0" prefWidth="300.0">
       <children>
-        <Button fx:id="back" mnemonicParsing="false" onAction="#goBack" prefHeight="24.0" prefWidth="100.0" text="Terug">
+        <Button prefWidth="100.0" text="Goedkeuren">
           <font>
             <Font size="14.0" fx:id="x1" />
           </font>
         </Button>
-      </children>
-    </HBox>
-    <HBox alignment="CENTER_RIGHT" layoutX="676.0" layoutY="27.0" prefHeight="30.0" prefWidth="300.0">
-      <children>
-        <Button font="$x1" prefWidth="100.0" text="Opslaan" />
-        <Button font="$x1" mnemonicParsing="false" prefWidth="100.0" text="Annuleren">
+        <Button font="$x1" mnemonicParsing="false" prefWidth="100.0" text="Afkeuren">
           <HBox.margin>
             <Insets left="10.0" right="10.0" />
           </HBox.margin>

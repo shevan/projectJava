@@ -30,8 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Studentstagesollicitatie.findAll", query = "SELECT s FROM Studentstagesollicitatie s"),
     @NamedQuery(name = "Studentstagesollicitatie.findByStudentStageSollicitatieId", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.studentStageSollicitatieId = :studentStageSollicitatieId"),
-    @NamedQuery(name = "Studentstagesollicitatie.findByGoedgekeurd", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.goedgekeurd = :goedgekeurd")})
-public class Studentstagesollicitatie implements Serializable {
+    @NamedQuery(name = "Studentstagesollicitatie.findByGoedgekeurd", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.goedgekeurd = :goedgekeurd"),
+    @NamedQuery(name = "Studentstagesollicitatie.findNogNietBeslist", query = "SELECT s FROM Studentstagesollicitatie s WHERE s.goedgekeurd IS NULL")})
+
+public class Studentstagesollicitatie implements Serializable
+{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

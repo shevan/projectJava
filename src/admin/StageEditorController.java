@@ -78,7 +78,7 @@ public class StageEditorController implements Initializable
     private TextField mentorEmailTxt;
     @FXML 
     Button back;
-    private HoofdSchermController master;
+    private HomeController master;
     
     @FXML
     private void goBack(ActionEvent action)
@@ -126,37 +126,37 @@ public class StageEditorController implements Initializable
     protected void showStageDetails(Stage stage)
     {
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die op dit moment leeg moeten zijn nog oude gegevens van vorige stage bevatten
-        /*if (stageaanvraag != null)
-        {
-            projectTitelTxt.setText(stageaanvraag.getStageStageId().getProjectTitel());
-            projectOmschrijvingTxt.setText(stageaanvraag.getStageStageId().getProjectOmschrijving());
-            specialisatieTxt.setText(stageaanvraag.getStageStageId().getSpecialisatie());
-            periodeTxt.setText(stageaanvraag.getStageStageId().getPeriode());
-            aantalStudentenTxt.setText(stageaanvraag.getStageStageId().getAantalStudenten()+"");
-
-            bedrijfsnaamTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getBedrijfsNaam());
-            bedrijfStraatEnNrTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getStraat());
-            bedrijfsGemeenteTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getGemeente());
-            bedrijfPostcodeTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getPostcode()+"");
-
-            if (stageaanvraag.getStageStageId().getStagementorId() != null)
-            {
-                mentorVoornaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam());
-                mentorFamilienaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
-                mentorFunctieTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFunctie());
-                mentorTelefoonTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getTelefoon()+"");
-                mentorEmailTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getEmail());
-            }
-
-            if (stageaanvraag.getStageStageId().getContractondertekenaarId() != null)
-            {
-                ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam());
-                ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
-                ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
-                ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
-                ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
-            }
-        } */
+//        if (stageaanvraag != null)
+//        {
+//            projectTitelTxt.setText(stageaanvraag.getStageStageId().getProjectTitel());
+//            projectOmschrijvingTxt.setText(stageaanvraag.getStageStageId().getProjectOmschrijving());
+//            specialisatieTxt.setText(stageaanvraag.getStageStageId().getSpecialisatie());
+//            periodeTxt.setText(stageaanvraag.getStageStageId().getPeriode());
+//            aantalStudentenTxt.setText(stageaanvraag.getStageStageId().getAantalStudenten()+"");
+//
+//            bedrijfsnaamTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getBedrijfsNaam());
+//            bedrijfStraatEnNrTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getStraat());
+//            bedrijfsGemeenteTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getGemeente());
+//            bedrijfPostcodeTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getPostcode()+"");
+//
+//            if (stageaanvraag.getStageStageId().getStagementorId() != null)
+//            {
+//                mentorVoornaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam());
+//                mentorFamilienaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
+//                mentorFunctieTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFunctie());
+//                mentorTelefoonTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getTelefoon()+"");
+//                mentorEmailTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getEmail());
+//            }
+//
+//            if (stageaanvraag.getStageStageId().getContractondertekenaarId() != null)
+//            {
+//                ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam());
+//                ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
+//                ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
+//                ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
+//                ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
+//            }
+//        }
     }
     
     private void emptyTextFields()
@@ -187,31 +187,31 @@ public class StageEditorController implements Initializable
     
     private void saveStageDetails(Stage stage)
     {
-        /*if (stageaanvraag != null)
-        {         
-            stageaanvraag.getStageStageId().setProjectTitel(projectTitelTxt.getText());
-            stageaanvraag.getStageStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
-            stageaanvraag.getStageStageId().setSpecialisatie(specialisatieTxt.getText());
-            stageaanvraag.getStageStageId().setPeriode(periodeTxt.getText());
-            stageaanvraag.getStageStageId().setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
-
-            stageaanvraag.getStageStageId().getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
-            stageaanvraag.getStageStageId().getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
-            stageaanvraag.getStageStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
-            stageaanvraag.getStageStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
-
-            stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
-            stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
-            stageaanvraag.getStageStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
-            stageaanvraag.getStageStageId().getStagementorId().setTelefoon(Integer.parseInt(mentorTelefoonTxt.getText()));
-            stageaanvraag.getStageStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
-
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
-            stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
-        } */
+//        if (stageaanvraag != null)
+//        {         
+//            stageaanvraag.getStageStageId().setProjectTitel(projectTitelTxt.getText());
+//            stageaanvraag.getStageStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
+//            stageaanvraag.getStageStageId().setSpecialisatie(specialisatieTxt.getText());
+//            stageaanvraag.getStageStageId().setPeriode(periodeTxt.getText());
+//            stageaanvraag.getStageStageId().setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
+//
+//            stageaanvraag.getStageStageId().getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
+//            stageaanvraag.getStageStageId().getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
+//            stageaanvraag.getStageStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
+//            stageaanvraag.getStageStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
+//
+//            stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
+//            stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
+//            stageaanvraag.getStageStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
+//            stageaanvraag.getStageStageId().getStagementorId().setTelefoon(Integer.parseInt(mentorTelefoonTxt.getText()));
+//            stageaanvraag.getStageStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
+//
+//            stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
+//            stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
+//            stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
+//            stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
+//            stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
+//        } 
     }
     
     void setApp(Main app)
@@ -220,7 +220,7 @@ public class StageEditorController implements Initializable
         begeleiderAanvragenTabel.getItems().addAll(app.getStageData());
        
     }
-    public void setMaster(HoofdSchermController master) 
+    public void setMaster(HomeController master) 
     {
         this.master = master;
     }
@@ -231,10 +231,5 @@ public class StageEditorController implements Initializable
         
         if(model == null)
             System.out.println("No Link");
-    }
-    
-    public void bewerkGegevens (Stage stage)
-    {
-        showStageDetails(stage);
     }
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.StageEditorController">
+<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.StudentStageEditorController">
   <children>
     <SplitPane dividerPositions="0.500733137829912" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
       <items>

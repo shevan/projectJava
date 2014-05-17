@@ -1,26 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.net.*?>
 <?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1350.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeController">
+<AnchorPane fx:id="homeController" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeController">
   <children>
-    <Button id="stage" fx:id="stageButton" layoutX="122.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStages" text="Stages" />
-    <Button id="studenten" fx:id="studentenButton" layoutX="195.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayStudenten" text="Studenten" />
-    <ListView fx:id="tabListView" layoutX="22.0" layoutY="73.0" onMouseClicked="#itemDoubleclickAction" prefHeight="656.0" prefWidth="727.0" />
-    <Button id="stage" fx:id="gebruikersButton" layoutX="293.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayGebruikers" text="Gebruikers" />
-    <Button id="stage" fx:id="button4" layoutX="394.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBedrijven" text="Bedrijven" />
-    <Button id="stage" fx:id="button5" layoutX="485.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 5" />
-    <Button id="stage" fx:id="button6" layoutX="574.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 6" />
-    <Button id="stage" fx:id="button7" layoutX="663.0" layoutY="23.0" mnemonicParsing="false" onAction="#processStages" text="Functie 7" />
-    <Button id="stage" fx:id="aanvraagButton" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" text="Aanvragen" />
+    <AnchorPane fx:id="anchorPane001" layoutX="0.0" layoutY="31.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="737.0" prefWidth="1366.0">
+      <children>
+        <fx:include fx:id="begeleiderStageEditor" source="BegeleiderStageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
+        <fx:include fx:id="stageEditor" source="StageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
+        <fx:include fx:id="studentEditor" source="StudentEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
+        <Button fx:id="btnBegeleidersAanvragen" layoutX="398.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Begeleider aanvragen" />
+        <Button fx:id="btnStudentenAanvragen" layoutX="398.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudentenStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Studenten aanvragen" />
+        <Button fx:id="btnStages" layoutX="598.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayStages" prefHeight="27.0" prefWidth="170.0" text="Stages" />
+        <Button fx:id="btnStudenten" layoutX="598.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudenten" prefHeight="27.0" prefWidth="170.0" text="Studenten" />
+        <Button fx:id="btnBedrijven" layoutX="798.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBedrijven" prefHeight="27.0" prefWidth="170.0" text="Bedrijven" />
+        <Button fx:id="btnGebruikers" layoutX="798.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayGebruikers" prefHeight="27.0" prefWidth="170.0" text="Gebruikers" />
+        <ImageView fitHeight="73.40429691156054" fitWidth="107.0740737915039" layoutX="1258.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../../resources/logo.png" />
+          </image>
+        </ImageView>
+      </children>
+    </AnchorPane>
+    <MenuBar layoutX="0.0" layoutY="0.0" prefWidth="1366.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
   </children>
-  <stylesheets>
-    <URL value="@STUA.css" />
-  </stylesheets>
 </AnchorPane>
