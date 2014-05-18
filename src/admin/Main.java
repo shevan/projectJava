@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application
@@ -94,6 +95,29 @@ public class Main extends Application
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }    
+    private void gotoHomeBorderLayout()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/HomeBorderPane"));
+            loader.load();
+            BorderPane root = loader.getRoot();
+            Scene scene = new Scene(root, MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH);
+            stage.setScene(scene);
+            stage.sizeToScene();
+            ///loader.getController();
+            
+             HomeController home = (HomeController) replaceSceneContent("view/Home.fxml");
+             home.setApp(this);
+             home.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+            
     
 //    protected void gotoBegeleiderStageEditor()
 //    {
