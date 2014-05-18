@@ -43,6 +43,8 @@ public class HomeBorderLayoutController implements Initializable
     private Font x1;
     @FXML
     private BorderPane begeleidersStageEditor;
+    @FXML
+    private BorderPane stageAanvraagEditor;
 
     /**
      * BegeleidersStageEditorElementen
@@ -252,34 +254,47 @@ public class HomeBorderLayoutController implements Initializable
      * @param event 
      */
     @FXML
-    private void displayBegeleiderStageAanvragen(ActionEvent event) {
+    private void displayBegeleiderStageAanvragen(ActionEvent event) { //prior 80
         hideAllViews();
+        initBegeleiderStageEditor();
         begeleidersStageEditor.setVisible(true);
     }
-
     @FXML
-    private void displayStudentenStageAanvragen(ActionEvent event) {
+    private void displayStagevoorstel (ActionEvent event) { //prior 60
+        hideAllViews();
+        //voegdata toe aan view
+        stageAanvraagEditor.setVisible(true);
+        
+    }
+    @FXML
+    private void displayStudentenStageAanvragen(ActionEvent event) { // geen prior
+        hideAllViews();
     }
 
     @FXML
     private void displayStages(ActionEvent event) {
+        hideAllViews();
     }
 
     @FXML
     private void displayStudenten(ActionEvent event) {
+        hideAllViews();
     }
 
     @FXML
     private void displayBedrijven(ActionEvent event) {
+        hideAllViews();
     }
 
     @FXML
     private void displayGebruikers(ActionEvent event) {
+        hideAllViews();
     }
     
 
     private void hideAllViews(){
         begeleidersStageEditor.setVisible(false);
+        stageAanvraagEditor.setVisible(false);
     }
     
 }

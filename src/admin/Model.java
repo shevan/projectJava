@@ -51,6 +51,7 @@ public class Model
         TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findAll", Begeleiderstageaanvraag.class);
         return query.getResultList();
     }  
+    
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagOnbeslistFromDatabase()
     {
         TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findNogNietBeslist", Begeleiderstageaanvraag.class);
@@ -62,6 +63,7 @@ public class Model
         TypedQuery<Studentstagesollicitatie> query = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstagesollicitatie.class);
         return query.getResultList();
     }
+    
     public List <Studentstagesollicitatie> getStudentenStageAanvraagOnbeslistFromDatabase()
     {
         TypedQuery<Studentstagesollicitatie> query = em.createNamedQuery("Studentstagesollicitatie.findNogNietBeslist", Studentstagesollicitatie.class);
