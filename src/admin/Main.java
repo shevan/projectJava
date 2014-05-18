@@ -22,8 +22,8 @@ public class Main extends Application
     private Model model;
     private User loggedUser;
     
-    private final double MIN_WINDOW_HEIGHT = 1366.0;
-    private final double MIN_WINDOW_WIDTH = 768.0;
+    private final double MIN_WINDOW_HEIGHT = 1024.0;
+    private final double MIN_WINDOW_WIDTH = 600.0;
     
     
     public static void main(String[] args)
@@ -41,9 +41,10 @@ public class Main extends Application
             stage.setTitle("STUA");
 
 //            gotoLogin();
-            gotoHome();
+            //gotoHome();
 //            gotoBegeleiderStageEditor();
 //            gotoStudentStageEditor();
+            gotoHomeBorderLayout();
             initializeUsers();
             stage.show();
         } catch (Exception ex)
@@ -100,17 +101,18 @@ public class Main extends Application
         try
         {
             //gelieve nieuwe methode van Van Impe toepassen hier
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/HomeBorderPane"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/HomeBorderLayout.fxml"));
             loader.load();
             BorderPane root = loader.getRoot();
             Scene scene = new Scene(root, MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH);
             stage.setScene(scene);
             stage.sizeToScene();
             ///loader.getController();
-            
+            /*
              HomeController home = (HomeController) replaceSceneContent("view/Home.fxml");
              home.setApp(this);
              home.setUpWithModel(model);
+            */
         }
         catch(Exception ex)
         {
