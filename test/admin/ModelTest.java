@@ -7,8 +7,14 @@
 package admin;
 
 import admin.model.Aspnetusers;
+import admin.model.Bedrijf;
+import admin.model.Bedrijfspersoon;
+import admin.model.Begeleider;
+import admin.model.Begeleiderstageaanvraag;
+import admin.model.Gegeven;
 import admin.model.Stage;
 import admin.model.Student;
+import admin.model.Studentstage;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -90,6 +96,132 @@ public class ModelTest {
         Model instance = new Model();
         List<Student> expResult = null;
         List<Student> result = instance.getStudentenFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBedrijvenFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetBedrijvenFromDatabase() {
+        System.out.println("getBedrijvenFromDatabase");
+        Model instance = new Model();
+        List<Bedrijf> expResult = null;
+        List<Bedrijf> result = instance.getBedrijvenFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBedrijfpersonenFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetBedrijfpersonenFromDatabase() {
+        System.out.println("getBedrijfpersonenFromDatabase");
+        Model instance = new Model();
+        List<Bedrijfspersoon> expResult = null;
+        List<Bedrijfspersoon> result = instance.getBedrijfpersonenFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBegeleidersFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetBegeleidersFromDatabase() {
+        System.out.println("getBegeleidersFromDatabase");
+        Model instance = new Model();
+        List<Begeleider> expResult = null;
+        List<Begeleider> result = instance.getBegeleidersFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBegeleiderStageAanvraagFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetBegeleiderStageAanvraagFromDatabase() {
+        System.out.println("getBegeleiderStageAanvraagFromDatabase");
+        Model instance = new Model();
+        List<Begeleiderstageaanvraag> expResult = null;
+        List<Begeleiderstageaanvraag> result = instance.getBegeleiderStageAanvraagFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBegeleiderStageAanvraagOnbeslistFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetBegeleiderStageAanvraagOnbeslistFromDatabase() {
+        System.out.println("getBegeleiderStageAanvraagOnbeslistFromDatabase");
+        Model instance = new Model();
+        List<Begeleiderstageaanvraag> expResult = null;
+        List<Begeleiderstageaanvraag> result = instance.getBegeleiderStageAanvraagOnbeslistFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getStudentenStageAanvraagFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetStudentenStageAanvraagFromDatabase() {
+        System.out.println("getStudentenStageAanvraagFromDatabase");
+        Model instance = new Model();
+        List<Studentstage> expResult = null;
+        List<Studentstage> result = instance.getStudentenStageAanvraagFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getStudentenStageAanvraagOnbeslistFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetStudentenStageAanvraagOnbeslistFromDatabase() {
+        System.out.println("getStudentenStageAanvraagOnbeslistFromDatabase");
+        Model instance = new Model();
+        List<Studentstage> expResult = null;
+        List<Studentstage> result = instance.getStudentenStageAanvraagOnbeslistFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getGegevensFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetGegevensFromDatabase() {
+        System.out.println("getGegevensFromDatabase");
+        Model instance = new Model();
+        List<Gegeven> expResult = null;
+        List<Gegeven> result = instance.getGegevensFromDatabase();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getStageFromDatabase method, of class Model.
+     */
+    @Test
+    public void testGetStageFromDatabase() {
+        System.out.println("getStageFromDatabase");
+        Model instance = new Model();
+        List<Stage> expResult = null;
+        List<Stage> result = instance.getStageFromDatabase();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

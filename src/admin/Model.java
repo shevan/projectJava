@@ -54,8 +54,8 @@ public class Model
     
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagOnbeslistFromDatabase()
     {
-        TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findNogNietBeslist", Begeleiderstageaanvraag.class);
-        return query.getResultList();
+        TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findByGoedgekeurd", Begeleiderstageaanvraag.class);
+        return query.setParameter("goedgekeurd", true).getResultList();
     }
     
     public List <Studentstage> getStudentenStageAanvraagFromDatabase()

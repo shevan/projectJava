@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.text.Font;
 
-public class StageEditorController implements Initializable
+public class StageEditorController implements Initializable, ControllerInterface
 {
     private Model model;
     private Main application;
@@ -214,7 +214,7 @@ public class StageEditorController implements Initializable
 //        } 
     }
     
-    void setApp(Main app)
+    public void setApp(Main app)
     {
         this.application = app;
         begeleiderAanvragenTabel.getItems().addAll(app.getStageData());
@@ -225,7 +225,7 @@ public class StageEditorController implements Initializable
         this.master = master;
     }
 
-    void setUpWithModel(Model model)
+    public void setUpWithModel(Model model)
     {
         this.model = model;
         

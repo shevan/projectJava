@@ -15,7 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-public class BegeleiderStageEditorController implements Initializable
+public class BegeleiderStageEditorController implements Initializable, ControllerInterface
 {
     private Main application;
     private Model model;
@@ -203,7 +203,8 @@ public class BegeleiderStageEditorController implements Initializable
     public void setApp(Main app)
     {
         this.application = app;
-        begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
+        //begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
+        begeleiderAanvragenTabel.setItems(app.getBegeleiderStageAanvraagData());
        
     }
     public void setMaster(HomeController master) 
@@ -211,7 +212,7 @@ public class BegeleiderStageEditorController implements Initializable
         this.master = master;
     }
 
-    void setUpWithModel(Model model)
+    public void setUpWithModel(Model model)
     {
         this.model = model;
         

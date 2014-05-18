@@ -71,10 +71,24 @@ public class HomeController extends AnchorPane implements Initializable
     private void setChildrenHome()
     {
         //debatable of ik dit niet via javafx loader kan doen
-        begeleiderStageEditorController.setMaster(this);
-        studentEditorController.setMaster(this);
-        stageEditorController.setMaster(this);
+        ControllerInterface[] children =
+        {
+            begeleiderStageEditorController,
+            studentEditorController,
+            stageEditorController
+        };
+        for(ControllerInterface controller: children)
+        {
+            controller.setMaster(this);
+            controller.setApp(application);
+            controller.setUpWithModel(model);
+        }
+        
+//        begeleiderStageEditorController.setMaster(this);
+//        studentEditorController.setMaster(this);
+//        stageEditorController.setMaster(this);
     }    
+    
         
     @Override
     public void initialize(URL url, ResourceBundle rb)

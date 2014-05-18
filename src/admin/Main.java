@@ -40,8 +40,8 @@ public class Main extends Application
             stage.setTitle("STUA");
 
 //            gotoLogin();
-            //gotoHome();
-           gotoBegeleiderStageEditor();
+            gotoHome();
+           //gotoBegeleiderStageEditor();
 //            gotoStudentStageEditor();
            // gotoHomeBorderLayout();
             initializeUsers();
