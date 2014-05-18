@@ -15,7 +15,7 @@
       <center>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <AnchorPane disable="false" prefHeight="200.0" prefWidth="200.0" visible="true" StackPane.alignment="TOP_LEFT">
+            <AnchorPane disable="false" prefHeight="200.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_LEFT">
               <children>
                 <Text fontSmoothingType="LCD" layoutX="238.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welkom bij STUA" underline="true">
                   <font>
@@ -24,7 +24,7 @@
                 </Text>
               </children>
             </AnchorPane>
-            <BorderPane id="BorderPane" fx:id="begeleidersStageEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false">
+            <BorderPane id="BorderPane" fx:id="begeleidersStageEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="true">
               <bottom>
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0">
                   <children>
@@ -58,7 +58,7 @@
                     </AnchorPane>
                     <Accordion prefHeight="654.0" prefWidth="631.0">
                       <expandedPane>
-                        <TitledPane id="stageTab" fx:id="x2" text="Stage gegevens">
+                        <TitledPane id="stageTab" fx:id="x2" text="Stage">
                           <content>
                             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                               <children>
@@ -233,10 +233,91 @@
                             </AnchorPane>
                           </content>
                         </TitledPane>
+                        <TitledPane id="x2" font="$x3" text="Student">
+                          <content>
+                            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <children>
+                                <ScrollPane prefHeight="313.0" prefWidth="587.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <content>
+                                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="572.0">
+                                      <children>
+                                        <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="197.0" prefWidth="532.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="10.0">
+                                          <children>
+                                            <Label id="specialisatieLbl" text="Voornaam:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                            <Label id="stagePeriodeLbl" text="Functie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                            <Label text="Telefoon :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                            <TextField id="ondertekenaarNaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                            <TextField id="ondertekenaarFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <TextField id="ondertekenaarTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                            <TextField id="ondertekenaarEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            <TextField id="ondertekenaarFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <Label text="Familienaam:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                          </children>
+                                          <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                                            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                        </GridPane>
+                                      </children>
+                                    </AnchorPane>
+                                  </content>
+                                </ScrollPane>
+                              </children>
+                            </AnchorPane>
+                          </content>
+                        </TitledPane>
                       </panes>
                     </Accordion>
                   </items>
                 </SplitPane>
+              </center>
+            </BorderPane>
+            <BorderPane id="GenericEditingPanel" fx:id="bewerkScherm" disable="false" focusTraversable="false" opacity="1.0" prefHeight="200.0" prefWidth="200.0" visible="true">
+              <bottom>
+                <HBox prefHeight="100.0" prefWidth="200.0" />
+              </bottom>
+              <center>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="572.0" visible="false">
+                  <children>
+                    <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="285.0" prefWidth="500.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+                      <children>
+                        <Label id="projectTitelLbl" text="Titel :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label id="projectOmschrijvingLbl" text="Omschrijving" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextArea id="projectOmschrijvingTxt" editable="false" prefHeight="67.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                          <GridPane.margin>
+                            <Insets />
+                          </GridPane.margin>
+                        </TextArea>
+                        <Label id="specialisatieLbl" text="Specialisatie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <Label id="stagePeriodeLbl" text="Periode :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <Label text="Aantal studenten :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <TextField id="projectTitelTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField id="specialisatieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField id="periodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
+                  </children>
+                </AnchorPane>
               </center>
             </BorderPane>
           </children>

@@ -42,9 +42,9 @@ public class Main extends Application
 
 //            gotoLogin();
             //gotoHome();
-//            gotoBegeleiderStageEditor();
+           //gotoBegeleiderStageEditor();
 //            gotoStudentStageEditor();
-            gotoHomeBorderLayout();
+            //gotoHomeBorderLayout();
             initializeUsers();
             stage.show();
         } catch (Exception ex)

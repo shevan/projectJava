@@ -8,6 +8,7 @@ package admin;
 
 import admin.model.Begeleiderstageaanvraag;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
@@ -44,7 +45,7 @@ public class HomeBorderLayoutController implements Initializable
     @FXML
     private BorderPane begeleidersStageEditor;
     @FXML
-    private BorderPane stageAanvraagEditor;
+    private BorderPane bewerkScherm;
 
     /**
      * BegeleidersStageEditorElementen
@@ -225,6 +226,14 @@ public class HomeBorderLayoutController implements Initializable
             } 
         }
 
+        //hercode pieter
+        //prior 80
+        private void InitialiseerBegeleiderAanvraag(){
+            //verwijder ongebruikte tabel kolommen
+            //gray out ongebruikte veld waarden
+            //vul data in tabel
+            List data = model.getBegeleiderStageAanvraagFromDatabase();
+        }
     
     
     
@@ -256,14 +265,14 @@ public class HomeBorderLayoutController implements Initializable
     @FXML
     private void displayBegeleiderStageAanvragen(ActionEvent event) { //prior 80
         hideAllViews();
-        initBegeleiderStageEditor();
+        initBegeleiderStageEditor(); //zorg dat alle knoppen voor deze case staan ingesteld
         begeleidersStageEditor.setVisible(true);
     }
     @FXML
     private void displayStagevoorstel (ActionEvent event) { //prior 60
         hideAllViews();
         //voegdata toe aan view
-        stageAanvraagEditor.setVisible(true);
+        //stageAanvraagEditor.setVisible(true);
         
     }
     @FXML
@@ -294,7 +303,7 @@ public class HomeBorderLayoutController implements Initializable
 
     private void hideAllViews(){
         begeleidersStageEditor.setVisible(false);
-        stageAanvraagEditor.setVisible(false);
+       // stageAanvraagEditor.setVisible(false);
     }
     
 }
