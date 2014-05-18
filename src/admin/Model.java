@@ -58,15 +58,15 @@ public class Model
         return query.getResultList();
     }
     
-    public List <Studentstagesollicitatie> getStudentenStageAanvraagFromDatabase()
+    public List <Studentstage> getStudentenStageAanvraagFromDatabase()
     {
-        TypedQuery<Studentstagesollicitatie> query = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstagesollicitatie.class);
+        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstage.class);
         return query.getResultList();
     }
     
-    public List <Studentstagesollicitatie> getStudentenStageAanvraagOnbeslistFromDatabase()
+    public List <Studentstage> getStudentenStageAanvraagOnbeslistFromDatabase()
     {
-        TypedQuery<Studentstagesollicitatie> query = em.createNamedQuery("Studentstagesollicitatie.findNogNietBeslist", Studentstagesollicitatie.class);
+        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstagesollicitatie.findNogNietBeslist", Studentstage.class);
         return query.getResultList();
     }    
     

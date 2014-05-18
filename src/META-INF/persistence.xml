@@ -12,6 +12,7 @@
     <class>admin.model.Begeleiderstageaanvraag</class>
     <class>admin.model.Gegeven</class>
     <class>admin.model.Studentstagesollicitatie</class>
+    <class>admin.model.Studentstage</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/project?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.password" value="project"/>

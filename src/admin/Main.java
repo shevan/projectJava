@@ -20,7 +20,6 @@ public class Main extends Application
     
     private Stage stage;
     private Model model;
-    private User loggedUser;
     
     private final double MIN_WINDOW_HEIGHT = 1024.0;
     private final double MIN_WINDOW_WIDTH = 600.0;
@@ -42,9 +41,9 @@ public class Main extends Application
 
 //            gotoLogin();
             //gotoHome();
-           //gotoBegeleiderStageEditor();
+           gotoBegeleiderStageEditor();
 //            gotoStudentStageEditor();
-            //gotoHomeBorderLayout();
+           // gotoHomeBorderLayout();
             initializeUsers();
             stage.show();
         } catch (Exception ex)
@@ -53,34 +52,9 @@ public class Main extends Application
         }
     }
 
-    public User getLoggedUser()
-    {
-        return loggedUser;
-    }
-    
-    public boolean userLogging(String userId, String password)
-    {
-        if (Authenticator.validate(userId, password))
-        {
-            loggedUser = User.of(userId);
-            return true;
-        } else {
-            return false;
-        }
-    }    
+   
     /*------------------------------ VIEWS ------------------------------*/
-    private void gotoLogin()
-    {
-        try
-        {
-            LoginController login = (LoginController) replaceSceneContent("view/Login.fxml");
-            login.setApp(this);
-        }
-        catch(Exception ex)
-        {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
     
     protected void gotoHome()
     {
@@ -124,20 +98,20 @@ public class Main extends Application
     }
             
     
-//    protected void gotoBegeleiderStageEditor()
-//    {
-//        try
-//        {
-//            //gelieve nieuwe methode van Van Impe toepassen hier
-//            BegeleiderStageEditorController begeleiderStage = (BegeleiderStageEditorController) replaceSceneContent("view/BegeleiderStageEditor.fxml");
-//            begeleiderStage.setApp(this);
-//            begeleiderStage.setUpWithModel(model);
-//        }
-//        catch(Exception ex)
-//        {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    protected void gotoBegeleiderStageEditor()
+    {
+        try
+        {
+            //gelieve nieuwe methode van Van Impe toepassen hier
+            BegeleiderStageEditorController begeleiderStage = (BegeleiderStageEditorController) replaceSceneContent("view/BegeleiderStageEditor.fxml");
+            begeleiderStage.setApp(this);
+            begeleiderStage.setUpWithModel(model);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     protected void gotoStudentStageEditor()
     {
@@ -260,11 +234,11 @@ public class Main extends Application
         return data;
     }
     
-    public ObservableList<Studentstagesollicitatie> getStudenStageSollicitatietData()
+    public ObservableList<Studentstage> getStudenStageSollicitatietData()
     {
-        ObservableList<Studentstagesollicitatie> data = FXCollections.observableArrayList();
-        List <Studentstagesollicitatie> list = model.getStudentenStageAanvraagOnbeslistFromDatabase();
-        for(Studentstagesollicitatie item : list)
+        ObservableList<Studentstage> data = FXCollections.observableArrayList();
+        List <Studentstage> list = model.getStudentenStageAanvraagOnbeslistFromDatabase();
+        for(Studentstage item : list)
         {
             data.add(item);
         }  

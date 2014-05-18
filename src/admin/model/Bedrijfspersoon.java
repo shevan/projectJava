@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "bedrijfspersoon")
@@ -37,7 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bedrijfspersoon.findByFamilienaam", query = "SELECT b FROM Bedrijfspersoon b WHERE b.familienaam = :familienaam"),
     @NamedQuery(name = "Bedrijfspersoon.findByVoornaam", query = "SELECT b FROM Bedrijfspersoon b WHERE b.voornaam = :voornaam"),
     @NamedQuery(name = "Bedrijfspersoon.findByFunctie", query = "SELECT b FROM Bedrijfspersoon b WHERE b.functie = :functie"),
-    @NamedQuery(name = "Bedrijfspersoon.findByTelefoon", query = "SELECT b FROM Bedrijfspersoon b WHERE b.telefoon = :telefoon"),
     @NamedQuery(name = "Bedrijfspersoon.findByAfwezigheid", query = "SELECT b FROM Bedrijfspersoon b WHERE b.afwezigheid = :afwezigheid")})
 public class Bedrijfspersoon implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -56,8 +55,9 @@ public class Bedrijfspersoon implements Serializable {
     @Column(name = "Functie")
     private String functie;
     @Basic(optional = false)
+    @Lob
     @Column(name = "Telefoon")
-    private int telefoon;
+    private String telefoon;
     @Basic(optional = false)
     @Lob
     @Column(name = "Email")
@@ -79,7 +79,7 @@ public class Bedrijfspersoon implements Serializable {
         this.bedrijfspersoonId = bedrijfspersoonId;
     }
 
-    public Bedrijfspersoon(Integer bedrijfspersoonId, String familienaam, String voornaam, String functie, int telefoon, String email) {
+    public Bedrijfspersoon(Integer bedrijfspersoonId, String familienaam, String voornaam, String functie, String telefoon, String email) {
         this.bedrijfspersoonId = bedrijfspersoonId;
         this.familienaam = familienaam;
         this.voornaam = voornaam;
@@ -120,11 +120,11 @@ public class Bedrijfspersoon implements Serializable {
         this.functie = functie;
     }
 
-    public int getTelefoon() {
+    public String getTelefoon() {
         return telefoon;
     }
 
-    public void setTelefoon(int telefoon) {
+    public void setTelefoon(String telefoon) {
         this.telefoon = telefoon;
     }
 

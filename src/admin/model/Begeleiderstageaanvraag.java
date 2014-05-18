@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "begeleiderstageaanvraag")
@@ -30,10 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Begeleiderstageaanvraag.findAll", query = "SELECT b FROM Begeleiderstageaanvraag b"),
     @NamedQuery(name = "Begeleiderstageaanvraag.findByBegeleiderStageAanvraagId", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.begeleiderStageAanvraagId = :begeleiderStageAanvraagId"),
-    @NamedQuery(name = "Begeleiderstageaanvraag.findByGoedgekeurd", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd = :goedgekeurd"),
-    @NamedQuery(name = "Begeleiderstageaanvraag.findNogNietBeslist", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd IS NULL")})
-   
-
+    @NamedQuery(name = "Begeleiderstageaanvraag.findByGoedgekeurd", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd = :goedgekeurd")})
 public class Begeleiderstageaanvraag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,12 +40,12 @@ public class Begeleiderstageaanvraag implements Serializable {
     private Integer begeleiderStageAanvraagId;
     @Column(name = "Goedgekeurd")
     private Boolean goedgekeurd;
-    @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
-    @ManyToOne
-    private Stage stageStageId;
-    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
-    @ManyToOne
-    private Begeleider begeleiderBegeleiderId;
+    @JoinColumn(name = "BegeleiderId", referencedColumnName = "BegeleiderId")
+    @ManyToOne(optional = false)
+    private Begeleider begeleiderId;
+    @JoinColumn(name = "StageId", referencedColumnName = "StageId")
+    @ManyToOne(optional = false)
+    private Stage stageId;
 
     public Begeleiderstageaanvraag() {
     }
@@ -73,20 +70,20 @@ public class Begeleiderstageaanvraag implements Serializable {
         this.goedgekeurd = goedgekeurd;
     }
 
-    public Stage getStageStageId() {
-        return stageStageId;
+    public Begeleider getBegeleiderId() {
+        return begeleiderId;
     }
 
-    public void setStageStageId(Stage stageStageId) {
-        this.stageStageId = stageStageId;
+    public void setBegeleiderId(Begeleider begeleiderId) {
+        this.begeleiderId = begeleiderId;
     }
 
-    public Begeleider getBegeleiderBegeleiderId() {
-        return begeleiderBegeleiderId;
+    public Stage getStageId() {
+        return stageId;
     }
 
-    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
-        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
+    public void setStageId(Stage stageId) {
+        this.stageId = stageId;
     }
 
     @Override

@@ -9,6 +9,7 @@ package admin.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "student")
@@ -38,9 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Student.findByVoornaam", query = "SELECT s FROM Student s WHERE s.voornaam = :voornaam"),
     @NamedQuery(name = "Student.findByStraat", query = "SELECT s FROM Student s WHERE s.straat = :straat"),
     @NamedQuery(name = "Student.findByGemeente", query = "SELECT s FROM Student s WHERE s.gemeente = :gemeente"),
-    @NamedQuery(name = "Student.findByPostcode", query = "SELECT s FROM Student s WHERE s.postcode = :postcode"),
-    @NamedQuery(name = "Student.findByPassword", query = "SELECT s FROM Student s WHERE s.password = :password"),
-    @NamedQuery(name = "Student.findByTelefoon", query = "SELECT s FROM Student s WHERE s.telefoon = :telefoon")})
+    @NamedQuery(name = "Student.findByPostcode", query = "SELECT s FROM Student s WHERE s.postcode = :postcode")})
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -72,22 +71,23 @@ public class Student implements Serializable {
     @Column(name = "EmailHogent")
     private String emailHogent;
     @Basic(optional = false)
-    @Column(name = "Password")
-    private String password;
-    @Basic(optional = false)
+    @Lob
     @Column(name = "Telefoon")
-    private int telefoon;
+    private String telefoon;
     @Lob
     @Column(name = "UserId")
     private String userId;
     @Lob
     @Column(name = "Foto")
     private String foto;
-    @JoinColumn(name = "Stage_StageId", referencedColumnName = "StageId")
+    @JoinColumn(name = "StageId", referencedColumnName = "StageId")
     @ManyToOne
-    private Stage stageStageId;
-    @OneToMany(mappedBy = "studentStudentId")
-    private Collection<Studentstagesollicitatie> studentstagesollicitatieCollection;
+    private Stage stageId;
+    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
+    @ManyToOne
+    private Begeleider begeleiderBegeleiderId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentId")
+    private Collection<Studentstage> studentstageCollection;
 
     public Student() {
     }
@@ -96,7 +96,7 @@ public class Student implements Serializable {
         this.studentId = studentId;
     }
 
-    public Student(Integer studentId, String familienaam, String voornaam, String straat, String gemeente, int postcode, String emailPrive, String emailHogent, String password, int telefoon) {
+    public Student(Integer studentId, String familienaam, String voornaam, String straat, String gemeente, int postcode, String emailPrive, String emailHogent, String telefoon) {
         this.studentId = studentId;
         this.familienaam = familienaam;
         this.voornaam = voornaam;
@@ -105,7 +105,6 @@ public class Student implements Serializable {
         this.postcode = postcode;
         this.emailPrive = emailPrive;
         this.emailHogent = emailHogent;
-        this.password = password;
         this.telefoon = telefoon;
     }
 
@@ -173,19 +172,11 @@ public class Student implements Serializable {
         this.emailHogent = emailHogent;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getTelefoon() {
+    public String getTelefoon() {
         return telefoon;
     }
 
-    public void setTelefoon(int telefoon) {
+    public void setTelefoon(String telefoon) {
         this.telefoon = telefoon;
     }
 
@@ -205,21 +196,29 @@ public class Student implements Serializable {
         this.foto = foto;
     }
 
-    public Stage getStageStageId() {
-        return stageStageId;
+    public Stage getStageId() {
+        return stageId;
     }
 
-    public void setStageStageId(Stage stageStageId) {
-        this.stageStageId = stageStageId;
+    public void setStageId(Stage stageId) {
+        this.stageId = stageId;
+    }
+
+    public Begeleider getBegeleiderBegeleiderId() {
+        return begeleiderBegeleiderId;
+    }
+
+    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
+        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
     }
 
     @XmlTransient
-    public Collection<Studentstagesollicitatie> getStudentstagesollicitatieCollection() {
-        return studentstagesollicitatieCollection;
+    public Collection<Studentstage> getStudentstageCollection() {
+        return studentstageCollection;
     }
 
-    public void setStudentstagesollicitatieCollection(Collection<Studentstagesollicitatie> studentstagesollicitatieCollection) {
-        this.studentstagesollicitatieCollection = studentstagesollicitatieCollection;
+    public void setStudentstageCollection(Collection<Studentstage> studentstageCollection) {
+        this.studentstageCollection = studentstageCollection;
     }
 
     @Override

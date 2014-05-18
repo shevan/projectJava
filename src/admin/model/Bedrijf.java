@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "bedrijf")
@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bedrijf.findAll", query = "SELECT b FROM Bedrijf b"),
     @NamedQuery(name = "Bedrijf.findByBedrijfsId", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsId = :bedrijfsId"),
     @NamedQuery(name = "Bedrijf.findByBedrijfsNaam", query = "SELECT b FROM Bedrijf b WHERE b.bedrijfsNaam = :bedrijfsNaam"),
-    @NamedQuery(name = "Bedrijf.findByTelefoon", query = "SELECT b FROM Bedrijf b WHERE b.telefoon = :telefoon"),
     @NamedQuery(name = "Bedrijf.findByStraat", query = "SELECT b FROM Bedrijf b WHERE b.straat = :straat"),
     @NamedQuery(name = "Bedrijf.findByGemeente", query = "SELECT b FROM Bedrijf b WHERE b.gemeente = :gemeente"),
     @NamedQuery(name = "Bedrijf.findByPostcode", query = "SELECT b FROM Bedrijf b WHERE b.postcode = :postcode"),
@@ -52,8 +51,9 @@ public class Bedrijf implements Serializable {
     @Column(name = "BedrijfsNaam")
     private String bedrijfsNaam;
     @Basic(optional = false)
+    @Lob
     @Column(name = "Telefoon")
-    private int telefoon;
+    private String telefoon;
     @Basic(optional = false)
     @Column(name = "Straat")
     private String straat;
@@ -87,7 +87,7 @@ public class Bedrijf implements Serializable {
         this.bedrijfsId = bedrijfsId;
     }
 
-    public Bedrijf(Integer bedrijfsId, String bedrijfsNaam, int telefoon, String straat, String gemeente, int postcode) {
+    public Bedrijf(Integer bedrijfsId, String bedrijfsNaam, String telefoon, String straat, String gemeente, int postcode) {
         this.bedrijfsId = bedrijfsId;
         this.bedrijfsNaam = bedrijfsNaam;
         this.telefoon = telefoon;
@@ -112,11 +112,11 @@ public class Bedrijf implements Serializable {
         this.bedrijfsNaam = bedrijfsNaam;
     }
 
-    public int getTelefoon() {
+    public String getTelefoon() {
         return telefoon;
     }
 
-    public void setTelefoon(int telefoon) {
+    public void setTelefoon(String telefoon) {
         this.telefoon = telefoon;
     }
 

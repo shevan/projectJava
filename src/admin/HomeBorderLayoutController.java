@@ -109,7 +109,7 @@ public class HomeBorderLayoutController implements Initializable
                 @Override
                 public ObservableValue < String > call(TableColumn.CellDataFeatures < Begeleiderstageaanvraag, String > p )
                 {
-                    return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam());
+                    return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderId().getVoornaam());
                 }
             });
 
@@ -118,7 +118,7 @@ public class HomeBorderLayoutController implements Initializable
                 @Override
                 public ObservableValue < String > call(TableColumn.CellDataFeatures < Begeleiderstageaanvraag, String > p )
                 {
-                    return new ReadOnlyStringWrapper( ( p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageStageId().getBedrijfId().getBedrijfsNaam());
+                    return new ReadOnlyStringWrapper( ( p.getValue().getStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageId().getBedrijfId().getBedrijfsNaam());
                 }
             });
 
@@ -142,33 +142,33 @@ public class HomeBorderLayoutController implements Initializable
             emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten
             if (stageaanvraag != null)
             {
-                projectTitelTxt.setText(stageaanvraag.getStageStageId().getProjectTitel());
-                projectOmschrijvingTxt.setText(stageaanvraag.getStageStageId().getProjectOmschrijving());
-                specialisatieTxt.setText(stageaanvraag.getStageStageId().getSpecialisatie());
-                periodeTxt.setText(stageaanvraag.getStageStageId().getPeriode());
-                aantalStudentenTxt.setText(stageaanvraag.getStageStageId().getAantalStudenten()+"");
+                projectTitelTxt.setText(stageaanvraag.getStageId().getProjectTitel());
+                projectOmschrijvingTxt.setText(stageaanvraag.getStageId().getProjectOmschrijving());
+                specialisatieTxt.setText(stageaanvraag.getStageId().getSpecialisatie());
+                periodeTxt.setText(stageaanvraag.getStageId().getPeriode());
+                aantalStudentenTxt.setText(stageaanvraag.getStageId().getAantalStudenten()+"");
 
-                bedrijfsnaamTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getBedrijfsNaam());
-                bedrijfStraatEnNrTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getStraat());
-                bedrijfsGemeenteTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getGemeente());
-                bedrijfPostcodeTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getPostcode()+"");
+                bedrijfsnaamTxt.setText(stageaanvraag.getStageId().getBedrijfId().getBedrijfsNaam());
+                bedrijfStraatEnNrTxt.setText(stageaanvraag.getStageId().getBedrijfId().getStraat());
+                bedrijfsGemeenteTxt.setText(stageaanvraag.getStageId().getBedrijfId().getGemeente());
+                bedrijfPostcodeTxt.setText(stageaanvraag.getStageId().getBedrijfId().getPostcode()+"");
 
-                if (stageaanvraag.getStageStageId().getStagementorId() != null)
+                if (stageaanvraag.getStageId().getStagementorId() != null)
                 {
-                    mentorVoornaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam());
-                    mentorFamilienaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
-                    mentorFunctieTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFunctie());
-                    mentorTelefoonTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getTelefoon()+"");
-                    mentorEmailTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getEmail());
+                    mentorVoornaamTxt.setText(stageaanvraag.getStageId().getStagementorId().getVoornaam());
+                    mentorFamilienaamTxt.setText(stageaanvraag.getStageId().getStagementorId().getFamilienaam());
+                    mentorFunctieTxt.setText(stageaanvraag.getStageId().getStagementorId().getFunctie());
+                    mentorTelefoonTxt.setText(stageaanvraag.getStageId().getStagementorId().getTelefoon()+"");
+                    mentorEmailTxt.setText(stageaanvraag.getStageId().getStagementorId().getEmail());
                 }
 
-                if (stageaanvraag.getStageStageId().getContractondertekenaarId() != null)
+                if (stageaanvraag.getStageId().getContractondertekenaarId() != null)
                 {
-                    ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam());
-                    ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
-                    ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
-                    ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
-                    ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
+                    ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageId().getContractondertekenaarId().getVoornaam());
+                    ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageId().getContractondertekenaarId().getFamilienaam());
+                    ondertekenaarFunctieTxt.setText(stageaanvraag.getStageId().getContractondertekenaarId().getFunctie());
+                    ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageId().getContractondertekenaarId().getTelefoon()+"");
+                    ondertekenaarEmailTxt.setText(stageaanvraag.getStageId().getContractondertekenaarId().getEmail());
                 }
             } 
         }
@@ -201,28 +201,28 @@ public class HomeBorderLayoutController implements Initializable
         {
             if (stageaanvraag != null)
             {         
-                stageaanvraag.getStageStageId().setProjectTitel(projectTitelTxt.getText());
-                stageaanvraag.getStageStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
-                stageaanvraag.getStageStageId().setSpecialisatie(specialisatieTxt.getText());
-                stageaanvraag.getStageStageId().setPeriode(periodeTxt.getText());
-                stageaanvraag.getStageStageId().setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
+                stageaanvraag.getStageId().setProjectTitel(projectTitelTxt.getText());
+                stageaanvraag.getStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
+                stageaanvraag.getStageId().setSpecialisatie(specialisatieTxt.getText());
+                stageaanvraag.getStageId().setPeriode(periodeTxt.getText());
+                stageaanvraag.getStageId().setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
 
-                stageaanvraag.getStageStageId().getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
-                stageaanvraag.getStageStageId().getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
-                stageaanvraag.getStageStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
-                stageaanvraag.getStageStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
+                stageaanvraag.getStageId().getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
+                stageaanvraag.getStageId().getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
+                stageaanvraag.getStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
+                stageaanvraag.getStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
 
-                stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
-                stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
-                stageaanvraag.getStageStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
-                stageaanvraag.getStageStageId().getStagementorId().setTelefoon(Integer.parseInt(mentorTelefoonTxt.getText()));
-                stageaanvraag.getStageStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setTelefoon(mentorTelefoonTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
 
-                stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
-                stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
-                stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
-                stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
-                stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setTelefoon(ondertekenaarTelefoonTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
             } 
         }
 

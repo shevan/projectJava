@@ -9,6 +9,7 @@ package admin.model;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "begeleider")
@@ -34,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Begeleider.findByBegeleiderId", query = "SELECT b FROM Begeleider b WHERE b.begeleiderId = :begeleiderId"),
     @NamedQuery(name = "Begeleider.findByFamilienaam", query = "SELECT b FROM Begeleider b WHERE b.familienaam = :familienaam"),
     @NamedQuery(name = "Begeleider.findByVoornaam", query = "SELECT b FROM Begeleider b WHERE b.voornaam = :voornaam"),
-    @NamedQuery(name = "Begeleider.findByPassword", query = "SELECT b FROM Begeleider b WHERE b.password = :password")})
+    @NamedQuery(name = "Begeleider.findByStraat", query = "SELECT b FROM Begeleider b WHERE b.straat = :straat"),
+    @NamedQuery(name = "Begeleider.findByGemeente", query = "SELECT b FROM Begeleider b WHERE b.gemeente = :gemeente"),
+    @NamedQuery(name = "Begeleider.findByPostcode", query = "SELECT b FROM Begeleider b WHERE b.postcode = :postcode")})
 public class Begeleider implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,17 +52,36 @@ public class Begeleider implements Serializable {
     @Column(name = "Voornaam")
     private String voornaam;
     @Basic(optional = false)
+    @Column(name = "Straat")
+    private String straat;
+    @Basic(optional = false)
+    @Column(name = "Gemeente")
+    private String gemeente;
+    @Basic(optional = false)
+    @Column(name = "Postcode")
+    private int postcode;
+    @Basic(optional = false)
     @Lob
     @Column(name = "Email")
     private String email;
     @Basic(optional = false)
-    @Column(name = "Password")
-    private String password;
+    @Lob
+    @Column(name = "Telefoon")
+    private String telefoon;
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "Gsm")
+    private String gsm;
     @Lob
     @Column(name = "UserId")
     private String userId;
-    @OneToMany(mappedBy = "begeleiderBegeleiderId")
+    @Lob
+    @Column(name = "Foto")
+    private String foto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "begeleiderId")
     private Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection;
+    @OneToMany(mappedBy = "begeleiderBegeleiderId")
+    private Collection<Student> studentCollection;
     @OneToMany(mappedBy = "begeleiderBegeleiderId")
     private Collection<Stage> stageCollection;
 
@@ -70,12 +92,16 @@ public class Begeleider implements Serializable {
         this.begeleiderId = begeleiderId;
     }
 
-    public Begeleider(Integer begeleiderId, String familienaam, String voornaam, String email, String password) {
+    public Begeleider(Integer begeleiderId, String familienaam, String voornaam, String straat, String gemeente, int postcode, String email, String telefoon, String gsm) {
         this.begeleiderId = begeleiderId;
         this.familienaam = familienaam;
         this.voornaam = voornaam;
+        this.straat = straat;
+        this.gemeente = gemeente;
+        this.postcode = postcode;
         this.email = email;
-        this.password = password;
+        this.telefoon = telefoon;
+        this.gsm = gsm;
     }
 
     public Integer getBegeleiderId() {
@@ -102,6 +128,30 @@ public class Begeleider implements Serializable {
         this.voornaam = voornaam;
     }
 
+    public String getStraat() {
+        return straat;
+    }
+
+    public void setStraat(String straat) {
+        this.straat = straat;
+    }
+
+    public String getGemeente() {
+        return gemeente;
+    }
+
+    public void setGemeente(String gemeente) {
+        this.gemeente = gemeente;
+    }
+
+    public int getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -110,12 +160,20 @@ public class Begeleider implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTelefoon() {
+        return telefoon;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTelefoon(String telefoon) {
+        this.telefoon = telefoon;
+    }
+
+    public String getGsm() {
+        return gsm;
+    }
+
+    public void setGsm(String gsm) {
+        this.gsm = gsm;
     }
 
     public String getUserId() {
@@ -126,6 +184,14 @@ public class Begeleider implements Serializable {
         this.userId = userId;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     @XmlTransient
     public Collection<Begeleiderstageaanvraag> getBegeleiderstageaanvraagCollection() {
         return begeleiderstageaanvraagCollection;
@@ -133,6 +199,15 @@ public class Begeleider implements Serializable {
 
     public void setBegeleiderstageaanvraagCollection(Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection) {
         this.begeleiderstageaanvraagCollection = begeleiderstageaanvraagCollection;
+    }
+
+    @XmlTransient
+    public Collection<Student> getStudentCollection() {
+        return studentCollection;
+    }
+
+    public void setStudentCollection(Collection<Student> studentCollection) {
+        this.studentCollection = studentCollection;
     }
 
     @XmlTransient

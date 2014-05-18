@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "stage")
@@ -119,15 +120,10 @@ public class Stage implements Serializable {
     private Date wijzigingsdatum;
     @Column(name = "AantalBeschikbarePlaatsen")
     private Integer aantalBeschikbarePlaatsen;
-    @OneToMany(mappedBy = "stageStageId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stageId")
     private Collection<Begeleiderstageaanvraag> begeleiderstageaanvraagCollection;
-    @OneToMany(mappedBy = "stageStageId")
+    @OneToMany(mappedBy = "stageId")
     private Collection<Student> studentCollection;
-    @OneToMany(mappedBy = "stageStageId")
-    private Collection<Studentstagesollicitatie> studentstagesollicitatieCollection;
-    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
-    @ManyToOne
-    private Begeleider begeleiderBegeleiderId;
     @JoinColumn(name = "BedrijfId", referencedColumnName = "BedrijfsId")
     @ManyToOne(optional = false)
     private Bedrijf bedrijfId;
@@ -137,6 +133,11 @@ public class Stage implements Serializable {
     @JoinColumn(name = "ContractondertekenaarId", referencedColumnName = "BedrijfspersoonId")
     @ManyToOne
     private Bedrijfspersoon contractondertekenaarId;
+    @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
+    @ManyToOne
+    private Begeleider begeleiderBegeleiderId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "stageId")
+    private Collection<Studentstage> studentstageCollection;
 
     public Stage() {
     }
@@ -355,23 +356,6 @@ public class Stage implements Serializable {
         this.studentCollection = studentCollection;
     }
 
-    @XmlTransient
-    public Collection<Studentstagesollicitatie> getStudentstagesollicitatieCollection() {
-        return studentstagesollicitatieCollection;
-    }
-
-    public void setStudentstagesollicitatieCollection(Collection<Studentstagesollicitatie> studentstagesollicitatieCollection) {
-        this.studentstagesollicitatieCollection = studentstagesollicitatieCollection;
-    }
-
-    public Begeleider getBegeleiderBegeleiderId() {
-        return begeleiderBegeleiderId;
-    }
-
-    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
-        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
-    }
-
     public Bedrijf getBedrijfId() {
         return bedrijfId;
     }
@@ -394,6 +378,23 @@ public class Stage implements Serializable {
 
     public void setContractondertekenaarId(Bedrijfspersoon contractondertekenaarId) {
         this.contractondertekenaarId = contractondertekenaarId;
+    }
+
+    public Begeleider getBegeleiderBegeleiderId() {
+        return begeleiderBegeleiderId;
+    }
+
+    public void setBegeleiderBegeleiderId(Begeleider begeleiderBegeleiderId) {
+        this.begeleiderBegeleiderId = begeleiderBegeleiderId;
+    }
+
+    @XmlTransient
+    public Collection<Studentstage> getStudentstageCollection() {
+        return studentstageCollection;
+    }
+
+    public void setStudentstageCollection(Collection<Studentstage> studentstageCollection) {
+        this.studentstageCollection = studentstageCollection;
     }
 
     @Override

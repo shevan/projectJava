@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author shevan
+ * @author Pieter Pletinckx
  */
 @Entity
 @Table(name = "aspnetusers")
@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Aspnetusers.findAll", query = "SELECT a FROM Aspnetusers a"),
     @NamedQuery(name = "Aspnetusers.findById", query = "SELECT a FROM Aspnetusers a WHERE a.id = :id"),
+    @NamedQuery(name = "Aspnetusers.findByEmailBevestigd", query = "SELECT a FROM Aspnetusers a WHERE a.emailBevestigd = :emailBevestigd"),
     @NamedQuery(name = "Aspnetusers.findByDiscriminator", query = "SELECT a FROM Aspnetusers a WHERE a.discriminator = :discriminator")})
 public class Aspnetusers implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -44,6 +45,8 @@ public class Aspnetusers implements Serializable {
     @Lob
     @Column(name = "SecurityStamp")
     private String securityStamp;
+    @Column(name = "EmailBevestigd")
+    private Boolean emailBevestigd;
     @Basic(optional = false)
     @Column(name = "Discriminator")
     private String discriminator;
@@ -91,6 +94,14 @@ public class Aspnetusers implements Serializable {
 
     public void setSecurityStamp(String securityStamp) {
         this.securityStamp = securityStamp;
+    }
+
+    public Boolean getEmailBevestigd() {
+        return emailBevestigd;
+    }
+
+    public void setEmailBevestigd(Boolean emailBevestigd) {
+        this.emailBevestigd = emailBevestigd;
     }
 
     public String getDiscriminator() {
