@@ -9,10 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class HomeController extends AnchorPane implements Initializable
-{
-    private Main application;
+{   private Main application;
     private Model model;
     
+
     private HomeController master;
     
     @FXML

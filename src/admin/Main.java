@@ -107,6 +107,9 @@ public class Main extends Application
             Scene scene = new Scene(root, MIN_WINDOW_HEIGHT, MIN_WINDOW_WIDTH);
             stage.setScene(scene);
             stage.sizeToScene();
+            HomeBorderLayoutController HBLContoller = loader.getController();
+            HBLContoller.setApp(this);
+            HBLContoller.setUpWithModel(model);
             ///loader.getController();
             /*
              HomeController home = (HomeController) replaceSceneContent("view/Home.fxml");

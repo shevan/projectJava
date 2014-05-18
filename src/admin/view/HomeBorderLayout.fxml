@@ -11,12 +11,20 @@
 
 <BorderPane id="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeBorderLayoutController">
   <center>
-    <BorderPane prefHeight="200.0" prefWidth="200.0">
+    <BorderPane id="begeleiderStageEditor" prefHeight="200.0" prefWidth="200.0">
       <center>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <AnchorPane disable="true" prefHeight="200.0" prefWidth="200.0" visible="true" StackPane.alignment="TOP_LEFT" />
-            <BorderPane id="BorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="true">
+            <AnchorPane disable="false" prefHeight="200.0" prefWidth="200.0" visible="true" StackPane.alignment="TOP_LEFT">
+              <children>
+                <Text fontSmoothingType="LCD" layoutX="238.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welkom bij STUA" underline="true">
+                  <font>
+                    <Font name="Andalus" size="30.0" />
+                  </font>
+                </Text>
+              </children>
+            </AnchorPane>
+            <BorderPane id="BorderPane" fx:id="begeleidersStageEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false">
               <bottom>
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0">
                   <children>
@@ -38,10 +46,12 @@
                   <items>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
                       <children>
-                        <TableView id="begeleiderStage" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView id="begeleiderStage" fx:id="begeleiderAanvragenTabel" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="125.0" text="Stage" />
-                            <TableColumn prefWidth="125.0" text="Student" />
+                            <TableColumn prefWidth="75.0" text="Begeleider" fx:id="begeleiderKolom" />
+                            <TableColumn prefWidth="75.0" text="Stage" fx:id="StageKolom" />
+                            <TableColumn prefWidth="75.0" text="Student" fx:id="StudentKolom" />
+                            <TableColumn prefWidth="75.0" text="Bedrijf" fx:id="bedrijfKolom" />
                           </columns>
                         </TableView>
                       </children>
@@ -60,7 +70,7 @@
                                           <children>
                                             <Label id="projectTitelLbl" text="Titel :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                             <Label id="projectOmschrijvingLbl" text="Omschrijving" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                            <TextArea id="projectOmschrijvingTxt" editable="false" prefHeight="67.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                            <TextArea fx:id="projectOmschrijvingTxt" editable="false" prefHeight="67.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                                               <GridPane.margin>
                                                 <Insets />
                                               </GridPane.margin>
@@ -68,10 +78,10 @@
                                             <Label id="specialisatieLbl" text="Specialisatie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                                             <Label id="stagePeriodeLbl" text="Periode :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                                             <Label text="Aantal studenten :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                            <TextField id="projectTitelTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                            <TextField id="specialisatieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                            <TextField id="periodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                            <TextField id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            <TextField fx:id="projectTitelTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                            <TextField fx:id="specialisatieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <TextField fx:id="periodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <TextField fx:id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           </children>
                                           <columnConstraints>
                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
@@ -112,15 +122,15 @@
                                             <Label id="specialisatieLbl" text="Bedrijfsnaam :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                             <Label id="stagePeriodeLbl" text="Straat en nr :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                                             <Label text="Postcode :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                            <TextField id="bedrijfsnaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                            <TextField fx:id="bedrijfsnaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                               <GridPane.margin>
                                                 <Insets />
                                               </GridPane.margin>
                                             </TextField>
-                                            <TextField id="bedrijfStraatEnNrTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                            <TextField id="bedrijfPostcodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <TextField fx:id="bedrijfStraatEnNrTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <TextField fx:id="bedrijfPostcodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                             <Label text="Gemeente :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                            <TextField id="bedrijfsGemeenteTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <TextField fx:id="bedrijfsGemeenteTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           </children>
                                           <columnConstraints>
                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
@@ -154,13 +164,13 @@
                                             <Label id="specialisatieLbl" text="Voornaam:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                             <Label id="stagePeriodeLbl" text="Functie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                                             <Label text="Telefoon :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                            <TextField id="mentorVoornaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                            <TextField id="mentorFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                            <TextField id="mentorTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <TextField fx:id="mentorVoornaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                            <TextField fx:id="mentorFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <TextField fx:id="mentorTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                             <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                            <TextField id="mentorEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            <TextField fx:id="mentorEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                             <Label text="Familienaam:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                            <TextField id="mentorFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <TextField fx:id="mentorFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           </children>
                                           <columnConstraints>
                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
@@ -195,12 +205,12 @@
                                             <Label id="specialisatieLbl" text="Voornaam:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                             <Label id="stagePeriodeLbl" text="Functie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                                             <Label text="Telefoon :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                            <TextField id="ondertekenaarNaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                                            <TextField id="ondertekenaarFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                            <TextField id="ondertekenaarTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <TextField id="ondertekenaarNaamTxt" fx:id="ondertekenaarVoornaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                            <TextField fx:id="ondertekenaarFunctieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <TextField fx:id="ondertekenaarTelefoonTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                             <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                            <TextField id="ondertekenaarEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                            <TextField id="ondertekenaarFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <TextField fx:id="ondertekenaarEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            <TextField fx:id="ondertekenaarFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                             <Label text="Familienaam:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                                           </children>
                                           <columnConstraints>
