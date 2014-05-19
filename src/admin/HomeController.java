@@ -61,10 +61,12 @@ public class HomeController extends AnchorPane implements Initializable
         if (model == null)
             System.out.println("No link");
         
+        setMaster(this);
+        
         if (master == null)
             System.out.println("No controller");
         
-        setMaster(this);
+        
         setChildrenHome();
     }
 

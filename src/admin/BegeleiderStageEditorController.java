@@ -96,7 +96,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         // Auto resize columns
         begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        showStageAanvraagDetails(null);
+        showStageAanvraagDetails(null); //dit doet absoluut niets
 		
         // Listen for selection changes
         begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
@@ -104,7 +104,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
             @Override
             public void changed(ObservableValue<? extends Begeleiderstageaanvraag> observable,
                             Begeleiderstageaanvraag oldValue, Begeleiderstageaanvraag newValue) {
-                    showStageAanvraagDetails(newValue);
+                    showStageAanvraagDetails(newValue); //laad new values in bewerkscherm
             }
         });
     }     
@@ -205,7 +205,6 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         this.application = app;
         //begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
         begeleiderAanvragenTabel.setItems(app.getBegeleiderStageAanvraagData());
-       
     }
     public void setMaster(HomeController master) 
     {
