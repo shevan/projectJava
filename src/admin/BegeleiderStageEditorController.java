@@ -7,10 +7,13 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -67,15 +70,22 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     @FXML
     private TextField mentorEmailTxt;
     
+    @FXML
+    private Button btnGoedkeuren;
+    @FXML
+    private Button btnAfkeuren;        
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // only called when controller is run directly, not when going through HomeController
         
     }
-        public void testDataInput(){
-            ObservableList data= application.getBegeleiderStageAanvraagData();
-            System.out.println("Datasize:"+data.size());
+    
+    public void testDataInput()
+    {
+        ObservableList data= application.getBegeleiderStageAanvraagData();
+        System.out.println("Datasize:"+data.size());
             
     }
     public void initBegeleiderStageEditor()
@@ -83,12 +93,12 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         testDataInput();
    
         //leidende voorwerpen : begeleidersKolom, bedrijfKolom, begeleiderAanvraagTabel
-        System.out.println("initBegeleider called");
         begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
         {
             @Override
             public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
             {
+                System.out.println("String wrapped");
                 return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderId().getVoornaam());
             }
         });
@@ -104,8 +114,12 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
 
         // Auto resize columns
         begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        showStageAanvraagDetails(null); //dit doet absoluut niets
+//        begeleiderAanvragenTabel.requestFocus();
+//        begeleiderAanvragenTabel.focusModelProperty().get().focus(new TablePosition(begeleiderAanvragenTabel, 0, begeleiderKolom));
+//        begeleiderAanvragenTabel.getSelectionModel().select(0);
+        
+//        showStageAanvraagDetails(null); //dit doet absoluut niets        
+        
         // Listen for selection changes
         begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
         {
@@ -179,6 +193,14 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         ondertekenaarEmailTxt.setText(""); 
     }
     
+    @FXML
+    private void keurgoedStageAanvraagDetails(ActionEvent action)
+    {
+        saveStageAanvraagDetails(begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        //+ zet goedgekeurd in db]
+        // send mail
+    } 
+    
     private void saveStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
         if (stageaanvraag != null)
@@ -194,19 +216,31 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
             stageaanvraag.getStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
             stageaanvraag.getStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
 
-            stageaanvraag.getStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
-            stageaanvraag.getStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
-            stageaanvraag.getStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
-            stageaanvraag.getStageId().getStagementorId().setTelefoon(mentorTelefoonTxt.getText());
-            stageaanvraag.getStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
+            if (stageaanvraag.getStageId().getStagementorId() != null)
+            {
+                stageaanvraag.getStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setTelefoon(mentorTelefoonTxt.getText());
+                stageaanvraag.getStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
+            }
 
-            stageaanvraag.getStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
-            stageaanvraag.getStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
-            stageaanvraag.getStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
-            stageaanvraag.getStageId().getContractondertekenaarId().setTelefoon(ondertekenaarTelefoonTxt.getText());
-            stageaanvraag.getStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
+            if (stageaanvraag.getStageId().getContractondertekenaarId() != null)
+            {
+                stageaanvraag.getStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setTelefoon(ondertekenaarTelefoonTxt.getText());
+                stageaanvraag.getStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
+            }
         } 
     }
+
+    @FXML
+    private void keurafStageAanvraagDetails(ActionEvent action)
+    {
+        //afkeuren
+    } 
     
     public void setApp(Main app)
     {

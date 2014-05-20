@@ -54,19 +54,20 @@ public class Model
     
     public List <Begeleiderstageaanvraag> getBegeleiderStageAanvraagOnbeslistFromDatabase()
     {
-        TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findByGoedgekeurd", Begeleiderstageaanvraag.class);
-        return query.setParameter("goedgekeurd", true).getResultList();
+        TypedQuery<Begeleiderstageaanvraag> query = em.createNamedQuery("Begeleiderstageaanvraag.findByNogNietBeslist", Begeleiderstageaanvraag.class);
+//        return query.setParameter("goedgekeurd", true).getResultList();
+        return query.getResultList();
     }
     
     public List <Studentstage> getStudentenStageAanvraagFromDatabase()
     {
-        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstage.class);
+        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstage.findAll", Studentstage.class);
         return query.getResultList();
     }
     
     public List <Studentstage> getStudentenStageAanvraagOnbeslistFromDatabase()
     {
-        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstagesollicitatie.findNogNietBeslist", Studentstage.class);
+        TypedQuery<Studentstage> query = em.createNamedQuery("Studentstage.findByNogNietBeslist", Studentstage.class);
         return query.getResultList();
     }    
     

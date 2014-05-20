@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Begeleiderstageaanvraag.findAll", query = "SELECT b FROM Begeleiderstageaanvraag b"),
     @NamedQuery(name = "Begeleiderstageaanvraag.findByBegeleiderStageAanvraagId", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.begeleiderStageAanvraagId = :begeleiderStageAanvraagId"),
-    @NamedQuery(name = "Begeleiderstageaanvraag.findByGoedgekeurd", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd = :goedgekeurd")})
+    @NamedQuery(name = "Begeleiderstageaanvraag.findByGoedgekeurd", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd = :goedgekeurd"),
+    @NamedQuery(name = "Begeleiderstageaanvraag.findByNogNietBeslist", query = "SELECT b FROM Begeleiderstageaanvraag b WHERE b.goedgekeurd IS NULL")})
 public class Begeleiderstageaanvraag implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

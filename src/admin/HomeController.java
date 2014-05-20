@@ -76,6 +76,7 @@ public class HomeController extends AnchorPane implements Initializable
         ControllerInterface[] children =
         {
             begeleiderStageEditorController,
+            studentStageEditorController,
             studentEditorController,
             stageEditorController
         };
@@ -87,6 +88,7 @@ public class HomeController extends AnchorPane implements Initializable
         }
         
 //        begeleiderStageEditorController.setMaster(this);
+//        studentStageEditorController.setMaster(this);
 //        studentEditorController.setMaster(this);
 //        stageEditorController.setMaster(this);
     }    
@@ -122,6 +124,7 @@ public class HomeController extends AnchorPane implements Initializable
     @FXML 
     private void displayStudentenStageAanvragen(ActionEvent action)
     {
+        studentStageEditorController.initStudentStageEditor();        
         changeView(2);
     }    
 
@@ -250,7 +253,8 @@ public class HomeController extends AnchorPane implements Initializable
     
     private void hideAllViews()
     {
-        begeleiderStageEditor.setVisible(false);        
+        begeleiderStageEditor.setVisible(false);    
+        studentStageEditor.setVisible(false);  
         studentEditor.setVisible(false);
         stageEditor.setVisible(false);
 

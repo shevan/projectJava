@@ -98,36 +98,36 @@ public class Main extends Application
     }
             
     
-    protected void gotoBegeleiderStageEditor()
-    {
-        try
-        {
-            //gelieve nieuwe methode van Van Impe toepassen hier
-            BegeleiderStageEditorController begeleiderStage = (BegeleiderStageEditorController) replaceSceneContent("view/BegeleiderStageEditor.fxml");
-            begeleiderStage.setApp(this);
-            begeleiderStage.setUpWithModel(model);
-        }
-        catch(Exception ex)
-        {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    protected void gotoStudentStageEditor()
-    {
-        try
-        {
-            //gelieve nieuwe methode van Van Impe toepassen hier
-            StudentStageEditorController studentStage = (StudentStageEditorController) replaceSceneContent("view/StudentStageEditor.fxml");
-            studentStage.setApp(this);
-            studentStage.setUpWithModel(model);
-        }
-        catch(Exception ex)
-        {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }    
-    
+//    protected void gotoBegeleiderStageEditor()
+//    {
+//        try
+//        {
+//            //gelieve nieuwe methode van Van Impe toepassen hier
+//            BegeleiderStageEditorController begeleiderStage = (BegeleiderStageEditorController) replaceSceneContent("view/BegeleiderStageEditor.fxml");
+//            begeleiderStage.setApp(this);
+//            begeleiderStage.setUpWithModel(model);
+//        }
+//        catch(Exception ex)
+//        {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//
+//    protected void gotoStudentStageEditor()
+//    {
+//        try
+//        {
+//            //gelieve nieuwe methode van Van Impe toepassen hier
+//            StudentStageEditorController studentStage = (StudentStageEditorController) replaceSceneContent("view/StudentStageEditor.fxml");
+//            studentStage.setApp(this);
+//            studentStage.setUpWithModel(model);
+//        }
+//        catch(Exception ex)
+//        {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }    
+//    
 //    protected void gotoStageEditor()
 //    {
 //        try
@@ -237,7 +237,7 @@ public class Main extends Application
     public ObservableList<Studentstage> getStudenStageSollicitatietData()
     {
         ObservableList<Studentstage> data = FXCollections.observableArrayList();
-        List <Studentstage> list = model.getStudentenStageAanvraagOnbeslistFromDatabase();
+        List <Studentstage> list = model.getStudentenStageAanvraagFromDatabase();
         for(Studentstage item : list)
         {
             data.add(item);
@@ -260,12 +260,11 @@ public class Main extends Application
     {
         ObservableList<Begeleiderstageaanvraag> data = FXCollections.observableArrayList();
         List <Begeleiderstageaanvraag> list =  model.getBegeleiderStageAanvraagFromDatabase();
-                                                    //getBegeleiderStageAanvraagOnbeslistFromDatabase();
                                                     //wissel mij terug
-        for (Begeleiderstageaanvraag item : list)
-        {
-            System.out.println(item.getBegeleiderId());
-        }
+//        for (Begeleiderstageaanvraag item : list)
+//        {
+//            System.out.println(item.getBegeleiderId());
+//        }
         
         for(Begeleiderstageaanvraag item : list)
         {

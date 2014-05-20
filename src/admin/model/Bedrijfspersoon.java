@@ -67,9 +67,9 @@ public class Bedrijfspersoon implements Serializable {
     @JoinColumn(name = "Bedrijf_BedrijfsId", referencedColumnName = "BedrijfsId")
     @ManyToOne
     private Bedrijf bedrijfBedrijfsId;
-    @OneToMany(mappedBy = "stagementorId")
+    @OneToMany(mappedBy = "StagementorId")
     private Collection<Stage> stageCollection;
-    @OneToMany(mappedBy = "contractondertekenaarId")
+    @OneToMany(mappedBy = "ContractondertekenaarId")
     private Collection<Stage> stageCollection1;
 
     public Bedrijfspersoon() {
