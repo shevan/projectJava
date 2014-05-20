@@ -15,16 +15,21 @@
       <center>
         <StackPane prefHeight="150.0" prefWidth="200.0">
           <children>
-            <AnchorPane disable="false" prefHeight="200.0" prefWidth="200.0" visible="false" StackPane.alignment="TOP_LEFT">
+            <AnchorPane disable="false" prefHeight="200.0" prefWidth="200.0" visible="true" StackPane.alignment="TOP_LEFT">
               <children>
                 <Text fontSmoothingType="LCD" layoutX="238.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welkom bij STUA" underline="true">
                   <font>
                     <Font name="Andalus" size="30.0" />
                   </font>
                 </Text>
+                <Text fontSmoothingType="LCD" layoutX="114.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HomeBorderLayout.fxml bestaat omdat borderlayouts niet injectable zijn" underline="false">
+                  <font>
+                    <Font name="Andalus" size="25.0" />
+                  </font>
+                </Text>
               </children>
             </AnchorPane>
-            <BorderPane id="BorderPane" fx:id="begeleidersStageEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="true">
+            <BorderPane id="BorderPane" fx:id="begeleidersStageEditor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" visible="false">
               <bottom>
                 <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0">
                   <children>
@@ -42,7 +47,7 @@
                 </HBox>
               </bottom>
               <center>
-                <SplitPane dividerPositions="0.3972602739726027" focusTraversable="true" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
+                <SplitPane dividerPositions="0.39628180039138944" focusTraversable="true" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
                   <items>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
                       <children>
@@ -280,7 +285,7 @@
                 </SplitPane>
               </center>
             </BorderPane>
-            <BorderPane id="GenericEditingPanel" fx:id="bewerkScherm" disable="false" focusTraversable="false" opacity="1.0" prefHeight="200.0" prefWidth="200.0" visible="true">
+            <BorderPane id="GenericEditingPanel" fx:id="bewerkScherm" disable="false" focusTraversable="false" opacity="1.0" prefHeight="200.0" prefWidth="200.0" visible="false">
               <bottom>
                 <HBox prefHeight="100.0" prefWidth="200.0" />
               </bottom>

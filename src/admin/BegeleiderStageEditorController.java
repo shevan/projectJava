@@ -70,6 +70,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     public void initialize(URL url, ResourceBundle rb)
     {
         // only called when controller is run directly, not when going through HomeController
+        
     }
     
     public void initBegeleiderStageEditor()
