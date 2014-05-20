@@ -98,7 +98,6 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
             @Override
             public ObservableValue < String > call(CellDataFeatures < Begeleiderstageaanvraag, String > p )
             {
-                System.out.println("String wrapped");
                 return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderId().getVoornaam());
             }
         });
@@ -197,8 +196,14 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     private void keurgoedStageAanvraagDetails(ActionEvent action)
     {
         saveStageAanvraagDetails(begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-        //+ zet goedgekeurd in db]
-        // send mail
+        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedgekeurd(true);
+        Mail.sendMail(begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getEmail(), "Goedkeuring stage",
+            "Geachte " + begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getVoornaam() + " " +
+                    begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor het begeleiden van de stage voor bedrijf " + begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStageId().getBedrijfId().getBedrijfsNaam() +
+                    " is goedgekeurd.<br/><br/>" +
+            "met vriendelijke groeten," +
+            "het administrator-team.");
     } 
     
     private void saveStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
