@@ -9,20 +9,20 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="homeController" prefHeight="768.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeController">
+<AnchorPane fx:id="homeController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.HomeController">
   <children>
     <AnchorPane fx:id="anchorPane001" layoutX="0.0" layoutY="31.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="737.0" prefWidth="1366.0">
       <children>
         <fx:include fx:id="begeleiderStageEditor" source="BegeleiderStageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
         <fx:include fx:id="stageEditor" source="StageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
         <fx:include fx:id="studentEditor" source="StudentEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="660.0" prefWidth="1366.0" visible="false" />
-        <Button fx:id="btnBegeleidersAanvragen" layoutX="398.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Begeleider aanvragen" />
-        <Button fx:id="btnStudentenAanvragen" layoutX="398.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudentenStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Studenten aanvragen" />
-        <Button fx:id="btnStages" layoutX="598.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayStages" prefHeight="27.0" prefWidth="170.0" text="Stages" />
-        <Button fx:id="btnStudenten" layoutX="598.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudenten" prefHeight="27.0" prefWidth="170.0" text="Studenten" />
-        <Button fx:id="btnBedrijven" layoutX="798.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBedrijven" prefHeight="27.0" prefWidth="170.0" text="Bedrijven" />
-        <Button fx:id="btnGebruikers" layoutX="798.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayGebruikers" prefHeight="27.0" prefWidth="170.0" text="Gebruikers" />
-        <ImageView fitHeight="73.40429691156054" fitWidth="107.0740737915039" layoutX="1258.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+        <Button fx:id="btnBegeleidersAanvragen" layoutX="237.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Begeleider aanvragen" />
+        <Button fx:id="btnStudentenAanvragen" layoutX="237.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudentenStageAanvragen" prefHeight="27.0" prefWidth="170.0" text="Studenten aanvragen" />
+        <Button fx:id="btnStages" layoutX="437.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayStages" prefHeight="27.0" prefWidth="170.0" text="Stages" />
+        <Button fx:id="btnStudenten" layoutX="437.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayStudenten" prefHeight="27.0" prefWidth="170.0" text="Studenten" />
+        <Button fx:id="btnBedrijven" layoutX="637.0" layoutY="8.0" mnemonicParsing="false" onAction="#displayBedrijven" prefHeight="27.0" prefWidth="170.0" text="Bedrijven" />
+        <Button fx:id="btnGebruikers" layoutX="637.0" layoutY="41.0" mnemonicParsing="false" onAction="#displayGebruikers" prefHeight="27.0" prefWidth="170.0" text="Gebruikers" />
+        <ImageView fitHeight="73.40429691156054" fitWidth="107.0740737915039" layoutX="910.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
           <image>
             <Image url="@../../resources/logo.png" />
           </image>

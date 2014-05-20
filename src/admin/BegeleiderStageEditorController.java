@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -72,9 +73,16 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         // only called when controller is run directly, not when going through HomeController
         
     }
-    
+        public void testDataInput(){
+            ObservableList data= application.getBegeleiderStageAanvraagData();
+            System.out.println("Datasize:"+data.size());
+            
+    }
     public void initBegeleiderStageEditor()
-    {
+    {   
+        testDataInput();
+   
+        //leidende voorwerpen : begeleidersKolom, bedrijfKolom, begeleiderAanvraagTabel
         System.out.println("initBegeleider called");
         begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
         {
@@ -98,7 +106,6 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
         begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         showStageAanvraagDetails(null); //dit doet absoluut niets
-		
         // Listen for selection changes
         begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Begeleiderstageaanvraag>()
         {
@@ -109,7 +116,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
             }
         });
     }     
-   
+         
     protected void showStageAanvraagDetails(Begeleiderstageaanvraag stageaanvraag)
     {
         emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten

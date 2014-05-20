@@ -259,7 +259,9 @@ public class Main extends Application
     public ObservableList<Begeleiderstageaanvraag> getBegeleiderStageAanvraagData()
     {
         ObservableList<Begeleiderstageaanvraag> data = FXCollections.observableArrayList();
-        List <Begeleiderstageaanvraag> list =  model.getBegeleiderStageAanvraagOnbeslistFromDatabase();
+        List <Begeleiderstageaanvraag> list =  model.getBegeleiderStageAanvraagFromDatabase();
+                                                    //getBegeleiderStageAanvraagOnbeslistFromDatabase();
+                                                    //wissel mij terug
         for (Begeleiderstageaanvraag item : list)
         {
             System.out.println(item.getBegeleiderId());
