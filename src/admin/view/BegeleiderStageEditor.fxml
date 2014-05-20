@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
+<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="498.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.BegeleiderStageEditorController">
   <children>
-    <SplitPane dividerPositions="0.500733137829912" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
+    <SplitPane dividerPositions="0.3649706457925636" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="450.0" prefWidth="1024.0" rotate="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
           <children>
@@ -29,7 +29,7 @@
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                       <content>
                         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="572.0">
                           <children>
@@ -204,7 +204,7 @@
         </Accordion>
       </items>
     </SplitPane>
-    <HBox alignment="CENTER" layoutX="539.0" layoutY="617.0" prefHeight="30.0" prefWidth="300.0">
+    <HBox alignment="CENTER" layoutX="449.0" layoutY="459.0" prefHeight="30.0" prefWidth="300.0">
       <children>
         <Button prefWidth="100.0" text="Goedkeuren">
           <font>
