@@ -246,6 +246,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     {
         //afkeuren
         //msg box with reason?
+        //refresh list?
     } 
     
     public void setApp(Main app)
