@@ -245,6 +245,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     private void keurafStageAanvraagDetails(ActionEvent action)
     {
         //afkeuren
+        //msg box with reason?
     } 
     
     public void setApp(Main app)
