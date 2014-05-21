@@ -78,7 +78,7 @@ public class Bedrijf implements Serializable {
     @OneToMany(mappedBy = "bedrijfBedrijfsId")
     private Collection<Bedrijfspersoon> bedrijfspersoonCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bedrijfId")
-    private Collection<Stage> stageCollection;
+    private Collection<Stages> stageCollection;
 
     public Bedrijf() {
     }
@@ -194,11 +194,11 @@ public class Bedrijf implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Stage> getStageCollection() {
+    public Collection<Stages> getStageCollection() {
         return stageCollection;
     }
 
-    public void setStageCollection(Collection<Stage> stageCollection) {
+    public void setStageCollection(Collection<Stages> stageCollection) {
         this.stageCollection = stageCollection;
     }
 

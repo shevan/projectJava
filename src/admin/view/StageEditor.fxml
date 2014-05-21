@@ -9,27 +9,27 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="begeleiderStageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="660.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.StageEditorController">
+<AnchorPane id="AnchorPane" fx:id="stageEditorController" maxHeight="-1.0" maxWidth="-1.0" prefHeight="498.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="admin.StageEditorController">
   <children>
-    <SplitPane dividerPositions="0.500733137829912" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="610.0" prefWidth="1366.0" rotate="0.0">
+    <SplitPane dividerPositions="0.3473581213307241" focusTraversable="true" layoutX="0.0" layoutY="0.0" prefHeight="450.0" prefWidth="1024.0" rotate="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="474.0" prefWidth="391.5">
           <children>
-            <TableView id="begeleiderStage" fx:id="begeleiderAanvragenTabel" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView id="stage" fx:id="stageAanvragenTabel" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="125.0" text="Stage" fx:id="bedrijfKolom" />
-                <TableColumn prefWidth="125.0" text="Student" fx:id="begeleiderKolom" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="175.0" text="Bedrijf" fx:id="bedrijfKolom" />
+                <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="175.0" text="Specialisatie" fx:id="specialisatieKolom" />
               </columns>
             </TableView>
           </children>
         </AnchorPane>
-        <Accordion prefHeight="654.0" prefWidth="631.0">
+        <Accordion prefHeight="448.0" prefWidth="666.0">
           <expandedPane>
             <TitledPane fx:id="stageTab" text="Stage gegevens">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                       <content>
                         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="572.0">
                           <children>
@@ -137,7 +137,7 @@
                                 <Label text="E-Mail :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                                 <TextField fx:id="mentorEmailTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <Label text="Familienaam:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="mentorFamilienaamTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="mentorFamilienaamTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               </children>
                               <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
@@ -204,14 +204,14 @@
         </Accordion>
       </items>
     </SplitPane>
-    <HBox alignment="CENTER" layoutX="539.0" layoutY="617.0" prefHeight="30.0" prefWidth="300.0">
+    <HBox alignment="CENTER" layoutX="362.0" layoutY="453.0" prefHeight="30.0" prefWidth="300.0">
       <children>
-        <Button prefWidth="100.0" text="Opslaan">
+        <Button fx:id="btnGoedkeuren" onAction="#keurgoedStageAanvraagDetails" prefWidth="100.0" text="Goedkeuren">
           <font>
             <Font size="14.0" fx:id="x1" />
           </font>
         </Button>
-        <Button font="$x1" mnemonicParsing="false" prefWidth="100.0" text="Annuleren">
+        <Button fx:id="btnAfkeuren" font="$x1" mnemonicParsing="false" onAction="#keurafStageAanvraagDetails" prefWidth="100.0" text="Afkeuren">
           <HBox.margin>
             <Insets left="10.0" right="10.0" />
           </HBox.margin>

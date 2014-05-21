@@ -82,7 +82,7 @@ public class Student implements Serializable {
     private String foto;
     @JoinColumn(name = "StageId", referencedColumnName = "StageId")
     @ManyToOne
-    private Stage stageId;
+    private Stages stageId;
     @JoinColumn(name = "Begeleider_BegeleiderId", referencedColumnName = "BegeleiderId")
     @ManyToOne
     private Begeleider begeleiderBegeleiderId;
@@ -196,11 +196,11 @@ public class Student implements Serializable {
         this.foto = foto;
     }
 
-    public Stage getStageId() {
+    public Stages getStageId() {
         return stageId;
     }
 
-    public void setStageId(Stage stageId) {
+    public void setStageId(Stages stageId) {
         this.stageId = stageId;
     }
 

@@ -46,7 +46,7 @@ public class Begeleiderstageaanvraag implements Serializable {
     private Begeleider begeleiderId;
     @JoinColumn(name = "StageId", referencedColumnName = "StageId")
     @ManyToOne(optional = false)
-    private Stage stageId;
+    private Stages stageId;
 
     public Begeleiderstageaanvraag() {
     }
@@ -79,11 +79,11 @@ public class Begeleiderstageaanvraag implements Serializable {
         this.begeleiderId = begeleiderId;
     }
 
-    public Stage getStageId() {
+    public Stages getStageId() {
         return stageId;
     }
 
-    public void setStageId(Stage stageId) {
+    public void setStageId(Stages stageId) {
         this.stageId = stageId;
     }
 

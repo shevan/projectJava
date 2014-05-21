@@ -26,7 +26,7 @@ public class HomeController extends AnchorPane implements Initializable
     @FXML
     private Button btnBegeleidersAanvragen;
     @FXML
-    private Button btnStudentenAanvragen;
+    private Button btnStageAanvragen;
     @FXML
     private Button btnStages;
     @FXML
@@ -85,33 +85,13 @@ public class HomeController extends AnchorPane implements Initializable
             controller.setApp(application);
             controller.setUpWithModel(model);
         }
-        
-//        begeleiderStageEditorController.setMaster(this);
-//        studentStageEditorController.setMaster(this);
-//        studentEditorController.setMaster(this);
-//        stageEditorController.setMaster(this);
     }    
     
         
     @Override
     public void initialize(URL url, ResourceBundle rb)
     { 
-    }    
-    
-//    public BegeleiderStageEditorController getBegeleiderStageEditorController()
-//    {
-//        return begeleiderStageEditorController;
-//    }
-//    
-//    public StageEditorController getStageEditorController()
-//    {
-//        return stageEditorController;
-//    }
-//    
-//    public StudentEditorController getStudentEditorController()
-//    {
-//        return studentEditorController;
-//    }    
+    }       
     
     @FXML 
     private void displayBegeleiderStageAanvragen(ActionEvent action)
@@ -121,16 +101,17 @@ public class HomeController extends AnchorPane implements Initializable
     }
     
     @FXML 
-    private void displayStudentenStageAanvragen(ActionEvent action)
+    private void displayStageAanvragen(ActionEvent action)
     {
-        studentStageEditorController.initStudentStageEditor();        
+        stageEditorController.initStageEditor();        
         changeView(2);
     }    
 
     @FXML 
     private void displayStudenten(ActionEvent action)
     {
-       changeView(3);
+        studentStageEditorController.initStudentStageEditor();           
+        changeView(3);
     }
     
     @FXML 
@@ -149,69 +130,6 @@ public class HomeController extends AnchorPane implements Initializable
     {
 
     }   
-    
-//    private void setTabListView () //Make one for each class to display
-//    {   //controller has to hold various of these, one for every action
-//        /*
-//        Voor elke tabel die moet getoond worden in de lijst
-//        moet er een ander type opgehaald worden
-//        met respectievelijk elk een knop
-//        hierop moet per type een geformateerde string van gemaakt worden*/
-//        
-//        listItems.add("Gelieve een Tabel te selecteren");
-//        
-//        /*List <Aspnetusers> aspnetusers = model.getUsersFromDatabase();
-//                for (Aspnetusers user: aspnetusers){
-//            System.out.println(user.getUserName());
-//        }
-//        for(Aspnetusers user : aspnetusers)
-//        {
-//            listItems.add(user.getUserName());
-//            //set username max char = tab space
-//        }
-//         */
-//    }
-    
-//    @FXML
-//    public void itemDoubleclickAction (MouseEvent event)
-//    {
-//         if (event.getClickCount() > 1) 
-//         {
-//            if (!activelist.isEmpty())
-//            {
-//            
-//                int s = tabListView.getSelectionModel().getSelectedIndex();
-//                
-//                if (activelist.get(0) instanceof Begeleiderstageaanvraag)
-//                {
-//                    master.getBegeleiderStageEditorController().showStageAanvraagDetails((Begeleiderstageaanvraag)activelist.get(s));
-//                    master.changeView(1);
-//                }
-//                if(activelist.get(0) instanceof Stage)
-//                {                 
-//                    master.getStageEditorController().showStageDetails((Stage)activelist.get(s));
-//                    master.changeView(2);
-//                }                
-//                if(activelist.get(0) instanceof Student)
-//                {
-//                    master.getStudentEditorController().showStudentDetails((Student)activelist.get(s));
-//                    master.changeView(3);
-//                }
-//                if(activelist.get(0) instanceof Aspnetusers)
-//                {
-//                    /*openview*/
-//                }
-//                if(activelist.get(0) instanceof Bedrijf)
-//                {
-//                    /*openview*/
-//                }
-//                if(activelist.get(0) instanceof Bedrijfspersoon)
-//                {   
-//                    /*openview*/
-//                }
-//            } 
-//         }
-//    }
     
     public void changeView (int v)
     {
@@ -232,7 +150,7 @@ public class HomeController extends AnchorPane implements Initializable
             case 2:
             {
                 hideAllViews();
-                studentStageEditor.setVisible(true);
+                stageEditor.setVisible(true);
                 break; 
             }            
             case 3:
@@ -244,7 +162,7 @@ public class HomeController extends AnchorPane implements Initializable
             case 4:
             {
                 hideAllViews();
-                stageEditor.setVisible(true);
+//                stageEditor.setVisible(true); fix
                 break; 
             }
         }

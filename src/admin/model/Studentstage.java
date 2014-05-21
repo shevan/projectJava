@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Studentstage.findByFavoriet", query = "SELECT s FROM Studentstage s WHERE s.favoriet = :favoriet"),
     @NamedQuery(name = "Studentstage.findByGesolliciteerd", query = "SELECT s FROM Studentstage s WHERE s.gesolliciteerd = :gesolliciteerd"),
     @NamedQuery(name = "Studentstage.findByNogNietBeslist", query = "SELECT b FROM Studentstage b WHERE b.goedgekeurd IS NULL")})
+
 public class Studentstage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,7 +50,7 @@ public class Studentstage implements Serializable {
     private Boolean gesolliciteerd;
     @JoinColumn(name = "StageId", referencedColumnName = "StageId")
     @ManyToOne(optional = false)
-    private Stage stageId;
+    private Stages stageId;
     @JoinColumn(name = "StudentId", referencedColumnName = "StudentId")
     @ManyToOne(optional = false)
     private Student studentId;
@@ -93,11 +94,11 @@ public class Studentstage implements Serializable {
         this.gesolliciteerd = gesolliciteerd;
     }
 
-    public Stage getStageId() {
+    public Stages getStageId() {
         return stageId;
     }
 
-    public void setStageId(Stage stageId) {
+    public void setStageId(Stages stageId) {
         this.stageId = stageId;
     }
 

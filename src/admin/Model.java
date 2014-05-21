@@ -65,11 +65,17 @@ public class Model
         return query.getResultList();
     }
     
-    public List <Studentstage> getStudentenStageAanvraagOnbeslistFromDatabase()
+    public List <Studentstage> getStudentStageAanvraagOnbeslistFromDatabase()
     {
         TypedQuery<Studentstage> query = em.createNamedQuery("Studentstage.findByNogNietBeslist", Studentstage.class);
         return query.getResultList();
-    }    
+    }   
+
+    public List <Stages> getStageAanvraagOnbeslistFromDatabase()
+    {
+        TypedQuery<Stages> query = em.createNamedQuery("Stages.findByNogNietBeslist", Stages.class);
+        return query.getResultList();
+    }      
     
     public List <Gegeven> getGegevensFromDatabase()
     {
@@ -77,9 +83,9 @@ public class Model
         return query.getResultList();
     }
     
-    public List <Stage> getStageFromDatabase()
+    public List <Stages> getStageFromDatabase()
     {
-        TypedQuery<Stage> query = em.createNamedQuery("Stage.findAll", Stage.class);
+        TypedQuery<Stages> query = em.createNamedQuery("Stage.findAll", Stages.class);
         return query.getResultList();
     }
     
@@ -88,4 +94,10 @@ public class Model
         TypedQuery<Student> query = em.createNamedQuery("Student.findAll", Student.class);
         return query.getResultList();
     }
+    
+    public List <Studentstagesollicitatie> getStudentenStageSollicitatieFromDatabase()
+    {
+        TypedQuery<Studentstagesollicitatie> query = em.createNamedQuery("Studentstagesollicitatie.findAll", Studentstagesollicitatie.class);
+        return query.getResultList();
+    }    
 }

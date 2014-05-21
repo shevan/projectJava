@@ -1,9 +1,9 @@
 package admin;
 
-
 import admin.model.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -11,31 +11,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
-import javafx.scene.text.Font;
+import javafx.util.Callback;
+import javax.swing.JOptionPane;
 
 public class StageEditorController implements Initializable, ControllerInterface
 {
-    private Model model;
     private Main application;
+    private Model model;
+    private HomeController master;
     
     @FXML
-    private TableView<Stage> begeleiderAanvragenTabel;
+    private TableView<Stages> stageAanvragenTabel;
     @FXML
-    private TableColumn<Stage, String> begeleiderKolom;
+    private TableColumn<Stages, String> bedrijfKolom;
     @FXML
-    private TableColumn<Stage, String> bedrijfKolom;
+    private TableColumn<Stages, String> specialisatieKolom;
     @FXML
     private TextArea projectOmschrijvingTxt;
-    @FXML
-    private StageEditorController stageEditorController;
-    @FXML
-    private HomeController homeController;
-    @FXML
-    private TitledPane x2;
     @FXML
     private TextField ondertekenaarVoornaamTxt;
     @FXML
@@ -46,10 +42,6 @@ public class StageEditorController implements Initializable, ControllerInterface
     private TextField ondertekenaarTelefoonTxt;
     @FXML
     private TextField ondertekenaarEmailTxt;
-    @FXML
-    private Font x3;
-    @FXML
-    private TitledPane stageTab;
     @FXML
     private TextField projectTitelTxt;
     @FXML
@@ -76,87 +68,90 @@ public class StageEditorController implements Initializable, ControllerInterface
     private TextField mentorTelefoonTxt;
     @FXML
     private TextField mentorEmailTxt;
-    @FXML 
-    Button back;
-    private HomeController master;
     
     @FXML
-    private void goBack(ActionEvent action)
-    {
-        master.changeView(1);
-    }
+    private Button btnGoedkeuren;
+    @FXML
+    private Button btnAfkeuren;        
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        /*begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Stage, String >, ObservableValue < String > >()
-        {
-            @ Override
-            public ObservableValue < String > call(CellDataFeatures < Stage, String > p )
-            {
-                return new ReadOnlyStringWrapper( ( p.getValue().getBegeleiderBegeleiderId() == null ) ? "" : p.getValue().getBegeleiderBegeleiderId().getFamilienaam()+" "+p.getValue().getBegeleiderBegeleiderId().getVoornaam());
-            }
-        });
+        // only called when controller is run directly, not when going through HomeController
         
-        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Stage, String >, ObservableValue < String > >()
-        {
-            @ Override
-            public ObservableValue < String > call(CellDataFeatures < Stage, String > p )
-            {
-                return new ReadOnlyStringWrapper( ( p.getValue().getStageId().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getStageId().getBedrijfId().getBedrijfsNaam());
-            }
-        });*/
-
-        // Auto resize columns
-        begeleiderAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        //showStageAanvraagDetails(null);
-		
-        // Listen for selection changes
-        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Stage>()
+    }
+    
+    public void initStageEditor()
+    {   
+        bedrijfKolom.setCellValueFactory( new Callback < CellDataFeatures < Stages, String >, ObservableValue < String > >()
         {
             @Override
-            public void changed(ObservableValue<? extends Stage> observable,
-                            Stage oldValue, Stage newValue) {
-                    showStageDetails(newValue);
+            public ObservableValue < String > call(CellDataFeatures < Stages, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getBedrijfId().getBedrijfsNaam() == null ) ? "" : p.getValue().getBedrijfId().getBedrijfsNaam());
+            }        
+        });
+        
+        specialisatieKolom.setCellValueFactory( new Callback < CellDataFeatures < Stages, String >, ObservableValue < String > >()
+        {
+            @Override
+            public ObservableValue < String > call(CellDataFeatures < Stages, String > p )
+            {
+                return new ReadOnlyStringWrapper( ( p.getValue().getStageId() == null ) ? "" : p.getValue().getSpecialisatie());
             }
         });
-    }    
-   
-    protected void showStageDetails(Stage stage)
+
+        // Auto resize columns
+        stageAanvragenTabel.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        studentAanvragenTabel.getSelectionModel().select(0);
+        
+//        showStageAanvraagDetails(null); //dit doet absoluut niets        
+        
+        // Listen for selection changes
+        stageAanvragenTabel.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Stages>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Stages> observable,
+                            Stages oldValue, Stages newValue) {
+                    showStageAanvraagDetails(newValue); //laad new values in bewerkscherm
+            }
+        });
+    }     
+         
+    protected void showStageAanvraagDetails(Stages stageaanvraag)
     {
-        emptyTextFields(); // moet geleegd worden, anders kunnen velden die op dit moment leeg moeten zijn nog oude gegevens van vorige stage bevatten
-//        if (stageaanvraag != null)
-//        {
-//            projectTitelTxt.setText(stageaanvraag.getStageStageId().getProjectTitel());
-//            projectOmschrijvingTxt.setText(stageaanvraag.getStageStageId().getProjectOmschrijving());
-//            specialisatieTxt.setText(stageaanvraag.getStageStageId().getSpecialisatie());
-//            periodeTxt.setText(stageaanvraag.getStageStageId().getPeriode());
-//            aantalStudentenTxt.setText(stageaanvraag.getStageStageId().getAantalStudenten()+"");
-//
-//            bedrijfsnaamTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getBedrijfsNaam());
-//            bedrijfStraatEnNrTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getStraat());
-//            bedrijfsGemeenteTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getGemeente());
-//            bedrijfPostcodeTxt.setText(stageaanvraag.getStageStageId().getBedrijfId().getPostcode()+"");
-//
-//            if (stageaanvraag.getStageStageId().getStagementorId() != null)
-//            {
-//                mentorVoornaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getVoornaam());
-//                mentorFamilienaamTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFamilienaam());
-//                mentorFunctieTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getFunctie());
-//                mentorTelefoonTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getTelefoon()+"");
-//                mentorEmailTxt.setText(stageaanvraag.getStageStageId().getStagementorId().getEmail());
-//            }
-//
-//            if (stageaanvraag.getStageStageId().getContractondertekenaarId() != null)
-//            {
-//                ondertekenaarVoornaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getVoornaam());
-//                ondertekenaarFamilienaamTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFamilienaam());
-//                ondertekenaarFunctieTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getFunctie());
-//                ondertekenaarTelefoonTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getTelefoon()+"");
-//                ondertekenaarEmailTxt.setText(stageaanvraag.getStageStageId().getContractondertekenaarId().getEmail());
-//            }
-//        }
+        emptyTextFields(); // moet geleegd worden, anders kunnen velden die nu leeg moeten zijn nog oude gegevens van vorige stage bevatten
+        if (stageaanvraag != null)
+        {
+            projectTitelTxt.setText(stageaanvraag.getProjectTitel());
+            projectOmschrijvingTxt.setText(stageaanvraag.getProjectOmschrijving());
+            specialisatieTxt.setText(stageaanvraag.getSpecialisatie());
+            periodeTxt.setText(stageaanvraag.getPeriode());
+            aantalStudentenTxt.setText(stageaanvraag.getAantalStudenten()+"");
+
+            bedrijfsnaamTxt.setText(stageaanvraag.getBedrijfId().getBedrijfsNaam());
+            bedrijfStraatEnNrTxt.setText(stageaanvraag.getBedrijfId().getStraat());
+            bedrijfsGemeenteTxt.setText(stageaanvraag.getBedrijfId().getGemeente());
+            bedrijfPostcodeTxt.setText(stageaanvraag.getBedrijfId().getPostcode()+"");
+
+            if (stageaanvraag.getStagementorId() != null)
+            {
+                mentorVoornaamTxt.setText(stageaanvraag.getStagementorId().getVoornaam());
+                mentorFamilienaamTxt.setText(stageaanvraag.getStagementorId().getFamilienaam());
+                mentorFunctieTxt.setText(stageaanvraag.getStagementorId().getFunctie());
+                mentorTelefoonTxt.setText(stageaanvraag.getStagementorId().getTelefoon()+"");
+                mentorEmailTxt.setText(stageaanvraag.getStagementorId().getEmail());
+            }
+
+            if (stageaanvraag.getContractondertekenaarId() != null)
+            {
+                ondertekenaarVoornaamTxt.setText(stageaanvraag.getContractondertekenaarId().getVoornaam());
+                ondertekenaarFamilienaamTxt.setText(stageaanvraag.getContractondertekenaarId().getFamilienaam());
+                ondertekenaarFunctieTxt.setText(stageaanvraag.getContractondertekenaarId().getFunctie());
+                ondertekenaarTelefoonTxt.setText(stageaanvraag.getContractondertekenaarId().getTelefoon()+"");
+                ondertekenaarEmailTxt.setText(stageaanvraag.getContractondertekenaarId().getEmail());
+            }
+        } 
     }
     
     private void emptyTextFields()
@@ -185,46 +180,106 @@ public class StageEditorController implements Initializable, ControllerInterface
         ondertekenaarEmailTxt.setText(""); 
     }
     
-    private void saveStageDetails(Stage stage)
+    @FXML
+    private void keurgoedStageAanvraagDetails(ActionEvent action)
     {
-//        if (stageaanvraag != null)
-//        {         
-//            stageaanvraag.getStageStageId().setProjectTitel(projectTitelTxt.getText());
-//            stageaanvraag.getStageStageId().setProjectOmschrijving(projectOmschrijvingTxt.getText());
-//            stageaanvraag.getStageStageId().setSpecialisatie(specialisatieTxt.getText());
-//            stageaanvraag.getStageStageId().setPeriode(periodeTxt.getText());
-//            stageaanvraag.getStageStageId().setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
-//
-//            stageaanvraag.getStageStageId().getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
-//            stageaanvraag.getStageStageId().getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
-//            stageaanvraag.getStageStageId().getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
-//            stageaanvraag.getStageStageId().getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
-//
-//            stageaanvraag.getStageStageId().getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
-//            stageaanvraag.getStageStageId().getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
-//            stageaanvraag.getStageStageId().getStagementorId().setFunctie(mentorFunctieTxt.getText());
-//            stageaanvraag.getStageStageId().getStagementorId().setTelefoon(Integer.parseInt(mentorTelefoonTxt.getText()));
-//            stageaanvraag.getStageStageId().getStagementorId().setEmail(mentorEmailTxt.getText());
-//
-//            stageaanvraag.getStageStageId().getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
-//            stageaanvraag.getStageStageId().getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
-//            stageaanvraag.getStageStageId().getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
-//            stageaanvraag.getStageStageId().getContractondertekenaarId().setTelefoon(Integer.parseInt(ondertekenaarTelefoonTxt.getText()));
-//            stageaanvraag.getStageStageId().getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
-//        } 
-    }
+        saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(1);
+        // aangezien er geen begeleider is bij het indienen van opdracht maar wel een bedrijf.bedrijfspersoon = de eerste in collection is degene die het bedrijf heeft ingeschreven in DB via site
+        Mail.sendMail(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getEmail(), "Goedkeuring stage",
+            "Geachte " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getVoornaam()+ " " +
+                    stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor het toevoegen van een nieuwe stage aan bedrijf " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfsNaam() +
+                    " is goedgekeurd voor periode " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getPeriode() + ".<br/><br/>" +
+            "met vriendelijke groeten,<br/>" +
+            "het administrator-team.");
+    } 
     
+    private void saveStageAanvraagDetails(Stages stageaanvraag)
+    {
+        if (stageaanvraag != null)
+        {         
+            stageaanvraag.setProjectTitel(projectTitelTxt.getText());
+            stageaanvraag.setProjectOmschrijving(projectOmschrijvingTxt.getText());
+            stageaanvraag.setSpecialisatie(specialisatieTxt.getText());
+            stageaanvraag.setPeriode(periodeTxt.getText());
+            stageaanvraag.setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
+
+            stageaanvraag.getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());
+            stageaanvraag.getBedrijfId().setStraat(bedrijfStraatEnNrTxt.getText());
+            stageaanvraag.getBedrijfId().setGemeente(bedrijfsGemeenteTxt.getText());
+            stageaanvraag.getBedrijfId().setPostcode(Integer.parseInt(bedrijfPostcodeTxt.getText()));
+
+            if (stageaanvraag.getStagementorId() != null)
+            {
+                stageaanvraag.getStagementorId().setVoornaam(mentorVoornaamTxt.getText());
+                stageaanvraag.getStagementorId().setFamilienaam(mentorFamilienaamTxt.getText());
+                stageaanvraag.getStagementorId().setFunctie(mentorFunctieTxt.getText());
+                stageaanvraag.getStagementorId().setTelefoon(mentorTelefoonTxt.getText());
+                stageaanvraag.getStagementorId().setEmail(mentorEmailTxt.getText());
+            }
+
+            if (stageaanvraag.getContractondertekenaarId() != null)
+            {
+                stageaanvraag.getContractondertekenaarId().setVoornaam(ondertekenaarVoornaamTxt.getText());
+                stageaanvraag.getContractondertekenaarId().setFamilienaam(ondertekenaarFamilienaamTxt.getText());
+                stageaanvraag.getContractondertekenaarId().setFunctie(ondertekenaarFunctieTxt.getText());
+                stageaanvraag.getContractondertekenaarId().setTelefoon(ondertekenaarTelefoonTxt.getText());
+                stageaanvraag.getContractondertekenaarId().setEmail(ondertekenaarEmailTxt.getText());
+            }
+        } 
+    }
+
+    @FXML
+    private void keurafStageAanvraagDetails(ActionEvent action)
+    {
+        String reden;
+        reden = (String)JOptionPane.showInputDialog(
+                null,
+                "Geef een geldige reden op voor het afkeuren van deze aanvraag:",
+                "Stageopdracht afkeuren",
+                JOptionPane.QUESTION_MESSAGE); 
+        
+        if (reden.isEmpty())
+        {
+            JOptionPane.showMessageDialog(
+                null,
+                "Deze actie werd geannuleerd wegens geen geldige reden.",
+                "Stageopdracht afkeuren",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(0);
+        saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(1);
+        // aangezien er geen begeleider is bij het indienen maar wel een bedrijf.bedrijfspersoon = de eerste in collection is degene die het bedrijf heeft ingeschreven in DB via site         
+        Mail.sendMail(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getEmail(), "Stage afgekeurd",
+            "Geachte " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getVoornaam()+ " " +
+                    stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor het toevoegen van een nieuwe stage aan bedrijf " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfsNaam() +
+                    " is helaas afgekeurd.<br/>" +
+                    "Reden: " + reden + "<br/><br/>" +
+            "met vriendelijke groeten,<br/>" +
+            "het administrator-team.");        
+        //refresh list?
+    } 
+    
+    @Override
     public void setApp(Main app)
     {
         this.application = app;
-        begeleiderAanvragenTabel.getItems().addAll(app.getStageData());
-       
+        stageAanvragenTabel.setItems(app.getStageAanvraagData());
     }
+
+    @Override
     public void setMaster(HomeController master) 
     {
         this.master = master;
     }
 
+    @Override
     public void setUpWithModel(Model model)
     {
         this.model = model;

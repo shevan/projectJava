@@ -13,11 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
 
 public class BegeleiderStageEditorController implements Initializable, ControllerInterface
 {
@@ -90,9 +90,8 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     }
     public void initBegeleiderStageEditor()
     {   
-        testDataInput();
+//        testDataInput();
    
-        //leidende voorwerpen : begeleidersKolom, bedrijfKolom, begeleiderAanvraagTabel
         begeleiderKolom.setCellValueFactory( new Callback < CellDataFeatures < Begeleiderstageaanvraag, String >, ObservableValue < String > >()
         {
             @Override
@@ -202,7 +201,7 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
                     begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getFamilienaam() + "<br/><br/>" +
             "Uw aanvraag voor het begeleiden van de stage voor bedrijf " + begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStageId().getBedrijfId().getBedrijfsNaam() +
                     " is goedgekeurd.<br/><br/>" +
-            "met vriendelijke groeten," +
+            "met vriendelijke groeten,<br/>" +
             "het administrator-team.");
     } 
     
@@ -244,22 +243,50 @@ public class BegeleiderStageEditorController implements Initializable, Controlle
     @FXML
     private void keurafStageAanvraagDetails(ActionEvent action)
     {
-        //afkeuren
-        //msg box with reason?
+        String reden;
+        reden = (String)JOptionPane.showInputDialog(
+                null,
+                "Geef een geldige reden op voor het afkeuren van deze aanvraag:",
+                "Begeleider aanvraag afkeuren",
+                JOptionPane.QUESTION_MESSAGE); 
+        
+        if (reden.isEmpty())
+        {
+            JOptionPane.showMessageDialog(
+                null,
+                "Deze actie werd geannuleerd wegens geen geldige reden.",
+                "Begeleider aanvraag afkeuren",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        saveStageAanvraagDetails(begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedgekeurd(false);
+        Mail.sendMail(begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getEmail(), "Stage afgekeurd",
+            "Geachte " + begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getVoornaam() + " " +
+                    begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBegeleiderId().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor het begeleiden van de stage voor bedrijf " + begeleiderAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStageId().getBedrijfId().getBedrijfsNaam() +
+                    " is helaas afgekeurd.<br/>" +
+                    "Reden: " + reden + "<br/><br/>" +
+            "met vriendelijke groeten,<br/>" +
+            "het administrator-team.");
         //refresh list?
     } 
     
+    @Override
     public void setApp(Main app)
     {
         this.application = app;
-        //begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
         begeleiderAanvragenTabel.setItems(app.getBegeleiderStageAanvraagData());
     }
+    
+    @Override    
     public void setMaster(HomeController master) 
     {
         this.master = master;
     }
 
+    @Override
     public void setUpWithModel(Model model)
     {
         this.model = model;

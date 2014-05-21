@@ -12,7 +12,7 @@ import admin.model.Bedrijfspersoon;
 import admin.model.Begeleider;
 import admin.model.Begeleiderstageaanvraag;
 import admin.model.Gegeven;
-import admin.model.Stage;
+import admin.model.Stages;
 import admin.model.Student;
 import admin.model.Studentstage;
 import java.util.List;
@@ -76,12 +76,12 @@ public class ModelTest {
     public void testGetStagesFromDatabase() {
         System.out.println("getStagesFromDatabase");
         Model instance = new Model();
-        List<Stage> expResult = null;
-        List<Stage> result = instance.getStageFromDatabase();
+        List<Stages> expResult = null;
+        List<Stages> result = instance.getStageFromDatabase();
 
         // TODO review the generated test code and remove the default call to fail.
         
-        for (Stage stage : result){
+        for (Stages stage : result){
             System.out.println(stage.getProgrammeertaal());
         }
         
@@ -193,7 +193,7 @@ public class ModelTest {
         System.out.println("getStudentenStageAanvraagOnbeslistFromDatabase");
         Model instance = new Model();
         List<Studentstage> expResult = null;
-        List<Studentstage> result = instance.getStudentenStageAanvraagOnbeslistFromDatabase();
+        List<Studentstage> result = instance.getStudentStageAanvraagOnbeslistFromDatabase();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -220,8 +220,8 @@ public class ModelTest {
     public void testGetStageFromDatabase() {
         System.out.println("getStageFromDatabase");
         Model instance = new Model();
-        List<Stage> expResult = null;
-        List<Stage> result = instance.getStageFromDatabase();
+        List<Stages> expResult = null;
+        List<Stages> result = instance.getStageFromDatabase();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

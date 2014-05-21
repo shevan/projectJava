@@ -83,7 +83,7 @@ public class Begeleider implements Serializable {
     @OneToMany(mappedBy = "begeleiderBegeleiderId")
     private Collection<Student> studentCollection;
     @OneToMany(mappedBy = "begeleiderBegeleiderId")
-    private Collection<Stage> stageCollection;
+    private Collection<Stages> stageCollection;
 
     public Begeleider() {
     }
@@ -211,11 +211,11 @@ public class Begeleider implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Stage> getStageCollection() {
+    public Collection<Stages> getStageCollection() {
         return stageCollection;
     }
 
-    public void setStageCollection(Collection<Stage> stageCollection) {
+    public void setStageCollection(Collection<Stages> stageCollection) {
         this.stageCollection = stageCollection;
     }
 

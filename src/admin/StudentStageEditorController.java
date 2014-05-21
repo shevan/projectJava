@@ -6,18 +6,17 @@ import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
+import javax.swing.JOptionPane;
 
 public class StudentStageEditorController implements Initializable, ControllerInterface
 {
@@ -185,8 +184,14 @@ public class StudentStageEditorController implements Initializable, ControllerIn
     private void keurgoedStageAanvraagDetails(ActionEvent action)
     {
         saveStageAanvraagDetails(studentAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-        //+ zet goedgekeurd in db]
-        // send mail
+        studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedgekeurd(true);
+        Mail.sendMail(studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getEmailHogent(), "Goedkeuring stage",
+            "Geachte " + studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getVoornaam() + " " +
+                    studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor de stage van bedrijf " + studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStageId().getBedrijfId().getBedrijfsNaam() +
+                    " is goedgekeurd.<br/><br/>" +
+            "met vriendelijke groeten,<br/>" +
+            "het administrator-team.");
     } 
     
     private void saveStageAanvraagDetails(Studentstage stageaanvraag)
@@ -227,20 +232,50 @@ public class StudentStageEditorController implements Initializable, ControllerIn
     @FXML
     private void keurafStageAanvraagDetails(ActionEvent action)
     {
-        //afkeuren
+        String reden;
+        reden = (String)JOptionPane.showInputDialog(
+                null,
+                "Geef een geldige reden op voor het afkeuren van deze aanvraag:",
+                "Student aanvraag afkeuren",
+                JOptionPane.QUESTION_MESSAGE); 
+        
+        if (reden.isEmpty())
+        {
+            JOptionPane.showMessageDialog(
+                null,
+                "Deze actie werd geannuleerd wegens geen geldige reden.",
+                "Student aanvraag afkeuren",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        saveStageAanvraagDetails(studentAanvragenTabel.getSelectionModel().selectedItemProperty().get());
+        studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedgekeurd(false);
+        Mail.sendMail(studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getEmailHogent(), "Stage afgekeurd",
+            "Geachte " + studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getVoornaam() + " " +
+                    studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStudentId().getFamilienaam() + "<br/><br/>" +
+            "Uw aanvraag voor de stage van bedrijf " + studentAanvragenTabel.getSelectionModel().selectedItemProperty().get().getStageId().getBedrijfId().getBedrijfsNaam() +
+                    " is helaas afgekeurd.<br/>" +
+                    "Reden: " + reden + "<br/><br/>" +
+            "met vriendelijke groeten,<br/>" +
+            "het administrator-team.");
+        //refresh list?
     } 
     
+    @Override
     public void setApp(Main app)
     {
         this.application = app;
-        //begeleiderAanvragenTabel.getItems().addAll(app.getBegeleiderStageAanvraagData());
-        studentAanvragenTabel.setItems(app.getStudenStageSollicitatietData());
+        studentAanvragenTabel.setItems(app.getStudentStageAanvraagData());
     }
+    
+    @Override
     public void setMaster(HomeController master) 
     {
         this.master = master;
     }
 
+    @Override
     public void setUpWithModel(Model model)
     {
         this.model = model;

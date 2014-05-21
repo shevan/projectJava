@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//STAGES MEERVOUD = ANDERS CONFLICT MET JAVA STAGE
 
 package admin.model;
 
@@ -32,34 +28,35 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Pieter Pletinckx
  */
 @Entity
-@Table(name = "stage")
+@Table(name = "stages")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Stage.findAll", query = "SELECT s FROM Stage s"),
-    @NamedQuery(name = "Stage.findByStageId", query = "SELECT s FROM Stage s WHERE s.stageId = :stageId"),
-    @NamedQuery(name = "Stage.findByHardware", query = "SELECT s FROM Stage s WHERE s.hardware = :hardware"),
-    @NamedQuery(name = "Stage.findByBeheersysteem", query = "SELECT s FROM Stage s WHERE s.beheersysteem = :beheersysteem"),
-    @NamedQuery(name = "Stage.findByProgrammeertaal", query = "SELECT s FROM Stage s WHERE s.programmeertaal = :programmeertaal"),
-    @NamedQuery(name = "Stage.findByAnalyse", query = "SELECT s FROM Stage s WHERE s.analyse = :analyse"),
-    @NamedQuery(name = "Stage.findByOntwikkelingstools", query = "SELECT s FROM Stage s WHERE s.ontwikkelingstools = :ontwikkelingstools"),
-    @NamedQuery(name = "Stage.findByProjectTitel", query = "SELECT s FROM Stage s WHERE s.projectTitel = :projectTitel"),
-    @NamedQuery(name = "Stage.findBySpecialisatie", query = "SELECT s FROM Stage s WHERE s.specialisatie = :specialisatie"),
-    @NamedQuery(name = "Stage.findByProjectOmschrijving", query = "SELECT s FROM Stage s WHERE s.projectOmschrijving = :projectOmschrijving"),
-    @NamedQuery(name = "Stage.findByAantalStudenten", query = "SELECT s FROM Stage s WHERE s.aantalStudenten = :aantalStudenten"),
-    @NamedQuery(name = "Stage.findByConfiguratiehardware", query = "SELECT s FROM Stage s WHERE s.configuratiehardware = :configuratiehardware"),
-    @NamedQuery(name = "Stage.findByPeriode", query = "SELECT s FROM Stage s WHERE s.periode = :periode"),
-    @NamedQuery(name = "Stage.findByOpleidingsOnderwerp", query = "SELECT s FROM Stage s WHERE s.opleidingsOnderwerp = :opleidingsOnderwerp"),
-    @NamedQuery(name = "Stage.findByOpleidingBegindatum", query = "SELECT s FROM Stage s WHERE s.opleidingBegindatum = :opleidingBegindatum"),
-    @NamedQuery(name = "Stage.findByOpleidingEinddatum", query = "SELECT s FROM Stage s WHERE s.opleidingEinddatum = :opleidingEinddatum"),
-    @NamedQuery(name = "Stage.findByStageBegindatum", query = "SELECT s FROM Stage s WHERE s.stageBegindatum = :stageBegindatum"),
-    @NamedQuery(name = "Stage.findByStageEindatum", query = "SELECT s FROM Stage s WHERE s.stageEindatum = :stageEindatum"),
-    @NamedQuery(name = "Stage.findByGoedkeurStatus", query = "SELECT s FROM Stage s WHERE s.goedkeurStatus = :goedkeurStatus"),
-    @NamedQuery(name = "Stage.findByStagecontractOpgesteld", query = "SELECT s FROM Stage s WHERE s.stagecontractOpgesteld = :stagecontractOpgesteld"),
-    @NamedQuery(name = "Stage.findByGetekendeStagecontract", query = "SELECT s FROM Stage s WHERE s.getekendeStagecontract = :getekendeStagecontract"),
-    @NamedQuery(name = "Stage.findByAanmaakdatum", query = "SELECT s FROM Stage s WHERE s.aanmaakdatum = :aanmaakdatum"),
-    @NamedQuery(name = "Stage.findByWijzigingsdatum", query = "SELECT s FROM Stage s WHERE s.wijzigingsdatum = :wijzigingsdatum"),
-    @NamedQuery(name = "Stage.findByAantalBeschikbarePlaatsen", query = "SELECT s FROM Stage s WHERE s.aantalBeschikbarePlaatsen = :aantalBeschikbarePlaatsen")})
-public class Stage implements Serializable {
+    @NamedQuery(name = "Stages.findAll", query = "SELECT s FROM Stages s"),
+    @NamedQuery(name = "Stages.findByStageId", query = "SELECT s FROM Stages s WHERE s.stageId = :stageId"),
+    @NamedQuery(name = "Stages.findByHardware", query = "SELECT s FROM Stages s WHERE s.hardware = :hardware"),
+    @NamedQuery(name = "Stages.findByBeheersysteem", query = "SELECT s FROM Stages s WHERE s.beheersysteem = :beheersysteem"),
+    @NamedQuery(name = "Stages.findByProgrammeertaal", query = "SELECT s FROM Stages s WHERE s.programmeertaal = :programmeertaal"),
+    @NamedQuery(name = "Stages.findByAnalyse", query = "SELECT s FROM Stages s WHERE s.analyse = :analyse"),
+    @NamedQuery(name = "Stages.findByOntwikkelingstools", query = "SELECT s FROM Stages s WHERE s.ontwikkelingstools = :ontwikkelingstools"),
+    @NamedQuery(name = "Stages.findByProjectTitel", query = "SELECT s FROM Stages s WHERE s.projectTitel = :projectTitel"),
+    @NamedQuery(name = "Stages.findBySpecialisatie", query = "SELECT s FROM Stages s WHERE s.specialisatie = :specialisatie"),
+    @NamedQuery(name = "Stages.findByProjectOmschrijving", query = "SELECT s FROM Stages s WHERE s.projectOmschrijving = :projectOmschrijving"),
+    @NamedQuery(name = "Stages.findByAantalStudenten", query = "SELECT s FROM Stages s WHERE s.aantalStudenten = :aantalStudenten"),
+    @NamedQuery(name = "Stages.findByConfiguratiehardware", query = "SELECT s FROM Stages s WHERE s.configuratiehardware = :configuratiehardware"),
+    @NamedQuery(name = "Stages.findByPeriode", query = "SELECT s FROM Stages s WHERE s.periode = :periode"),
+    @NamedQuery(name = "Stages.findByOpleidingsOnderwerp", query = "SELECT s FROM Stages s WHERE s.opleidingsOnderwerp = :opleidingsOnderwerp"),
+    @NamedQuery(name = "Stages.findByOpleidingBegindatum", query = "SELECT s FROM Stages s WHERE s.opleidingBegindatum = :opleidingBegindatum"),
+    @NamedQuery(name = "Stages.findByOpleidingEinddatum", query = "SELECT s FROM Stages s WHERE s.opleidingEinddatum = :opleidingEinddatum"),
+    @NamedQuery(name = "Stages.findByStageBegindatum", query = "SELECT s FROM Stages s WHERE s.stageBegindatum = :stageBegindatum"),
+    @NamedQuery(name = "Stages.findByStageEindatum", query = "SELECT s FROM Stages s WHERE s.stageEindatum = :stageEindatum"),
+    @NamedQuery(name = "Stages.findByGoedkeurStatus", query = "SELECT s FROM Stages s WHERE s.goedkeurStatus = :goedkeurStatus"),
+    @NamedQuery(name = "Stages.findByStagecontractOpgesteld", query = "SELECT s FROM Stages s WHERE s.stagecontractOpgesteld = :stagecontractOpgesteld"),
+    @NamedQuery(name = "Stages.findByGetekendeStagecontract", query = "SELECT s FROM Stages s WHERE s.getekendeStagecontract = :getekendeStagecontract"),
+    @NamedQuery(name = "Stages.findByAanmaakdatum", query = "SELECT s FROM Stages s WHERE s.aanmaakdatum = :aanmaakdatum"),
+    @NamedQuery(name = "Stages.findByWijzigingsdatum", query = "SELECT s FROM Stages s WHERE s.wijzigingsdatum = :wijzigingsdatum"),
+    @NamedQuery(name = "Stages.findByAantalBeschikbarePlaatsen", query = "SELECT s FROM Stages s WHERE s.aantalBeschikbarePlaatsen = :aantalBeschikbarePlaatsen"),
+    @NamedQuery(name = "Stages.findByNogNietBeslist", query = "SELECT s FROM Stages s WHERE s.goedkeurStatus IS NULL"),})
+public class Stages implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,14 +136,14 @@ public class Stage implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "stageId")
     private Collection<Studentstage> studentstageCollection;
 
-    public Stage() {
+    public Stages() {
     }
 
-    public Stage(Integer stageId) {
+    public Stages(Integer stageId) {
         this.stageId = stageId;
     }
 
-    public Stage(Integer stageId, String projectTitel, String projectOmschrijving, int aantalStudenten, String periode) {
+    public Stages(Integer stageId, String projectTitel, String projectOmschrijving, int aantalStudenten, String periode) {
         this.stageId = stageId;
         this.projectTitel = projectTitel;
         this.projectOmschrijving = projectOmschrijving;
@@ -407,10 +404,10 @@ public class Stage implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Stage)) {
+        if (!(object instanceof Stages)) {
             return false;
         }
-        Stage other = (Stage) object;
+        Stages other = (Stages) object;
         if ((this.stageId == null && other.stageId != null) || (this.stageId != null && !this.stageId.equals(other.stageId))) {
             return false;
         }
@@ -419,7 +416,7 @@ public class Stage implements Serializable {
 
     @Override
     public String toString() {
-        return "admin.model.Stage[ stageId=" + stageId + " ]";
+        return "admin.model.Stages[ stageId=" + stageId + " ]";
     }
     
 }

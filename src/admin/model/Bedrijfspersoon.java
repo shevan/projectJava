@@ -68,9 +68,9 @@ public class Bedrijfspersoon implements Serializable {
     @ManyToOne
     private Bedrijf bedrijfBedrijfsId;
     @OneToMany(mappedBy = "StagementorId")
-    private Collection<Stage> stageCollection;
+    private Collection<Stages> stageCollection;
     @OneToMany(mappedBy = "ContractondertekenaarId")
-    private Collection<Stage> stageCollection1;
+    private Collection<Stages> stageCollection1;
 
     public Bedrijfspersoon() {
     }
@@ -153,20 +153,20 @@ public class Bedrijfspersoon implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Stage> getStageCollection() {
+    public Collection<Stages> getStageCollection() {
         return stageCollection;
     }
 
-    public void setStageCollection(Collection<Stage> stageCollection) {
+    public void setStageCollection(Collection<Stages> stageCollection) {
         this.stageCollection = stageCollection;
     }
 
     @XmlTransient
-    public Collection<Stage> getStageCollection1() {
+    public Collection<Stages> getStageCollection1() {
         return stageCollection1;
     }
 
-    public void setStageCollection1(Collection<Stage> stageCollection1) {
+    public void setStageCollection1(Collection<Stages> stageCollection1) {
         this.stageCollection1 = stageCollection1;
     }
 
