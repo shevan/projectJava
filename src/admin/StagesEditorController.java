@@ -1,5 +1,3 @@
-//STAGEOPDRACHTEN
-
 package admin;
 
 import admin.model.*;
@@ -18,9 +16,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
-import javax.swing.JOptionPane;
 
-public class StageEditorController implements Initializable, ControllerInterface
+public class StagesEditorController implements Initializable, ControllerInterface
 {
     private Main application;
     private Model model;
@@ -72,9 +69,7 @@ public class StageEditorController implements Initializable, ControllerInterface
     private TextField mentorEmailTxt;
     
     @FXML
-    private Button btnGoedkeuren;
-    @FXML
-    private Button btnAfkeuren;        
+    private Button btnOpslaan;        
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -183,18 +178,9 @@ public class StageEditorController implements Initializable, ControllerInterface
     }
     
     @FXML
-    private void keurgoedStageAanvraagDetails(ActionEvent action)
+    private void opslaanStageAanvraagDetails(ActionEvent action)
     {
         saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(1);
-        // aangezien er geen begeleider is bij het indienen van opdracht maar wel een bedrijf.bedrijfspersoon = de eerste in collection is degene die het bedrijf heeft ingeschreven in DB via site
-        Mail.sendMail(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getEmail(), "Goedkeuring stage",
-            "Geachte " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getVoornaam()+ " " +
-                    stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getFamilienaam() + "<br/><br/>" +
-            "Uw aanvraag voor het toevoegen van een nieuwe stage aan bedrijf " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfsNaam() +
-                    " is goedgekeurd voor periode " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getPeriode() + ".<br/><br/>" +
-            "met vriendelijke groeten,<br/>" +
-            "het administrator-team.");
     } 
     
     private void saveStageAanvraagDetails(Stages stageaanvraag)
@@ -231,42 +217,6 @@ public class StageEditorController implements Initializable, ControllerInterface
             }
         } 
     }
-
-    @FXML
-    private void keurafStageAanvraagDetails(ActionEvent action)
-    {
-        String reden;
-        reden = (String)JOptionPane.showInputDialog(
-                null,
-                "Geef een geldige reden op voor het afkeuren van deze aanvraag:",
-                "Stageopdracht afkeuren",
-                JOptionPane.QUESTION_MESSAGE); 
-        
-        if (reden.isEmpty())
-        {
-            JOptionPane.showMessageDialog(
-                null,
-                "Deze actie werd geannuleerd wegens geen geldige reden.",
-                "Stageopdracht afkeuren",
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(0);
-        saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-        stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().setGoedkeurStatus(1);
-        // aangezien er geen begeleider is bij het indienen maar wel een bedrijf.bedrijfspersoon = de eerste in collection is degene die het bedrijf heeft ingeschreven in DB via site         
-        Mail.sendMail(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getEmail(), "Stage afgekeurd",
-            "Geachte " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getVoornaam()+ " " +
-                    stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfspersoonCollection().iterator().next().getFamilienaam() + "<br/><br/>" +
-            "Uw aanvraag voor het toevoegen van een nieuwe stage aan bedrijf " + stageAanvragenTabel.getSelectionModel().selectedItemProperty().get().getBedrijfId().getBedrijfsNaam() +
-                    " is helaas afgekeurd.<br/>" +
-                    "Reden: " + reden + "<br/><br/>" +
-            "met vriendelijke groeten,<br/>" +
-            "het administrator-team.");        
-        //refresh list?
-    } 
     
     @Override
     public void setApp(Main app)

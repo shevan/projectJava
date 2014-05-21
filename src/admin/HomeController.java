@@ -21,7 +21,9 @@ public class HomeController extends AnchorPane implements Initializable
     @FXML
     private StudentEditorController studentEditorController;
     @FXML
-    private StageEditorController stageEditorController;
+    private StageEditorController stageEditorController; // stage opdrachten
+    @FXML
+    private StagesEditorController stagesEditorController;    
     
     @FXML
     private Button btnBegeleidersAanvragen;
@@ -42,6 +44,7 @@ public class HomeController extends AnchorPane implements Initializable
     public AnchorPane studentStageEditor;
     public AnchorPane studentEditor;  
     public AnchorPane stageEditor;    
+    public AnchorPane stagesEditor;   
       
     public void setApp(Main application)
     {
@@ -77,7 +80,8 @@ public class HomeController extends AnchorPane implements Initializable
             begeleiderStageEditorController,
             studentStageEditorController,
             studentEditorController,
-            stageEditorController
+            stageEditorController,
+            stagesEditorController
         };
         for(ControllerInterface controller: children)
         {
@@ -117,6 +121,7 @@ public class HomeController extends AnchorPane implements Initializable
     @FXML 
     private void displayStages(ActionEvent action)
     {
+        stagesEditorController.initStageEditor();             
         changeView(4);
     }     
 
@@ -162,7 +167,7 @@ public class HomeController extends AnchorPane implements Initializable
             case 4:
             {
                 hideAllViews();
-//                stageEditor.setVisible(true); fix
+                stagesEditor.setVisible(true);
                 break; 
             }
         }

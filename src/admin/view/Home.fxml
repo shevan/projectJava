@@ -21,6 +21,7 @@
         <fx:include fx:id="begeleiderStageEditor" source="BegeleiderStageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="488.0" prefWidth="1024.0" visible="false" />
         <fx:include fx:id="studentStageEditor" source="StudentStageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="488.0" prefWidth="1024.0" visible="false" />
         <fx:include fx:id="stageEditor" source="StageEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="488.0" prefWidth="1024.0" visible="false" />
+        <fx:include fx:id="stagesEditor" source="StagesEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="488.0" prefWidth="1024.0" visible="false" />        
         <fx:include fx:id="studentEditor" source="StudentEditor.fxml" layoutX="0.0" layoutY="81.0" maxHeight="-1.0" prefHeight="488.0" prefWidth="1024.0" visible="false" />
         <Button fx:id="btnBegeleidersAanvragen" layoutX="406.0" layoutY="6.0" mnemonicParsing="false" onAction="#displayBegeleiderStageAanvragen" prefHeight="27.0" prefWidth="213.0" text="Aanvragen begeleiders" />
         <Button id="btnStudentenAanvragen" fx:id="btnStageAanvragen" layoutX="406.0" layoutY="39.0" mnemonicParsing="false" onAction="#displayStageAanvragen" prefHeight="27.0" prefWidth="213.0" text="Aanvragen stageopdrachten" />
