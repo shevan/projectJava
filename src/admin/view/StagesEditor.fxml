@@ -33,7 +33,7 @@
                       <content>
                         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="572.0">
                           <children>
-                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="314.9998779296875" prefWidth="556.0" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="361.0" prefWidth="556.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
                               <children>
                                 <Label id="projectTitelLbl" text="Titel :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                 <Label id="projectOmschrijvingLbl" text="Omschrijving" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -53,19 +53,26 @@
                                 <Label text="Einddatum" GridPane.columnIndex="0" GridPane.rowIndex="5" />
                                 <TextField fx:id="beginDatumTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <TextField fx:id="eindDatumTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label prefHeight="25.0001220703125" text="Stagecontract" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                                <Label text="" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                                <CheckBox fx:id="opgesteldBox" mnemonicParsing="false" text="opgesteld" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <CheckBox fx:id="getekendBox" mnemonicParsing="false" text="getekend" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                <Label text="Exemplaar" GridPane.columnIndex="0" GridPane.rowIndex="8" />
                               </children>
                               <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
-                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="135.0" />
+                                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" prefWidth="421.79999999999995" />
                               </columnConstraints>
                               <rowConstraints>
-                                <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="145.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="131.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="18.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                             </GridPane>
                           </children>

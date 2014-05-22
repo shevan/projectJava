@@ -9,21 +9,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 public class HomeController extends AnchorPane implements Initializable
-{   private Main application;
+{
+    private Main application;
     private Model model;
    
     private HomeController master;
     
     @FXML
-    private BegeleiderStageEditorController begeleiderStageEditorController;
+    private BegeleiderStageEditorController begeleiderStageEditorController; // aanvragen voor begeleiders = goedkeuren of afkeuren (prior 80)
     @FXML
-    private StudentStageEditorController studentStageEditorController;    
+    private StageEditorController stageEditorController; // aanvragen voor stageopdrachten = goedkeuren of afkeuren (prior 60 + 70)
     @FXML
-    private StudentEditorController studentEditorController;
+    private StagesEditorController stagesEditorController;    // alle stages (prior 110 - aanduiden opgesteld & getekend) + (prior 90 - begin/einddatums aanpassen indien nodig)
     @FXML
-    private StageEditorController stageEditorController; // stage opdrachten
-    @FXML
-    private StagesEditorController stagesEditorController;    
+    private GenererenEditorController genererenEditorController;    // alle stages + zoekcriteria (prior 100)   
     
     @FXML
     private Button btnBegeleidersAanvragen;
@@ -31,20 +30,11 @@ public class HomeController extends AnchorPane implements Initializable
     private Button btnStageAanvragen;
     @FXML
     private Button btnStages;
-    @FXML
-    private Button btnStudenten;
-    @FXML
-    private Button btnBedrijven;    
-    @FXML
-    private Button btnGebruikers;
-    @FXML
-    private Button aanvraagButton;
 
     public AnchorPane begeleiderStageEditor;  
-    public AnchorPane studentStageEditor;
-    public AnchorPane studentEditor;  
     public AnchorPane stageEditor;    
     public AnchorPane stagesEditor;   
+    public AnchorPane genererenEditor;
       
     public void setApp(Main application)
     {
@@ -78,10 +68,9 @@ public class HomeController extends AnchorPane implements Initializable
         ControllerInterface[] children =
         {
             begeleiderStageEditorController,
-            studentStageEditorController,
-            studentEditorController,
             stageEditorController,
-            stagesEditorController
+            stagesEditorController,
+            genererenEditorController
         };
         for(ControllerInterface controller: children)
         {
@@ -110,31 +99,20 @@ public class HomeController extends AnchorPane implements Initializable
         stageEditorController.initStageEditor();        
         changeView(2);
     }    
-
-    @FXML 
-    private void displayStudenten(ActionEvent action)
-    {
-        studentStageEditorController.initStudentStageEditor();           
-        changeView(3);
-    }
     
     @FXML 
     private void displayStages(ActionEvent action)
     {
         stagesEditorController.initStageEditor();             
-        changeView(4);
+        changeView(3);
     }     
 
     @FXML
-    private void displayBedrijven(ActionEvent action)
+    private void displayFilteredStages(ActionEvent action)
     {
-    } 
-    
-    @FXML 
-    private void displayGebruikers(ActionEvent action)
-    {
-
-    }   
+        genererenEditorController.initGenererenEditor();             
+        changeView(4);        
+    }    
     
     public void changeView (int v)
     {
@@ -143,7 +121,6 @@ public class HomeController extends AnchorPane implements Initializable
             case 0:
             {
                 hideAllViews();
-                // set visible unread messages count?
                 break; 
             }            
             case 1:
@@ -161,13 +138,13 @@ public class HomeController extends AnchorPane implements Initializable
             case 3:
             {
                 hideAllViews();
-                studentEditor.setVisible(true);
+                stagesEditor.setVisible(true);
                 break; 
             }
             case 4:
             {
                 hideAllViews();
-                stagesEditor.setVisible(true);
+                genererenEditor.setVisible(true);
                 break; 
             }
         }
@@ -176,10 +153,8 @@ public class HomeController extends AnchorPane implements Initializable
     private void hideAllViews()
     {
         begeleiderStageEditor.setVisible(false);    
-        studentStageEditor.setVisible(false);  
-        studentEditor.setVisible(false);
         stageEditor.setVisible(false);
         stagesEditor.setVisible(false);
-
+        genererenEditor.setVisible(false);          
     }    
 }

@@ -85,7 +85,7 @@ public class Model
     
     public List <Stages> getStageFromDatabase()
     {
-        TypedQuery<Stages> query = em.createNamedQuery("Stage.findAll", Stages.class);
+        TypedQuery<Stages> query = em.createNamedQuery("Stages.findAll", Stages.class);
         return query.getResultList();
     }
     

@@ -2,7 +2,6 @@ package admin;
 
 import admin.model.*;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -80,7 +80,12 @@ public class StagesEditorController implements Initializable, ControllerInterfac
     private TextField mentorEmailTxt;
     
     @FXML
-    private Button btnOpslaan;        
+    private Button btnOpslaan;    
+    
+    @FXML
+    private CheckBox opgesteldBox;
+    @FXML
+    private CheckBox getekendBox;    
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -150,6 +155,12 @@ public class StagesEditorController implements Initializable, ControllerInterfac
                 eindDatumTxt.setText(eindDatum);
             }
             
+            if (stageaanvraag.getStagecontractOpgesteld()!= null)
+                opgesteldBox.setSelected(true);
+            
+            if (stageaanvraag.getGetekendeStagecontract()!= null)
+                getekendBox.setSelected(true);            
+            
             aantalStudentenTxt.setText(stageaanvraag.getAantalStudenten()+"");
 
             bedrijfsnaamTxt.setText(stageaanvraag.getBedrijfId().getBedrijfsNaam());
@@ -186,6 +197,8 @@ public class StagesEditorController implements Initializable, ControllerInterfac
         beginDatumTxt.setText("");
         eindDatumTxt.setText("");
         aantalStudentenTxt.setText("");
+        opgesteldBox.setSelected(false);
+        getekendBox.setSelected(false);          
 
         bedrijfsnaamTxt.setText("");
         bedrijfStraatEnNrTxt.setText("");
@@ -240,6 +253,12 @@ public class StagesEditorController implements Initializable, ControllerInterfac
                 }
                 stageaanvraag.setStageEindatum(eindDatum);
             }
+
+            if (opgesteldBox.isSelected() == true)
+                stageaanvraag.setStagecontractOpgesteld(true);
+            
+            if (getekendBox.isSelected() == true)
+                stageaanvraag.setGetekendeStagecontract(true);         
             
             stageaanvraag.setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
 

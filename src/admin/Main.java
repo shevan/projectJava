@@ -119,9 +119,9 @@ public class Main extends Application
     
     public ObservableList<admin.model.Stages> getStageData()
     {
-        ObservableList<admin.model.Stages> data = FXCollections.observableArrayList();
-        List <admin.model.Stages> list = model.getStageFromDatabase();
-        for(admin.model.Stages item : list)
+        ObservableList<Stages> data = FXCollections.observableArrayList();
+        List <Stages> list = model.getStageFromDatabase();
+        for(Stages item : list)
         {
             data.add(item);
         }  
@@ -190,5 +190,5 @@ public class Main extends Application
             data.add(item);
         }
        	return data;
-    }        
+    }         
 }
