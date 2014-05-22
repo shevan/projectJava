@@ -31,9 +31,9 @@
                   <children>
                     <ScrollPane prefHeight="426.0" prefWidth="254.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
                       <content>
-                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="572.0">
+                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="572.0">
                           <children>
-                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="285.0" prefWidth="556.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
+                            <GridPane id="firstNameLabel" maxWidth="1.7976931348623157E308" prefHeight="314.9998779296875" prefWidth="556.0" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
                               <children>
                                 <Label id="projectTitelLbl" text="Titel :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                                 <Label id="projectOmschrijvingLbl" text="Omschrijving" GridPane.columnIndex="0" GridPane.rowIndex="1" />
@@ -44,19 +44,25 @@
                                 </TextArea>
                                 <Label id="specialisatieLbl" text="Specialisatie :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                                 <Label id="stagePeriodeLbl" text="Periode :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                <Label text="Aantal studenten :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <Label text="Aantal studenten :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
                                 <TextField fx:id="projectTitelTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                                 <TextField fx:id="specialisatieTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <TextField fx:id="periodeTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <TextField fx:id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="aantalStudentenTxt" editable="false" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                <Label prefWidth="90.00009999999747" text="Begindatum" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                <Label text="Einddatum" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                <TextField fx:id="beginDatumTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <TextField fx:id="eindDatumTxt" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               </children>
                               <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="128.0" />
                                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" percentWidth="80.0" />
                               </columnConstraints>
                               <rowConstraints>
-                                <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="50.0" minHeight="2.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="150.0" minHeight="32.0" prefHeight="145.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -206,7 +212,7 @@
     </SplitPane>
     <HBox alignment="CENTER" layoutX="362.0" layoutY="453.0" prefHeight="30.0" prefWidth="300.0">
       <children>
-        <Button id="btnAfkeuren" fx:id="btnOpslaan" mnemonicParsing="false" onAction="#opslaanStageAanvraagDetails" prefWidth="100.0" text="Opslaan">
+        <Button fx:id="btnOpslaan" mnemonicParsing="false" onAction="#opslaanStageAanvraagDetails" prefWidth="100.0" text="Opslaan">
           <font>
             <Font size="14.0" fx:id="x1" />
           </font>

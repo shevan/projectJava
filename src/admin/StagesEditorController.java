@@ -2,7 +2,14 @@ package admin;
 
 import admin.model.*;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -47,6 +54,10 @@ public class StagesEditorController implements Initializable, ControllerInterfac
     private TextField specialisatieTxt;
     @FXML
     private TextField periodeTxt;
+    @FXML
+    private TextField beginDatumTxt;
+    @FXML
+    private TextField eindDatumTxt;    
     @FXML
     private TextField aantalStudentenTxt;
     @FXML
@@ -124,6 +135,21 @@ public class StagesEditorController implements Initializable, ControllerInterfac
             projectOmschrijvingTxt.setText(stageaanvraag.getProjectOmschrijving());
             specialisatieTxt.setText(stageaanvraag.getSpecialisatie());
             periodeTxt.setText(stageaanvraag.getPeriode());
+            
+            if (stageaanvraag.getStageBegindatum() != null)
+            {
+                SimpleDateFormat formatDateToString = new SimpleDateFormat("dd-MM-yyyy");
+                String beginDatum = formatDateToString.format(stageaanvraag.getStageBegindatum());                                   
+                beginDatumTxt.setText(beginDatum);
+            }
+               
+            if (stageaanvraag.getStageEindatum() != null)
+            {
+                SimpleDateFormat formatDateToString = new SimpleDateFormat("dd-MM-yyyy");
+                String eindDatum = formatDateToString.format(stageaanvraag.getStageEindatum());                                   
+                eindDatumTxt.setText(eindDatum);
+            }
+            
             aantalStudentenTxt.setText(stageaanvraag.getAantalStudenten()+"");
 
             bedrijfsnaamTxt.setText(stageaanvraag.getBedrijfId().getBedrijfsNaam());
@@ -157,6 +183,8 @@ public class StagesEditorController implements Initializable, ControllerInterfac
         projectOmschrijvingTxt.setText("");
         specialisatieTxt.setText("");
         periodeTxt.setText("");
+        beginDatumTxt.setText("");
+        eindDatumTxt.setText("");
         aantalStudentenTxt.setText("");
 
         bedrijfsnaamTxt.setText("");
@@ -181,7 +209,7 @@ public class StagesEditorController implements Initializable, ControllerInterfac
     private void opslaanStageAanvraagDetails(ActionEvent action)
     {
         saveStageAanvraagDetails(stageAanvragenTabel.getSelectionModel().selectedItemProperty().get());
-    } 
+    }      
     
     private void saveStageAanvraagDetails(Stages stageaanvraag)
     {
@@ -191,6 +219,28 @@ public class StagesEditorController implements Initializable, ControllerInterfac
             stageaanvraag.setProjectOmschrijving(projectOmschrijvingTxt.getText());
             stageaanvraag.setSpecialisatie(specialisatieTxt.getText());
             stageaanvraag.setPeriode(periodeTxt.getText());
+            
+            if (!beginDatumTxt.getText().isEmpty())
+            {
+                Date beginDatum = null;
+                try {
+                    beginDatum = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH).parse(beginDatumTxt.getText());
+                } catch (ParseException ex) {
+                    Logger.getLogger(StagesEditorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                stageaanvraag.setStageBegindatum(beginDatum);
+            }
+            if (!eindDatumTxt.getText().isEmpty())
+            {
+                Date eindDatum = null;
+                try {
+                    eindDatum = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH).parse(eindDatumTxt.getText());
+                } catch (ParseException ex) {
+                    Logger.getLogger(StagesEditorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                stageaanvraag.setStageEindatum(eindDatum);
+            }
+            
             stageaanvraag.setAantalStudenten(Integer.parseInt(aantalStudentenTxt.getText()));
 
             stageaanvraag.getBedrijfId().setBedrijfsNaam(bedrijfsnaamTxt.getText());

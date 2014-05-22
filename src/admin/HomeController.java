@@ -179,6 +179,7 @@ public class HomeController extends AnchorPane implements Initializable
         studentStageEditor.setVisible(false);  
         studentEditor.setVisible(false);
         stageEditor.setVisible(false);
+        stagesEditor.setVisible(false);
 
     }    
 }
